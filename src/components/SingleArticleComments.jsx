@@ -1,13 +1,10 @@
 import { useState, useEffect } from "react";
-import { useLocation } from 'react-router-dom'
-
 import * as api from '../api'
 
-export default function SingleArticleComments () {
+export default function SingleArticleComments (props) {
     const [comments, selectComments] = useState([])
     const [isLoading, setIsLoading] = useState(true)
-    const location = useLocation()
-    const { id } = location.state
+    const id = props.article
 
     useEffect(() => {
         setIsLoading(true)
@@ -25,7 +22,7 @@ export default function SingleArticleComments () {
     return (
         comments.map((comment) => {
             return (
-                <div className="comment">
+                <div className="comment" key={comment.comment_id}>
                     <h3 className="comment-header">{comment.author}:</h3>
                     <p className="comment-body">{comment.body}</p>
                     <p className="comment-details">votes: {comment.votes}</p>
