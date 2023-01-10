@@ -28,6 +28,7 @@ export default function SingleArticle () {
             <p className="article-body">{article.body}</p>
             <p className="article-details">author: {article.author}</p>
             <p className="article-details">topic: {article.topic}</p>
+            <p className="article-details">comments: {article.comment_count}</p>
             <p className="article-details">votes: {article.votes}</p>
             <p className="article-details">created: {String(article.created_at).slice(0, 10)}</p>
             <p className="article-details">{article.comment_count} comments:</p>       
@@ -35,4 +36,3 @@ export default function SingleArticle () {
         </div>
     )
 }
-
