@@ -11,3 +11,11 @@ export const fetchArticles = () => {
         return response;
     })
 }
+
+export const fetchSingleArticle = (article_id) => {
+    return api.get(
+        `https://nc-news-acw.onrender.com/api/articles/${article_id}`
+    ).then((response) => {
+        return response;
+    })
+}

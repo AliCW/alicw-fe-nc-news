@@ -5,6 +5,7 @@ import Login from './components/Login';
 import Articles from './components/Articles';
 import { Route, Routes } from 'react-router-dom'
 import './App.css';
+import SingleArticle from './components/SingleArticle';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/articles" element={<Articles />} />
+        <Route path="/article/*" element={<SingleArticle />} />
       </Routes>
     </div>
   );
