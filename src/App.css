@@ -36,3 +36,41 @@
     transform: rotate(360deg);
   }
 }
+.App {
+  background-color: #ffffff;
+}
+
+.header{
+  background-color: #767E8E;
+}
+
+.login {
+  background-color: #ffa5d6;
+}
+
+.home-image {
+  border: 1px solid #ffa5d6;
+  border-radius: 4px;
+  padding: 5px;
+  width: 50%;
+}
+
+.article {
+  margin: auto;
+  padding: 5%;
+  border: 1px solid #ffa5d6;
+  border-radius: 4px;
+  padding: 5px;
+  width: 50%;
+}
+
+.article-header {
+  font-size: 1rem;
+}
+
+.article-details {
+  font-size: x-small;
+  padding: auto;
+  margin-left: 2%;
+  margin: auto;
+}
