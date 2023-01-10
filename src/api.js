@@ -19,3 +19,11 @@ export const fetchSingleArticle = (article_id) => {
         return response;
     })
 }
+
+export const fetchSingleArticleComments = (article_id) => {
+    return api.get(
+        `https://nc-news-acw.onrender.com/api/articles/${article_id}/comments`
+    ).then((response) => {
+        return response;
+    })
+}

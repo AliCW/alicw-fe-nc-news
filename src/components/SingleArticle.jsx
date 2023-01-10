@@ -1,20 +1,21 @@
 import { useState, useEffect } from "react";
-import { useLocation } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import SingleArticleComments from "./SingleArticleComments"
 import * as api from '../api'
 
 export default function SingleArticle () {
     const [article, selectArticle] = useState([])
     const [isLoading, setIsLoading] = useState(true)
-    const location = useLocation()
-    const { id } = location.state
+
+    const { article_id } = useParams()
 
     useEffect(() => {
         setIsLoading(true)
-        api.fetchSingleArticle(id).then(({data}) => {
+        api.fetchSingleArticle(article_id).then(({data}) => {
             selectArticle(data.article.article[0])
             setIsLoading(false)
         })
-    }, [id]
+    }, [article_id]
     )
 
     if (isLoading) {
@@ -22,7 +23,7 @@ export default function SingleArticle () {
     }
 
     return (
-        <div className="article">
+        <div className="article" key={article.article_id}>
             <h3 className="article-header">{article.title}</h3>
             <p className="article-body">{article.body}</p>
             <p className="article-details">author: {article.author}</p>
@@ -30,6 +31,8 @@ export default function SingleArticle () {
             <p className="article-details">comments: {article.comment_count}</p>
             <p className="article-details">votes: {article.votes}</p>
             <p className="article-details">created: {String(article.created_at).slice(0, 10)}</p>
+            <p className="article-details">{article.comment_count} comments:</p>       
+            <SingleArticleComments article={article_id}></SingleArticleComments>
         </div>
     )
 }
