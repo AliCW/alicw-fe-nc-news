@@ -29,7 +29,6 @@ export default function Articles() {
            <p className="article-details">comments: {article.comments_count}</p>
            <p className="article-details">votes: {article.votes}</p>
            <p className="article-details">created: {article.created_at.slice(0, 10)}</p>
-           
         </div>
 
             )
