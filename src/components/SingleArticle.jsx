@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation } from 'react-router-dom'
+import { Link } from "react-router-dom"
 import * as api from '../api'
 
 export default function SingleArticle () {
@@ -21,13 +22,15 @@ export default function SingleArticle () {
         return <p className="loading">Loading...</p>
     }
 
+    const path = "/article/" + id + "/comments"
+
     return (
         <div className="article">
             <h3 className="article-header">{article.title}</h3>
             <p className="article-body">{article.body}</p>
             <p className="article-details">author: {article.author}</p>
             <p className="article-details">topic: {article.topic}</p>
-            <p className="article-details">comments: {article.comments_count}</p>
+            <p className="article-details">comments: <Link to={path} state={{id: article.article_id}}>{article.comment_count}</Link></p>
             <p className="article-details">votes: {article.votes}</p>
             <p className="article-details">created: {String(article.created_at).slice(0, 10)}</p>
         </div>
