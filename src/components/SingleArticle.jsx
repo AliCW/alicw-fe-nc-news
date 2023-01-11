@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom'
 import SingleArticleComments from "./SingleArticleComments"
-// import addVote from '../api'
 import * as api from '../api'
 
 export default function SingleArticle () {
@@ -23,32 +22,29 @@ export default function SingleArticle () {
     const upVote = (article_id) => {
         if(addVotes === false) {
             setAddVotes(true)
-            api.incVote(article_id).then(() => { 
                 selectArticle((article) => {
                     return article.map((votes) => { 
                         console.log(article)
                         return {...votes, votes: article[0].votes + 1}
                     })
-                })
-            })           
+            })  
+            api.incVote(article_id)    
         } else {
             setAddVotes(false)
             downVote(article[0].article_id)
         }
-
     }
   
         const downVote = (article_id) => {
             if(subVotes === false) {
                 setSubVotes(true)
-                api.decVote(article_id).then(() => {      
                     selectArticle((article) => {
                         return article.map((votes) => { 
                             console.log(article)
                             return {...votes, votes: article[0].votes - 1}
                         })
                     })
-                })           
+                    api.decVote(article_id)  
             } else {
                 setSubVotes(false)
                 upVote(article[0].article_id)
@@ -67,20 +63,15 @@ export default function SingleArticle () {
             <p className="article-details">author: {article[0].author}</p>
             <p className="article-details">topic: {article[0].topic}</p>
             <p className="article-details">
-                votes: 
-                <button onClick={() => downVote(article[0].article_id)}>-
-
-
+                votes:
+                <button className="vote-button" onClick={() => downVote(article[0].article_id)}>↓
                 </button>
                 {article[0].votes}
-                <button onClick={() => upVote(article[0].article_id)}>+
-                
-                
+                <button className="vote-button" onClick={() => upVote(article[0].article_id)}>↑
                 </button>
-            
             </p>
             <p className="article-details">created: {String(article[0].created_at).slice(0, 10)}</p>
-            <p className="article-details">{article[0].comment_count} comments:</p>       
+            <p className="article-details">{article[0].comment_count} comments:</p>
             <SingleArticleComments article={article_id}></SingleArticleComments>
         </div>
     )
