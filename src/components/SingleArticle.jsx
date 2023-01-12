@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom'
-import SingleArticleComments from "./SingleArticleComments"
+import SingleArticleComments from './SingleArticleComments'
+import AddComment from './AddComment'
 import * as api from '../api'
 
 export default function SingleArticle () {
@@ -71,6 +72,7 @@ export default function SingleArticle () {
                 </button>
             </p>
             <p className="article-details">created: {String(article[0].created_at).slice(0, 10)}</p>
+            <AddComment article={article_id}></AddComment>
             <p className="article-details">{article[0].comment_count} comments:</p>
             <SingleArticleComments article={article_id}></SingleArticleComments>
         </div>
