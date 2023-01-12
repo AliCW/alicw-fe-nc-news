@@ -25,33 +25,43 @@ export default function SingleArticle () {
             setAddVotes(true)
                 selectArticle((article) => {
                     return article.map((votes) => { 
-                        console.log(article)
                         return {...votes, votes: article[0].votes + 1}
                     })
             })  
-            api.incVote(article_id)    
+            api.incVote(article_id).catch(() => {
+                selectArticle((article) => {
+                    return article.map((votes) => {
+                        return {...votes, votes: article[0].votes - 1}
+                    })
+                })
+            })    
         } else {
             setAddVotes(false)
             downVote(article[0].article_id)
         }
     }
-  
-        const downVote = (article_id) => {
-            if(subVotes === false) {
-                setSubVotes(true)
-                    selectArticle((article) => {
-                        return article.map((votes) => { 
-                            console.log(article)
-                            return {...votes, votes: article[0].votes - 1}
-                        })
+
+    const downVote = (article_id) => {
+        if (subVotes === false) {
+            setSubVotes(true)
+            selectArticle((article) => {
+                return article.map((votes) => {
+                    return { ...votes, votes: article[0].votes - 1 }
+                })
+            })
+            api.decVote(article_id).catch(() => {
+                selectArticle((article) => {
+                    return article.map((votes) => {
+                        return { ...votes, votes: article[0].votes + 1 }
                     })
-                    api.decVote(article_id)  
-            } else {
-                setSubVotes(false)
-                upVote(article[0].article_id)
-            }
+                })
+            })
+        } else {
+            setSubVotes(false)
+            upVote(article[0].article_id)
         }
-    
+    }
+
 
     if (isLoading) {
         return <p className="loading">Loading...</p>
