@@ -6,8 +6,6 @@ import * as api from '../api'
 export default function SingleArticle () {
     const [article, selectArticle] = useState([])
     const [isLoading, setIsLoading] = useState(true)
-    const [addVotes, setAddVotes] = useState(false)
-    const [subVotes, setSubVotes] = useState(false)
     const { article_id } = useParams()
 
     useEffect(() => {
@@ -20,8 +18,6 @@ export default function SingleArticle () {
     )
 
     const upVote = (article_id) => {
-        if (addVotes === false) {
-            setAddVotes(true)
             selectArticle((article) => {
                 return article.map((votes) => {
                     return { ...votes, votes: article[0].votes + 1 }
@@ -37,15 +33,10 @@ export default function SingleArticle () {
                     })
                 })
             })
-        } else {
-            setAddVotes(false)
-            downVote(article[0].article_id)
-        }
+        
     }
 
     const downVote = (article_id) => {
-        if (subVotes === false) {
-            setSubVotes(true)
             selectArticle((article) => {
                 return article.map((votes) => {
                     return { ...votes, votes: article[0].votes - 1 }
@@ -58,10 +49,7 @@ export default function SingleArticle () {
                     })
                 })
             })
-        } else {
-            setSubVotes(false)
-            upVote(article[0].article_id)
-        }
+        
     }
 
 
