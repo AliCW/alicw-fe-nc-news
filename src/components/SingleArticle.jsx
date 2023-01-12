@@ -7,8 +7,6 @@ import * as api from '../api'
 export default function SingleArticle () {
     const [article, selectArticle] = useState([])
     const [isLoading, setIsLoading] = useState(true)
-    const [addVotes, setAddVotes] = useState(false)
-    const [subVotes, setSubVotes] = useState(false)
     const { article_id } = useParams()
 
     useEffect(() => {
@@ -21,46 +19,40 @@ export default function SingleArticle () {
     )
 
     const upVote = (article_id) => {
-        if(addVotes === false) {
-            setAddVotes(true)
-                selectArticle((article) => {
-                    return article.map((votes) => { 
-                        return {...votes, votes: article[0].votes + 1}
-                    })
-            })  
-            api.incVote(article_id).catch(() => {
-                selectArticle((article) => {
-                    return article.map((votes) => {
-                        return {...votes, votes: article[0].votes - 1}
-                    })
-                })
-            })    
-        } else {
-            setAddVotes(false)
-            downVote(article[0].article_id)
-        }
-    }
-
-    const downVote = (article_id) => {
-        if (subVotes === false) {
-            setSubVotes(true)
+        selectArticle((article) => {
+            return article.map((votes) => {
+                return { ...votes, votes: article[0].votes + 1 }
+            })
+        })
+        api.incVote(article_id).catch(() => {
             selectArticle((article) => {
                 return article.map((votes) => {
-                    return { ...votes, votes: article[0].votes - 1 }
+                    return (
+                        
+                        { ...votes, votes: article[0].votes - 1, error: "oops, something went wrong casting your vote. Please refresh & try again"}
+                    )
                 })
             })
-            api.decVote(article_id).catch(() => {
-                selectArticle((article) => {
-                    return article.map((votes) => {
-                        return { ...votes, votes: article[0].votes + 1 }
-                    })
+        })
+    
+}
+
+const downVote = (article_id) => {
+        selectArticle((article) => {
+            return article.map((votes) => {
+                return { ...votes, votes: article[0].votes - 1 }
+            })
+        })
+        api.decVote(article_id).catch(() => {
+            selectArticle((article) => {
+                return article.map((votes) => {
+                    return { ...votes, votes: article[0].votes + 1, error: "oops, something went wrong casting your vote. Please refresh & try again"}  
                 })
             })
-        } else {
-            setSubVotes(false)
-            upVote(article[0].article_id)
-        }
-    }
+        })
+    
+}
+
 
 
     if (isLoading) {
