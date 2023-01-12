@@ -105,3 +105,11 @@
   margin-left: 2%;
   margin: auto;
 }
+
+.vote-button:active {
+  color: #ffa5d6;
+  
+}
+
+.vote-button:focus {
+  outline: #61dafb;}
