@@ -25,7 +25,9 @@ export default function AddComment(props) {
                 value={newComment}
                 onChange={(event) => setNewComment(event.target.value)}
             ></textarea>
-            <button>Post</button>
+            <button className="post-button" onClick={() => handleSubmit(newComment)}>
+                Post
+            </button>
         </form>
     )
 }
