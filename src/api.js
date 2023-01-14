@@ -54,12 +54,11 @@ return api
   });
 };
 
-export const postArticleComment = (article_id, commentData) => {
-  console.log(commentData, '<<<< api comment data')
+export const postArticleComment = (commentData, article_id) => {
   return api
     .post(
       `https://nc-news-acw.onrender.com/api/articles/${article_id}/comments`, commentData
-    )
+    ) 
     .then((response) => {
       return response;
     })

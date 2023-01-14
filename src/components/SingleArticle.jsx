@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom'
 import SingleArticleComments from './SingleArticleComments'
-import AddComment from './AddComment'
 import * as api from '../api'
 
 export default function SingleArticle () {
@@ -27,17 +26,13 @@ export default function SingleArticle () {
         api.incVote(article_id).catch(() => {
             selectArticle((article) => {
                 return article.map((votes) => {
-                    return (
-                        
-                        { ...votes, votes: article[0].votes - 1, error: "oops, something went wrong casting your vote. Please refresh & try again"}
-                    )
+                    return { ...votes, votes: article[0].votes - 1, error: "oops, something went wrong casting your vote. Please refresh & try again"}
                 })
             })
         })
-    
-}
+    }
 
-const downVote = (article_id) => {
+    const downVote = (article_id) => {
         selectArticle((article) => {
             return article.map((votes) => {
                 return { ...votes, votes: article[0].votes - 1 }
@@ -50,10 +45,7 @@ const downVote = (article_id) => {
                 })
             })
         })
-    
-}
-
-
+    }
 
     if (isLoading) {
         return <p className="loading">Loading...</p>
@@ -74,9 +66,9 @@ const downVote = (article_id) => {
                 </button>
             </p>
             <p className="article-details">created: {String(article[0].created_at).slice(0, 10)}</p>
-            <AddComment article={article_id}></AddComment>
             <p className="article-details">{article[0].comment_count} comments:</p>
-            <SingleArticleComments article={article_id}></SingleArticleComments>
+            <SingleArticleComments article={article[0].article_id}></SingleArticleComments>
+            
         </div>
     )
 }
