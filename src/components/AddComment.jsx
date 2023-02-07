@@ -33,7 +33,7 @@ export default function AddComment({ article, selectComments }) {
                 body: response.data.postedComment[0].body,
                 votes: 0,
                 created_at: Date.now(),
-                comment_id: response.data.postedComment[0].comment_id
+                comment_id: response.data.postedComment[0].body,
             }
             selectComments((currComments) => {
                 return [newComment, ...currComments]
@@ -57,12 +57,13 @@ export default function AddComment({ article, selectComments }) {
           clearTimeout(timer);
         };
     }
+    if (commentSubmit)  return <p>Submitted!</p>
+    if (isLoading) return <p>Posting...</p>
 
-        
     return (
         <div>
         <form className="add-comment-form" onSubmit={handleSubmit}>
-        
+            
             <textarea className="add-comment-box"  placeholder="Post a comment..." rows="10"
                 id="newComment"
                 value={newComment}

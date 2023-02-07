@@ -39,6 +39,7 @@ export default function SingleArticle () {
             })
         })
         api.decVote(article_id).catch(() => {
+            console.log('downVote error')
             selectArticle((article) => {
                 return article.map((votes) => {
                     return { ...votes, votes: article[0].votes + 1, error: "oops, something went wrong casting your vote. Please refresh & try again"}  
@@ -67,6 +68,7 @@ export default function SingleArticle () {
             </p>
             <p className="article-details">created: {String(article[0].created_at).slice(0, 10)}</p>
             <p className="article-details">{article[0].comment_count} comments:</p>
+            {article[0].error}
             <SingleArticleComments article={article[0].article_id}></SingleArticleComments>
             
         </div>
