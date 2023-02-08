@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import * as api from '../api'
+import AddComment from './AddComment'
+import CommentCard from './CommentCard'
 
 export default function SingleArticleComments (props) {
     const [comments, selectComments] = useState([])
@@ -20,16 +22,14 @@ export default function SingleArticleComments (props) {
     }
 
     return (
-        comments.map((comment) => {
+        <section>
+        <AddComment article={id} selectComments={selectComments}/>
+        {comments.map((comment) => {
             return (
-                <div className="comment" key={comment.comment_id}>
-                    <h3 className="comment-header">{comment.author}:</h3>
-                    <p className="comment-body">{comment.body}</p>
-                    <p className="comment-details">votes: {comment.votes}</p>
-                    <p className="comment-details">posted at: {String(comment.created_at).slice(0, 10)}</p>
-                </div>
-            )
-        })
-       
+                <CommentCard key={comment.comment_id} comment={comment} setComments={selectComments} />               
+                )
+            })
+        }
+        </section>
     )
 }

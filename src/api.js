@@ -53,3 +53,13 @@ return api
     return response;
   });
 };
+
+export const postArticleComment = (commentData, article_id) => {
+  return api
+    .post(
+      `https://nc-news-acw.onrender.com/api/articles/${article_id}/comments`, commentData
+    ) 
+    .then((response) => {
+      return response;
+    })
+}
