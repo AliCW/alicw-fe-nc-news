@@ -6,6 +6,8 @@ export default function Nav() {
             <Link to="/">Home</Link>
             <span> | </span>
             <Link to="/articles">Articles</Link>
+            <span> | </span>
+            <Link to="/topics">Topics</Link>
 
         </nav>
     )

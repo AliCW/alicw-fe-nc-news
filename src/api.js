@@ -63,3 +63,19 @@ export const postArticleComment = (commentData, article_id) => {
       return response;
     })
 }
+
+export const fetchTopics = () => {
+  return api.get("https://nc-news-acw.onrender.com/api/topics")
+  .then((response) => {
+      return response;
+    });
+}
+
+export const fetchArticleByTopic = (topic) => {
+  return api.get(
+    `https://nc-news-acw.onrender.com/api/articles?topic=${topic}`
+  )
+  .then((response) => {
+    return response;
+  })
+}
