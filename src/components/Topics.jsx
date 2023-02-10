@@ -1,26 +1,43 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom"
+import * as api from "../api"
 
 export default function Topics() {
-    const [topic, findTopics] = useState([]);
+    const [topics, findTopics] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        setLoading(true)
-        api.findTopics().then(({data}) => {
-            findTopics(data)
+        setIsLoading(true)
+        api.fetchTopics().then(({data}) => {
+            findTopics(data.topics)
             setIsLoading(false)
             
         })
-    })
+    }, []
+    )
 
+    function capitaliseLinks(topic) {
+        const splitString = topic.split('')
+        const firstLetter = splitString[0].toUpperCase()
+        splitString.shift()
+        splitString.unshift(firstLetter)
+        return splitString.join('')
+    }
 
-
+    if (isLoading) {
+        return <p className="loading">Loading...</p>
+    }
 
     return (
-      <div className="topics">
-        <Link to="/topics/coding">{topic[0]}</Link>
+        topics.map((topic) => {
+            return (
+      <div key={topic.slug} className="topics">
+        <Link to={"/topic/" + topic.slug} state={topic.slug} className="topic-title">{capitaliseLinks(topic.slug)}</Link>
+        <p className="topic-description">{topic.description}</p>
+        
     </div>
+            )
+        })
     );
   };
 

@@ -134,3 +134,19 @@
   border-radius: 4px;
   padding: 5px;
 }
+
+.topics {
+  margin: auto;
+  padding: 5%;
+  border: 1px solid #ffa5d6;
+  border-radius: 4px;
+  padding: 5px;
+  width: 50%;
+}
+
+.topic-description {
+  font-size: x-small;
+  padding: auto;
+  margin-left: 2%;
+  margin: auto;
+}
