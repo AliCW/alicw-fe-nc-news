@@ -32,7 +32,7 @@ export default function Topics() {
         topics.map((topic) => {
             return (
       <div key={topic.slug} className="topics">
-        <Link to={"/topic/" + topic.slug} state={topic.slug} className="topic-title">{capitaliseLinks(topic.slug)}</Link>
+        <Link to={"/topics/" + topic.slug} state={{slug: topic.slug}} className="topic-title">{capitaliseLinks(topic.slug)}</Link>
         <p className="topic-description">{topic.description}</p>
         
     </div>
@@ -40,12 +40,3 @@ export default function Topics() {
         })
     );
   };
-
-
-
-
-
-
-
-  //use state to send over the topic id
-  //retrieve the data in a single element using the dynamic id

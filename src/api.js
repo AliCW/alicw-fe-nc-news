@@ -71,9 +71,9 @@ export const fetchTopics = () => {
     });
 }
 
-export const fetchArticleByTopic = (topic) => {
+export const fetchArticleByTopic = (slug) => {
   return api.get(
-    `https://nc-news-acw.onrender.com/api/articles?topic=${topic}`
+    `https://nc-news-acw.onrender.com/api/articles?topic=${slug}`
   )
   .then((response) => {
     return response;

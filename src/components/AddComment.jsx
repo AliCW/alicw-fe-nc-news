@@ -106,14 +106,6 @@ export default function AddComment({ article, selectComments }) {
         })
         }
 
-        // const date = new Date();
-// const today = date.toString()
-// const comment = new Comment({
-//   username: req.body.username,
-//   body: req.body.body,
-//   event: req.body.event,
-//   date: today,
-// });
     
     const handleComment = () => {
         setCommentSubmit(true);
