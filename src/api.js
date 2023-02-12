@@ -6,7 +6,7 @@ const api = axios.create({
 
 export const fetchArticles = () => {
   return api
-    .get("https://nc-news-acw.onrender.com/api/articles")
+    .get(`https://nc-news-acw.onrender.com/api/articles`)
     .then((response) => {
       return response;
     });
@@ -23,6 +23,14 @@ export const fetchSingleArticle = (article_id) => {
 export const fetchSingleArticleComments = (article_id) => {
   return api
     .get(`https://nc-news-acw.onrender.com/api/articles/${article_id}/comments`)
+    .then((response) => {
+      return response;
+    });
+};
+
+export const fetchArticlesByQuery = (query) => {
+  return api
+    .get(`https://nc-news-acw.onrender.com/api/articles?sort_by=${query}`)
     .then((response) => {
       return response;
     });
