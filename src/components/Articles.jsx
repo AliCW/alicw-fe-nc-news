@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom"
 import * as api from '../api'
+import QueryNav from './QueryNav'
 import TopicNav from './TopicNav'
 
 export default function Articles() {
     const [articles, selectArticles] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+    const [sortBy, setSortBy] = useState('')
+    const [orderBy, setOrderBy] = useState('')
 
     useEffect(() => {
         setIsLoading(true)
@@ -20,18 +23,17 @@ export default function Articles() {
         return <p className="loading">Loading...</p>
     }
 
-    // if (queryByVote) {
-    //     return <p>here, right here</p>
-    // }
-
     //re-map the articles array depending on the query
+    //use this element to gather query details & render on a seperate element??
+    //keep the state here and send over to new component
 
     return (
         <div className="article">
             {<TopicNav />}
+            {<QueryNav state={sortBy} />}
         {articles.map((article) => {
             return (
-                <div>
+                <div key={article.article_id}>
            <Link to={"/article/" + article.article_id} state={{id: article.article_id}} className="article-header">{article.title}</Link>
            <p className="article-details">author: {article.author}</p>
            <p className="article-details">topic: {article.topic}</p>

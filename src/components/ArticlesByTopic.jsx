@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom"
 import * as api from '../api'
+import TopicNav from './TopicNav'
 
 export default function ArticlesByTopic() {
   const [articles, selectArticles] = useState([])
@@ -21,7 +22,9 @@ export default function ArticlesByTopic() {
 }
 
   return (
-    articles.map((article) => {
+    <div>
+    {<TopicNav />}  
+    {articles.map((article) => {
       return (
         <div key={article.article_id} className="article">
            <Link to={"/article/" + article.article_id} state={{id: article.article_id}} className="article-header">{article.title}</Link>
@@ -32,6 +35,7 @@ export default function ArticlesByTopic() {
            <p className="article-details">created: {article.created_at.slice(0, 10)}</p>
         </div>
       )
-    })
+    })}
+     </div>
   );
 };

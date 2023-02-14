@@ -1,45 +1,37 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom"
 import * as api from "../api"
 
 export default function TopicNav() {
+    const [topics, findTopics] = useState([]);
+    const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+        setIsLoading(true)
+        api.fetchTopics().then(({data}) => {
+            findTopics(data.topics)
+            setIsLoading(false)
+        })
+    }, []
+    )
+
+    if (isLoading) {
+        return <p className="loading">Loading...</p>
+    }
+
     return (
         <div>
-        <nav className="topic-nav">
-            <label>Sort By;</label>
-            <select>
-                <option value="">votes</option>
-            </select>
-            <label>Order;</label>
-            <select>
-                <option value="">ASC</option>
-                <option value="">DESC</option>
-            </select>
-        </nav>
+            {topics.map((topic) => {
+                return (
+                    <div className="topic-nav">
+                        <Link to={"/topics/" + topic.slug}>{topic.slug}</Link>
+                    </div>
+                )
+            })}
+
         </div>
+
     )
 }
 
-
-
-//ttOrder(e.target.value.split("/")[1])
-//     }}opicnav to set the topic & render the list in /articles/differently
-
-
-
-// <label htmlFor="sort-by">Sort by: </label> 
-// <select 
-//     id="sort-by"
-//     value={`${sortBy}/${order}`}
-//     onChange={(e) => {
-//         setSortBy(e.target.value.split("/")[0])
-//         se
-//     >
-//     <option value="created_at/desc">Date (newest first)</option>
-//     <option value="created_at/asc">Date (oldest first)</option>
-//     <option value="comment_count/desc">Comment Count (highest first)</option>
-//     <option value="comment_count/asc">Comment Count (lowest first)</option>
-//     <option value="votes/desc">Votes (highest first)</option>
-//     <option value="votes/asc">Votes (lowest first)</option>
-// </select>
-// </div>
-// </nav>
+// state={selectedTopic(topic.slug)}
