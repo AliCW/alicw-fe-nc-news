@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import * as api from '../api'
 import TopicNav from './TopicNav'
-
 import ArticleCard from './ArticleCard'
 
 export default function Articles() {
@@ -36,13 +35,14 @@ export default function Articles() {
         }
 
     return (
-        <div className="article">
+        <div>
             {<TopicNav />}
             <div key="query-nav">
                 <form className="article-search" onSubmit={handleSubmit}>
                     <nav className="query-nav">
-
-                        <label>Sort By:</label>
+                        <div className="query-dropdown">
+                        <label>Sort By: </label>
+                        <br></br>
                         <select onChange={(event) => { selectQuery(event.target.value) }}
                             defaultValue={query}
                         >
@@ -51,15 +51,18 @@ export default function Articles() {
                             <option value="created_at">Date</option>
 
                         </select>
-                        <label>Order by:</label>
-
+                        <br></br>
+                        <label>Order By: </label>
+                        <br></br>
                         <select onChange={(event) => { selectOrder(event.target.value) }}
                             defaultValue={order}
                         >
-                            <option value="ASC">asc</option>
-                            <option value="DESC">desc</option>
-                        </select>
-                        <input type="submit" value="Submit" />
+                            <option value="ASC">Ascending</option>
+                            <option value="DESC">Descending</option>
+                        </select>  
+                        </div>
+                        <br></br>
+                        <input className="query-submit-button" type="submit" value="Submit" />
 
                     </nav>
                 </form>

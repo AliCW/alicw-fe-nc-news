@@ -5,7 +5,7 @@ export default function ArticleCard({ articles }) {
         <div>
             {articles.map((article) => {
                 return (
-                    <div key={article.article_id}>
+                    <div key={article.article_id} className="article">
                         <Link to={"/article/" + article.article_id} state={{ id: article.article_id }} className="article-header">{article.title}</Link>
                         <p className="article-details">author: {article.author}</p>
                         <p className="article-details">topic: {article.topic}</p>

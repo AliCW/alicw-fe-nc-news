@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom"
 import * as api from "../api"
+import { capitaliseLinks } from "../utils";
 
 export default function TopicNav() {
     const [topics, findTopics] = useState([]);
@@ -20,11 +21,12 @@ export default function TopicNav() {
     }
 
     return (
-        <div>
+        <div className="topic-nav">
+            <p className="topic-pane">↓Search By Topic↓</p>
             {topics.map((topic) => {
                 return (
-                    <div className="topic-nav" key={topic.slug}>
-                        <Link to={"/topics/" + topic.slug}>{topic.slug}</Link>
+                    <div key={topic.slug}>
+                        <Link to={"/topics/" + topic.slug}>{capitaliseLinks(topic.slug)}</Link>
                     </div>
                 )
             })}

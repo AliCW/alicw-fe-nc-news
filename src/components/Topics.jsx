@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom"
 import * as api from "../api"
+import { capitaliseLinks } from "../utils";
 
 export default function Topics() {
     const [topics, findTopics] = useState([]);
@@ -15,14 +16,6 @@ export default function Topics() {
         })
     }, []
     )
-
-    function capitaliseLinks(topic) {
-        const splitString = topic.split('')
-        const firstLetter = splitString[0].toUpperCase()
-        splitString.shift()
-        splitString.unshift(firstLetter)
-        return splitString.join('')
-    }
 
     if (isLoading) {
         return <p className="loading">Loading...</p>
