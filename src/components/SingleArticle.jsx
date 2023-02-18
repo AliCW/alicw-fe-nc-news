@@ -40,7 +40,6 @@ export default function SingleArticle () {
             })
         })
         api.decVote(article_id).catch(() => {
-            console.log('downVote error')
             selectArticle((article) => {
                 return article.map((votes) => {
                     return { ...votes, votes: article[0].votes + 1, error: "oops, something went wrong casting your vote. Please refresh & try again"}  

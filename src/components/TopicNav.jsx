@@ -23,7 +23,7 @@ export default function TopicNav() {
         <div>
             {topics.map((topic) => {
                 return (
-                    <div className="topic-nav">
+                    <div className="topic-nav" key={topic.slug}>
                         <Link to={"/topics/" + topic.slug}>{topic.slug}</Link>
                     </div>
                 )

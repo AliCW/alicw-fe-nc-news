@@ -28,9 +28,9 @@ export const fetchSingleArticleComments = (article_id) => {
     });
 };
 
-export const fetchArticlesByQuery = (query) => {
+export const fetchArticlesByQuery = (query, order) => {
   return api
-    .get(`https://nc-news-acw.onrender.com/api/articles?sort_by=${query}`)
+    .get(`https://nc-news-acw.onrender.com/api/articles?sort_by=${query}&order_by=${order}`)
     .then((response) => {
       return response;
     });

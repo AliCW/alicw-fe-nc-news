@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom"
 import * as api from '../api'
-import QueryNav from './QueryNav'
 import TopicNav from './TopicNav'
 
+import ArticleCard from './ArticleCard'
+
 export default function Articles() {
+    const [query, selectQuery] = useState('created_at')
+    const [order, selectOrder] = useState('ASC')
     const [articles, selectArticles] = useState([])
     const [isLoading, setIsLoading] = useState(true)
-    const [sortBy, setSortBy] = useState('')
-    const [orderBy, setOrderBy] = useState('')
 
     useEffect(() => {
         setIsLoading(true)
@@ -18,31 +18,54 @@ export default function Articles() {
         })
     }, []
     )
+    
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        selectArticles([])
+        setIsLoading(true)
+        api.fetchArticlesByQuery(query, order).then(({data}) => {
 
-    if (isLoading) {
-        return <p className="loading">Loading...</p>
-    }
+                selectArticles(data.articles)
+                setIsLoading(false)
+            })
 
-    //re-map the articles array depending on the query
-    //use this element to gather query details & render on a seperate element??
-    //keep the state here and send over to new component
+        }
+        
+        if (isLoading) {
+            return <p className="loading">Loading...</p>
+        }
 
     return (
         <div className="article">
             {<TopicNav />}
-            {<QueryNav state={sortBy} />}
-        {articles.map((article) => {
-            return (
-                <div key={article.article_id}>
-           <Link to={"/article/" + article.article_id} state={{id: article.article_id}} className="article-header">{article.title}</Link>
-           <p className="article-details">author: {article.author}</p>
-           <p className="article-details">topic: {article.topic}</p>
-           <p className="article-details">comments: {article.comments_count}</p>
-           <p className="article-details">votes: {article.votes}</p>
-           <p className="article-details">created: {article.created_at.slice(0, 10)}</p>
-                </div>
-           )
-        })}
+            <div key="query-nav">
+                <form className="article-search" onSubmit={handleSubmit}>
+                    <nav className="query-nav">
+
+                        <label>Sort By:</label>
+                        <select onChange={(event) => { selectQuery(event.target.value) }}
+                            defaultValue={query}
+                        >
+                            <option value="votes">Votes</option>
+                            <option value="author">Author</option>
+                            <option value="created_at">Date</option>
+
+                        </select>
+                        <label>Order by:</label>
+
+                        <select onChange={(event) => { selectOrder(event.target.value) }}
+                            defaultValue={order}
+                        >
+                            <option value="ASC">asc</option>
+                            <option value="DESC">desc</option>
+                        </select>
+                        <input type="submit" value="Submit" />
+
+                    </nav>
+                </form>
+                {<ArticleCard articles={articles} />}
+            </div>
         </div>
     )
 }
+
