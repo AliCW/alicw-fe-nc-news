@@ -164,6 +164,16 @@
   padding: 5px;
 }
 
+.topic-nav-links {
+  width: auto;
+  height: 75%;
+  margin: auto;
+  font-size: x-small;
+  border: 1px solid #67c6ee;
+  border-radius: 4px;
+  padding: 5px;
+}
+
 .article-search {
   width: 20%;
   height: 75%;
@@ -179,11 +189,15 @@
 }
 
 .query-submit-button {
-  width: 20%;
+  width: auto;
   height: 75%;
   margin: auto;
   font-size: x-small;
-  border: 1px solid #ffa5d6;
+  border: 1px solid #cc00ff;
   border-radius: 4px;
   padding: 5px;
 }
+
+/* .comment-checkbox {
+  
+} */

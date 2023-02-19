@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom"
 import * as api from "../api"
-import { capitaliseLinks } from "../utils";
+import { capitaliseFirstLetter } from "../utilities/capitaliseFirstLetter";
 
 export default function TopicNav() {
     const [topics, findTopics] = useState([]);
@@ -25,15 +25,12 @@ export default function TopicNav() {
             <p className="topic-pane">↓Search By Topic↓</p>
             {topics.map((topic) => {
                 return (
-                    <div key={topic.slug}>
-                        <Link to={"/topics/" + topic.slug}>{capitaliseLinks(topic.slug)}</Link>
+                    <div key={topic.slug} className="topic-nav-links">
+                        <Link to={"/topics/" + topic.slug}>{capitaliseFirstLetter(topic.slug)}</Link>
                     </div>
                 )
             })}
 
         </div>
-
     )
 }
-
-// state={selectedTopic(topic.slug)}

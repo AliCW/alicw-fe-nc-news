@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom"
 import * as api from "../api"
-import { capitaliseLinks } from "../utils";
+import { capitaliseFirstLetter } from "../utilities/capitaliseFirstLetter";
 
 export default function Topics() {
     const [topics, findTopics] = useState([]);
@@ -25,7 +25,7 @@ export default function Topics() {
         topics.map((topic) => {
             return (
       <div key={topic.slug} className="topics">
-        <Link to={"/topics/" + topic.slug} state={{slug: topic.slug}} className="topic-title">{capitaliseLinks(topic.slug)}</Link>
+        <Link to={"/topics/" + topic.slug} state={{slug: topic.slug}} className="topic-title">{capitaliseFirstLetter(topic.slug)}</Link>
         <p className="topic-description">{topic.description}</p>
         
     </div>
