@@ -2,20 +2,18 @@ import { useState, useEffect } from "react";
 import * as api from '../api'
 import TopicNav from './TopicNav'
 import ArticleCard from './ArticleCard'
-import orderByCommentCountAsc from "../utilities/orderByCommentCount";
-
+import { orderByCommentCountAsc, orderByCommentCountDesc} from "../utilities/orderByCommentCount";
 
 export default function Articles() {
     const [query, selectQuery] = useState('created_at')
     const [order, selectOrder] = useState('ASC')
-    const [comments, selectCommentsOrder] = useState(false)
     const [articles, selectArticles] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         setIsLoading(true)
         api.fetchArticles().then(({data}) => {
-            selectArticles(data.articles)
+            selectArticles((data.articles))
             setIsLoading(false)
         })
     }, []
@@ -25,31 +23,36 @@ export default function Articles() {
         event.preventDefault();
         selectArticles([])
         setIsLoading(true)
-        api.fetchArticlesByQuery(query, order).then(({data}) => {
-            if (comments === true) {
-                selectArticles(orderByCommentCountAsc(data.articles))
-                selectCommentsOrder(false)                
-            } else {
-            if (comments === false) {
-                selectArticles(data.articles)
+        if (query === 'comments') {
+            api.fetchArticlesByQuery('created_at', order).then(({data}) => {
+                if(order === 'ASC') {
+                    selectArticles(orderByCommentCountAsc(data.articles))          
+                    setIsLoading(false)
+                } else {
+                if(order === 'DESC') {
+                    selectArticles(orderByCommentCountDesc(data.articles))              
+                    setIsLoading(false)  
+                    }
                 }
-            }
-            setIsLoading(false)
             })
-        }
-    
-    const handleClick = () => {
-        if(comments === false) {
-            selectCommentsOrder(true)
         } else {
-            selectCommentsOrder(false)
+        if (query === 'votes') {
+            api.fetchArticlesByQuery(query, order).then(({data}) => {
+                selectArticles(orderByCommentCountAsc(data.articles))               
+                setIsLoading(false)
+            })
+            } else {
+                api.fetchArticlesByQuery(query, order).then(({ data }) => {
+                    selectArticles(data.articles)
+                    setIsLoading(false)
+                })
+            }
         }
     }
-        
+    
         if (isLoading) {
             return <p className="loading">Loading...</p>
         }
-
 
     return (
         <div>
@@ -68,7 +71,7 @@ export default function Articles() {
                             <option value="votes">Votes</option>
                             <option value="author">Author</option>
                             <option value="created_at">Date</option>
-
+                            <option value="comments">Comments</option>
                         </select>
                         <br></br>
                         <label>Order By: </label>
@@ -80,12 +83,8 @@ export default function Articles() {
                             <option value="DESC">Descending</option>
                         </select> 
                         <br></br>
-                        </div>
-                        <input type="checkbox" id="comment-checkbox" onClick={handleClick} className="comment-checkbox"></input>
-                        <label className="comment-checkbox">Most Commented  </label>
-                        
-                        <input className="query-submit-button" type="submit" value="Search" />
-
+                        </div>                      
+                        <input className="query-submit-button" type="submit" value="Search" /> 
                     </nav>
                 </form>
                 {<ArticleCard articles={articles} />}
