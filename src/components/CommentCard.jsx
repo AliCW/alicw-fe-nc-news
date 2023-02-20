@@ -2,7 +2,7 @@ import DeleteCommentCheck from "./DeleteCommentCheck"
 
 export default function CommentCard (comment) {
     //const { author, body, comment_id, created_at, votes } = comment;
-    //console.log(comment.user)
+    //console.log(comment)
     
     return (
 
@@ -11,7 +11,7 @@ export default function CommentCard (comment) {
             <p className="comment-body">{comment.comment.body}</p>
             <p className="comment-details">votes: {comment.comment.votes}</p>
             <p className="comment-details">posted at: {String(comment.comment.created_at).slice(0, 10)}</p>
-            <DeleteCommentCheck author={comment.comment.author} user={comment.user} />
+            <DeleteCommentCheck author={comment.comment.author} user={comment.user} commentId={comment.comment.comment_id} setComments={comment.setComments} stateComments={comment.stateComments}/>
         </div >
         )
 
