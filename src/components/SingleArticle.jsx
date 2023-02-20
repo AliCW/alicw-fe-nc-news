@@ -3,10 +3,11 @@ import { useParams } from 'react-router-dom'
 import SingleArticleComments from './SingleArticleComments'
 import * as api from '../api'
 
-export default function SingleArticle () {
+export default function SingleArticle (props) {
     const [article, selectArticle] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const { article_id } = useParams()
+    
 
     useEffect(() => {
         setIsLoading(true)
@@ -71,7 +72,7 @@ export default function SingleArticle () {
             <p className="article-details">{article[0].comment_count} comments:</p>
 
             {article[0].error}
-            <SingleArticleComments article={article[0].article_id}></SingleArticleComments>
+            <SingleArticleComments article={article[0].article_id} user={props.user}></SingleArticleComments>
             
         </div>
     )

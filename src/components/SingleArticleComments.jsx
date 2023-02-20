@@ -8,6 +8,8 @@ export default function SingleArticleComments (props) {
     const [isLoading, setIsLoading] = useState(true)
     const id = props.article
 
+   //console.log(props, '<<<')
+
     useEffect(() => {
         setIsLoading(true)
         api.fetchSingleArticleComments(id).then(({data}) => {
@@ -26,7 +28,7 @@ export default function SingleArticleComments (props) {
         <AddComment article={id} selectComments={selectComments}/>
         {comments.map((comment) => {
             return (
-                <CommentCard key={comment.comment_id} comment={comment} setComments={selectComments} />               
+                <CommentCard key={comment.comment_id} comment={comment} user={props.user} setComments={selectComments} />               
                 )
             })
         }
