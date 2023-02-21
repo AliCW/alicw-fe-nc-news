@@ -7,9 +7,7 @@ export default function AddComment({ article, selectComments }) {
     const [error, setError] = useState(false)
     const [invalid, setInvalid] = useState(false)
     const [isLoading, setIsLoading] = useState(false);
-
     const id = article
-  
 
     const handleSubmit = (event) => {
         setInvalid(false)
@@ -25,8 +23,7 @@ export default function AddComment({ article, selectComments }) {
         api.postArticleComment({username: "jessjelly", body: newComment}, id).then((response) => {
             const date = new Date();
             const today = date.toString().slice(4, 15);
-            
-            function monthNumeric(today) {
+            const monthNumeric = (today) => {
                 
                 let dateArray = today.split(' ');
                 if (dateArray[0] === 'Jan') {
@@ -87,14 +84,13 @@ export default function AddComment({ article, selectComments }) {
                 body: response.data.postedComment[0].body,
                 votes: 0,
                 created_at: monthNumeric(today),
-                comment_id: response.data.postedComment[0].body,
+                comment_id: response.data.postedComment[0].comment_id,
             }
             selectComments((currComments) => {
                 return [newComment, ...currComments]
             })
         setIsLoading(false)
         handleComment()
-        
         })
         .catch(() => {
             setError(true)

@@ -88,7 +88,7 @@ export const fetchArticleByTopic = (slug) => {
   })
 }
 
-export const deleteCommentByUsername = (commentId) => {
+export const deleteCommentByCommentId = (commentId) => {
   return api.delete(
     `https://nc-news-acw.onrender.com/api/comments/${commentId}`
   )
