@@ -1,20 +1,20 @@
-import DeleteCommentCheck from "./DeleteCommentCheck"
+
 
 export default function CommentCard (comment) {
-    //const { author, body, comment_id, created_at, votes } = comment;
-    //console.log(comment)
     
     return (
+    <div>
 
         <div className = "comment" key={comment.comment.comment_id} >
             <h3 className="comment-header">{comment.comment.author}:</h3>
             <p className="comment-body">{comment.comment.body}</p>
             <p className="comment-details">votes: {comment.comment.votes}</p>
             <p className="comment-details">posted at: {String(comment.comment.created_at).slice(0, 10)}</p>
-            <DeleteCommentCheck author={comment.comment.author} user={comment.user} commentId={comment.comment.comment_id} setComments={comment.setComments} stateComments={comment.stateComments}/>
         </div >
-        )
-
+        
+    
+    </div>
+    )
 }
 
 
