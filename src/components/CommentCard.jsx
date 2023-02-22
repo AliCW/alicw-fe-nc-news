@@ -2,7 +2,6 @@ import { useState } from 'react';
 import * as api from '../api'
 
 export default function CommentCard (comment) {
-
     const [deleteError, setDeleteError] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
     const [isDeleted, setIsDeleted] = useState(false);
@@ -49,12 +48,6 @@ export default function CommentCard (comment) {
             <p className="comment-details">votes: {comment.comment.votes}</p>
             <p className="comment-details">posted at: {String(comment.comment.created_at).slice(0, 10)}</p>
         </div >
-        
-    
     </div>
     )
 }
-
-
-//send the login username id into this element
-//if authors match, render the delete button
