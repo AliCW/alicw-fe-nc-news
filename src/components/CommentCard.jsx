@@ -31,10 +31,12 @@ export default function CommentCard (comment) {
         return () => {
             clearTimeout(timer);
         }
+            
     }
 
     if(isDeleted) return <p>Deleted Successfully</p>
     if(isDeleting) return <p>Deleting...</p>
+    if(deleteError) return <p>Comment not deleted, refresh & try again</p>
 
     return (
     <div className="comment">

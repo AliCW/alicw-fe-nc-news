@@ -7,6 +7,7 @@ import Topics from './components/Topics';
 import ArticlesByTopic from './components/ArticlesByTopic';
 import SingleArticleComments from './components/SingleArticleComments';
 import SingleArticle from './components/SingleArticle';
+import Error from './components/Error'
 import { Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
 import './App.css';
@@ -33,6 +34,7 @@ function App() {
         <Route path="/topics/:slug" element={<ArticlesByTopic />} />
         <Route path="/article/:article_id" element={<SingleArticle user={currentUser} />} />
         <Route path="/article/:article_id/comments" element={<SingleArticleComments />} />
+        <Route path="/*" element={<Error />} />
       </Routes>
     </div>
   );
