@@ -152,26 +152,25 @@
 }
 
 .topic-pane {
-    border: 1px solid #67c6ee;
-}
-
-.topic-nav {
-  width: 20%;
-  height: 75%;
+  display: grid;
   margin: auto;
-  font-size: small;
-  border-radius: 4px;
-  padding: 5px;
+  width: 20%;
+  border: 1px solid #67c6ee;
+  display: grid;
+  grid-template-areas: 
+    "p", "p", "p";
+
 }
 
 .topic-nav-links {
-  width: auto;
+  grid-area: p;
+  width: 20%;
   height: 75%;
   margin: auto;
   font-size: x-small;
-  border: 1px solid #67c6ee;
   border-radius: 4px;
   padding: 5px;
+  border: 1px solid #67c6ee;
 }
 
 .article-search {

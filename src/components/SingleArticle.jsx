@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom'
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { BsFillHandThumbsUpFill, BsFillHandThumbsDownFill } from 'react-icons/bs'
 import SingleArticleComments from './SingleArticleComments'
 import * as api from '../api'
 
@@ -55,18 +56,18 @@ export default function SingleArticle (props) {
         <div className="article" key={article[0].article_id}>
             <h3 className="article-header">{article[0].title}</h3>
             <p className="article-body">{article[0].body}</p>
-            <p className="article-details">author: {article[0].author}</p>
-            <p className="article-details">topic: {article[0].topic}</p>
+            <p className="article-details">Author: {article[0].author}</p>
+            <p className="article-details">Topic: {article[0].topic}</p>
             <p className="article-details">
-                votes:
-                <button className="vote-button" onClick={() => downVote(article[0].article_id)}>↓
+                Votes:
+                <button className="vote-button" onClick={() => downVote(article[0].article_id)}><BsFillHandThumbsDownFill/>
                 </button>
                 {article[0].votes}
-                <button className="vote-button" onClick={() => upVote(article[0].article_id)}>↑
+                <button className="vote-button" onClick={() => upVote(article[0].article_id)}><BsFillHandThumbsUpFill/>
                 </button>
             </p>
-            <p className="article-details">created: {String(article[0].created_at).slice(0, 10)}</p>
-            <p className="article-details">{article[0].comment_count} comments:</p>
+            <p className="article-details">Created: {String(article[0].created_at).slice(0, 10)}</p>
+            <p className="article-details">Comments: {article[0].comment_count}</p>
             {article[0].error}
             <SingleArticleComments article={article[0].article_id} user={props.user}></SingleArticleComments>
         </div>
