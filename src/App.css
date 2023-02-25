@@ -125,7 +125,6 @@
   padding: 5px;
 
 }
-
 .add-comment-box {
   width: 70%;
   height: 75%;
@@ -152,18 +151,12 @@
 }
 
 .topic-pane {
-  display: grid;
   margin: auto;
   width: 20%;
   border: 1px solid #67c6ee;
-  display: grid;
-  grid-template-areas: 
-    "p", "p", "p";
-
 }
 
 .topic-nav-links {
-  grid-area: p;
   width: 20%;
   height: 75%;
   margin: auto;
