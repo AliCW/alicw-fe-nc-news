@@ -1,10 +1,21 @@
 import { Link } from "react-router-dom"
+import { 
+    BsArrowRightCircleFill,
+    BsArrowLeftCircleFill,
+} 
+from "react-icons/bs";
+import { IconContext } from "react-icons";
+
 
 export default function Error() {
     return (
+        <IconContext.Provider value={{ color: "#cc00ff" }}>
         <div className="error">
             <h3>This page is not available</h3>
-            <Link to="/">Return to reality</Link>
+            <BsArrowRightCircleFill /> 
+            <Link to="/articles">   Return to reality   </Link>
+            <BsArrowLeftCircleFill />
         </div>
+        </IconContext.Provider>
     )
 }
