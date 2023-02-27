@@ -45,6 +45,8 @@
 }
 
 .login {
+  display: grid;
+
   background-color: #ffa5d6;
 }
 
