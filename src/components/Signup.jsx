@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { checkValidPassword } from '../utilities/checkValidPassword'
 
 
 export default function Signup(user, setUser) {
@@ -12,13 +13,22 @@ export default function Signup(user, setUser) {
 
 
   const handleSubmit = (event) => {
+    checkPasswordSync(false)
     event.preventDefault();
     document.getElementById("signup-form").reset();
     if(password !== checkPassword) {
       checkPasswordSync(true)
+      return handleBadPassword()
     }
-    console.log(username, name, password, checkPassword)
+    
+    //console.log(username, name, password, checkPassword)
+        //username & name need to be between 5 & 20 chars
 
+    }
+
+
+    const handleBadPassword = () => {
+      document.getElementById("signup-form").reset();
     }
 
   return (
