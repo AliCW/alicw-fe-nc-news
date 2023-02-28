@@ -9,25 +9,41 @@ export default function Signup(user, setUser) {
   const [password, setPassword] = useState('');
   const [checkPassword, setCheckPassword] = useState('');
   const [passwordSync, checkPasswordSync] = useState(false);
+  const [passwordSyntax, checkPasswordSyntax] = useState(false)
+  const [nameSyntax, checkNameSyntax] = useState(false)
     // console.log(user, setUser)
 
 
   const handleSubmit = (event) => {
     checkPasswordSync(false)
+    checkPasswordSyntax(false)
+    checkNameSyntax(false)
     event.preventDefault();
     document.getElementById("signup-form").reset();
     if(password !== checkPassword) {
       checkPasswordSync(true)
-      return handleBadPassword()
+      return handleBadSubmission()
     }
+
+    if(!checkValidPassword(password)) {
+      checkPasswordSyntax(true)
+      return handleBadSubmission()
+    } 
+
+    if(!username.length < 5 || !username.length > 20) {
+      checkNameSyntax(true)
+      return handleBadSubmission()
+    }
+
+
     
     //console.log(username, name, password, checkPassword)
-        //username & name need to be between 5 & 20 chars
+        
 
     }
 
 
-    const handleBadPassword = () => {
+    const handleBadSubmission = () => {
       document.getElementById("signup-form").reset();
     }
 
@@ -60,6 +76,8 @@ export default function Signup(user, setUser) {
           />
           {checkPassword !== password && <p className='password-prompt'>passwords do not match</p>}
           {passwordSync === true && <p className='password-prompt'>the passwords do not match, you were warned</p>}
+          {nameSyntax === true && <p className='password-prompt'>username needs to be between 5 & 20 characters in length</p>}
+          {passwordSyntax === true && <p className='password-prompt'>passwords needs to contain things to be added here later</p>}
         <button type="submit">Submit</button>
       </form>
     </div>

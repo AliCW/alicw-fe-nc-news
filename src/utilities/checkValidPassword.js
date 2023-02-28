@@ -1,6 +1,6 @@
 function checkValidPassword(string) {
     const splitPassword = string.split('')
-    if (splitPassword.length <= 7) {
+    if (splitPassword.length < 8 || splitPassword.length > 40) {
         return false;
     }
     if (!/([A-Z])/g.test(string)) return false;

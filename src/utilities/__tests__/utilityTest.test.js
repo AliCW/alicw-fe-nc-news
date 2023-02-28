@@ -2,6 +2,7 @@ const { capitaliseFirstLetter } = require('../capitaliseFirstLetter')
 const { orderByCommentCountDesc, orderByCommentCountAsc } = require('../orderByCommentCount')
 const { dateFormat } = require('../dateFormat')
 const { checkValidPassword } = require('../checkValidPassword')
+const { checkValidUsername } = require('../checkValidUsername')
 
 const dummyCommentObject = {
     "articles": [
@@ -104,7 +105,7 @@ describe('Date function checks, function must convert months into numerical valu
     })
 })
 
-describe('Password validity checks - password must be over 8 characters long with one of each: uppercase, lowercase, number & symbol', () => {
+describe('Password validity checks - password must be between 8 & 40 characters long with one of each: uppercase, lowercase, number & symbol', () => {
     test('Checks the given password is over 8 characters - false response', () => {
         const password = "l.Ar0"
         expect(checkValidPassword(password)).toBe(false)
@@ -112,6 +113,10 @@ describe('Password validity checks - password must be over 8 characters long wit
     test('Checks the given password is over 8 characters - true response', () => {
         const password = "l.Armstr0ng"
         expect(checkValidPassword(password)).toBe(true)
+    }) 
+    test('Checks the given password is under 40 characters - false response', () => {
+        const password = "l.Armstr0ngl.Armstr0ngl.Armstr0ngl.Armstr0ngl.Armstr0ngl.Armstr0ngl"
+        expect(checkValidPassword(password)).toBe(false)
     }) 
     test('Checks the given password contains at least one uppercase character - false response', () => {
         const password = "l.armstr0ng"
@@ -148,5 +153,29 @@ describe('Password validity checks - password must be over 8 characters long wit
     test('Checks the presence of acceptable symbols: ! [ ] ( ) * . < > ? # ; _ $ % ^ -true response', () => {
         const password = "!.A(r0)[m]*<s>?#/;"
         expect(checkValidPassword(password)).toBe(true)
+    })
+})
+
+describe('Username validity checks - username must be between 5 & 20 characters in length & must contain 3 letters at least', () => {
+    test('Checks the length of the username provided - short name - false response', () => {
+        const username = "jim"
+        expect(checkValidUsername(username)).toBe(false)
+    })
+    test('Checks the length of the username provided - long name - false response', () => {
+        const username = "I'm_Chris_Hansen_with_Dateline_NBC"
+        expect(checkValidUsername(username)).toBe(false)
+    })
+    test('Checks the length of the username provided - true response', () => {
+        const username = "chris_hansen"
+        expect(checkValidUsername(username)).toBe(true)
+    })
+    test('Checks the username contains at least 3 letters - false response', () => {
+        const username = "123456789ab"
+        expect(checkValidUsername(username)).toBe(false)
+    })
+
+    test('Checks the username contains at least 3 letters - true response', () => {
+        const username = "Chris_Hansen-123"
+        expect(checkValidUsername(username)).toBe(true)
     })
 })
