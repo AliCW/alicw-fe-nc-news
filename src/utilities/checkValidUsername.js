@@ -1,5 +1,4 @@
 function checkValidUsername(string) {
-    console.log(string.length)
     const splitString = string.split('')
     let countLetters = 0
     if(splitString.length < 5 || splitString.length > 20) {

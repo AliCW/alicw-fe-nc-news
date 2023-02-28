@@ -69,7 +69,7 @@ export default function SingleArticle (props) {
                 </button>
             </p>
             <p className="article-details">Created: {String(article[0].created_at).slice(0, 10)}</p>
-            <p className="article-details">Comments: {article[0].comment_count}</p>
+               <p className="article-details">Comments: {article[0].comment_count}</p>
             {article[0].error}
             <SingleArticleComments article={article[0].article_id} user={props.user}></SingleArticleComments>
         </div>

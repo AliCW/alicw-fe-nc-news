@@ -175,7 +175,6 @@ describe('Username validity checks - username must be between 5 & 20 characters 
         const username = "123456789ab"
         expect(checkValidUsername(username)).toBe(false)
     })
-
     test('Checks the username contains at least 3 letters - true response', () => {
         const username = "Chris_Hansen-123"
         expect(checkValidUsername(username)).toBe(true)
@@ -217,3 +216,25 @@ describe('Name validity checks - name provided must be between 4 & 50 characters
     })
 })
 
+describe('URL validity check - URL must begin with "http://" or "https://" & contains atleast one "."', () => {
+    test('Checks the URL contains at least one "." - false test', () => {
+        const URL = 'http://stuff&stuff,com'
+        expect(checkValidLink(URL)).toBe(false)
+    })
+    test('Checks the URL contains at least one "." - false test', () => {
+        const URL = 'http://stuff&stuff.com'
+        expect(checkValidLink(URL)).toBe(true)
+    })
+    test('Checks the URL begins with "http://" or "https://" - false test', () => {
+        const URL = 'htttp://stuff&stuff.com'
+        expect(checkValidLink(URL)).toBe(false)
+    })
+    test('Checks the URL begins with "http://" - true test', () => {
+        const URL = 'http://stuff&stuff.com'
+        expect(checkValidLink(URL)).toBe(true)
+    })
+    test('Checks the URL begins with "https://" - true test', () => {
+        const URL = 'https://stuff&stuff.com'
+        expect(checkValidLink(URL)).toBe(true)
+    })
+})
