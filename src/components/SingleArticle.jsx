@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { BsFillHandThumbsUpFill, BsFillHandThumbsDownFill } from 'react-icons/bs'
+import { IconContext } from "react-icons";
 import SingleArticleComments from './SingleArticleComments'
 import * as api from '../api'
 
@@ -53,6 +54,7 @@ export default function SingleArticle (props) {
     }
 
     return (
+        <IconContext.Provider value={{ color: "#cc00ff" }}>
         <div className="article" key={article[0].article_id}>
             <h3 className="article-header">{article[0].title}</h3>
             <p className="article-body">{article[0].body}</p>
@@ -71,5 +73,6 @@ export default function SingleArticle (props) {
             {article[0].error}
             <SingleArticleComments article={article[0].article_id} user={props.user}></SingleArticleComments>
         </div>
+        </IconContext.Provider>
     )
 }

@@ -1,4 +1,3 @@
-import { eventWrapper } from '@testing-library/user-event/dist/utils';
 import { useState, useEffect } from 'react';
 
 
@@ -8,31 +7,23 @@ export default function Signup(user, setUser) {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [checkPassword, setCheckPassword] = useState('');
-  const [checkPassSym, setCheckPassSym] = useState(false);
+  const [passwordSync, checkPasswordSync] = useState(false);
+    // console.log(user, setUser)
 
-    //console.log(user, setUser)
 
-    const misMatch = () => {
-      return <p>The passwords provided do not match</p>
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    document.getElementById("signup-form").reset();
+    if(password !== checkPassword) {
+      checkPasswordSync(true)
     }
-
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      if (password !== checkPassword) {
-        setCheckPassSym(true)
-      }
-
-      console.log(username, name, password, checkPassword)
+    console.log(username, name, password, checkPassword)
 
     }
-
-
-
 
   return (
-    <div className="login">
-      
-      <form className="login" onSubmit={handleSubmit}>
+      <div>
+      <form id="signup-form" className="login" onSubmit={handleSubmit}>
         <label>Username</label>
         <input
           type="text"
@@ -56,7 +47,9 @@ export default function Signup(user, setUser) {
           type="password"
           placeholder="Confirm Password"
           onChange={(event) => {setCheckPassword(event.target.value)}}
-        />
+          />
+          {checkPassword !== password && <p className='password-prompt'>passwords do not match</p>}
+          {passwordSync === true && <p className='password-prompt'>the passwords do not match, you were warned</p>}
         <button type="submit">Submit</button>
       </form>
     </div>
