@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
+import * as api from '../api'
 import { checkValidPassword } from '../utilities/checkValidPassword'
+import { checkValidUsername } from '../utilities/checkValidUsername';
+import { checkValidName } from '../utilities/checkValidName';
 
 
 export default function Signup(user, setUser) {
@@ -8,43 +11,55 @@ export default function Signup(user, setUser) {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [checkPassword, setCheckPassword] = useState('');
-  const [passwordSync, checkPasswordSync] = useState(false);
-  const [passwordSyntax, checkPasswordSyntax] = useState(false)
-  const [nameSyntax, checkNameSyntax] = useState(false)
+  const [avatarURL, setAvatarURL] = useState('');
+  const [isLoading, setIsLoading] = useState(true)
+
+  const [passwordSync, checkPasswordSync] = useState(false); //sets error for incorrect username - mismatch
+  const [passwordSyntax, checkPasswordSyntax] = useState(false) //sets error for incorrect password syntax
+  const [usernameSyntax, checkUsernameSyntax] = useState(false) //sets error for incorrect username
+  const [nameSyntax, checkNameSyntax] = useState(false) //sets error for incorrect name
+  const [avatarURLSyntax, checkAvatarURLSyntax] = useState(false)
     // console.log(user, setUser)
 
 
   const handleSubmit = (event) => {
+    event.preventDefault();
     checkPasswordSync(false)
     checkPasswordSyntax(false)
+    checkUsernameSyntax(false)
     checkNameSyntax(false)
-    event.preventDefault();
     document.getElementById("signup-form").reset();
     if(password !== checkPassword) {
       checkPasswordSync(true)
-      return handleBadSubmission()
+      return
     }
-
     if(!checkValidPassword(password)) {
       checkPasswordSyntax(true)
-      return handleBadSubmission()
+      return
     } 
-
-    if(!username.length < 5 || !username.length > 20) {
+    if(!checkValidUsername(username)) {
+      checkUsernameSyntax(true)
+      return 
+    }
+    if(!checkValidName(name)) {
       checkNameSyntax(true)
-      return handleBadSubmission()
+      return 
     }
 
-
     
-    //console.log(username, name, password, checkPassword)
+    console.log(username, name, password, checkPassword)
+
+    useEffect(() => {
+      setIsLoading(true)
+
+    })
         
 
     }
 
 
-    const handleBadSubmission = () => {
-      document.getElementById("signup-form").reset();
+    const handleSubmission = () => {
+      console.log('reset anyways')
     }
 
   return (
@@ -74,10 +89,17 @@ export default function Signup(user, setUser) {
           placeholder="Confirm Password"
           onChange={(event) => {setCheckPassword(event.target.value)}}
           />
+        <label>Avatar URL:</label>
+        <input
+          type="url"
+          placeholder="Avatar URL (optional)"
+          onChange={(event) => {setAvatarURL(event.target.value)}}
+          />
           {checkPassword !== password && <p className='password-prompt'>passwords do not match</p>}
           {passwordSync === true && <p className='password-prompt'>the passwords do not match, you were warned</p>}
-          {nameSyntax === true && <p className='password-prompt'>username needs to be between 5 & 20 characters in length</p>}
+          {usernameSyntax === true && <p className='password-prompt'>username needs to be between 5 & 20 characters in length</p>}
           {passwordSyntax === true && <p className='password-prompt'>passwords needs to contain things to be added here later</p>}
+          {nameSyntax === true && <p className='password-prompt'>Your name can only contain 4-50 letters</p>}
         <button type="submit">Submit</button>
       </form>
     </div>

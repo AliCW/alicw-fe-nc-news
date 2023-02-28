@@ -3,6 +3,8 @@ const { orderByCommentCountDesc, orderByCommentCountAsc } = require('../orderByC
 const { dateFormat } = require('../dateFormat')
 const { checkValidPassword } = require('../checkValidPassword')
 const { checkValidUsername } = require('../checkValidUsername')
+const { checkValidName } = require('../checkValidName')
+const { checkValidLink } = require('../checkValidLink')
 
 const dummyCommentObject = {
     "articles": [
@@ -179,3 +181,39 @@ describe('Username validity checks - username must be between 5 & 20 characters 
         expect(checkValidUsername(username)).toBe(true)
     })
 })
+
+describe('Name validity checks - name provided must be between 4 & 50 characters long with no symbols, numbers or double spaces', () => {
+    test('Checks the name is over 3 characters long - false response', () => {
+        const name = "Hi"
+        expect(checkValidName(name)).toBe(false)
+    })
+    test('Checks the name is under 50 characters long - false response', () => {
+        const name = "fiverfiverfiverfiverfiverfiverfiverfiverfiverfiverfiverfiverfiverfiver"
+        expect(checkValidName(name)).toBe(false)
+    })
+    test('Checks the name is over 3 characters long - true response', () => {
+        const name = "desserpeDyllaeRmI"
+        expect(checkValidName(name)).toBe(true)
+    })
+    test('Checks the name has no numbers - false response', () => {
+        const name = "77yppahnu77"
+        expect(checkValidName(name)).toBe(false)
+    })
+    test('Checks the name has no numbers - true response', () => {
+        const name = "ssendas"
+        expect(checkValidName(name)).toBe(true)
+    })
+    test('Checks the name has no symbols - false response', () => {
+        const name = "~@}{%*&£>.,`?"
+        expect(checkValidName(name)).toBe(false)
+    })
+    test('Checks the name has no double spaces - false response', () => {
+        const name = "em  pleh"
+        expect(checkValidName(name)).toBe(false)
+    })
+    test('Checks the name has no double spaces - true response', () => {
+        const name = "em pleh"
+        expect(checkValidName(name)).toBe(true)
+    })
+})
+
