@@ -9,6 +9,10 @@ export default function Nav() {
             <Link to="/articles">Articles</Link>
             <span> | </span>
             <Link to="/topics">Topics</Link>
+            <span> | </span>
+            <Link to="/signup">Sign Up</Link>
+            <span> | </span>
+            <Link to="/login">Login</Link>
         </nav>
         </div>
     )

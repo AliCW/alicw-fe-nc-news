@@ -96,3 +96,12 @@ export const deleteCommentByCommentId = (commentId) => {
     return response;
   })
 }
+
+export const userSignUp = (userData) => {
+  return api.post(
+    `https://nc-news-acw.onrender.com/api/users/signup`, userData
+  )
+  .then((response) => {
+    return response;
+  })
+}

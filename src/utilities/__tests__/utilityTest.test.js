@@ -1,6 +1,10 @@
 const { capitaliseFirstLetter } = require('../capitaliseFirstLetter')
 const { orderByCommentCountDesc, orderByCommentCountAsc } = require('../orderByCommentCount')
 const { dateFormat } = require('../dateFormat')
+const { checkValidPassword } = require('../checkValidPassword')
+const { checkValidUsername } = require('../checkValidUsername')
+const { checkValidName } = require('../checkValidName')
+const { checkValidLink } = require('../checkValidLink')
 
 const dummyCommentObject = {
     "articles": [
@@ -88,7 +92,7 @@ describe('checking functionality for sorting comment objects in ascending order'
     })
 })
 
-describe('checking function', () => { 
+describe('Date function checks, function must convert months into numerical values and list in year-month-day format - e.g 2020-01-14', () => { 
     test('Given a date string, return a string', () => {
         const data = 'May 15 2016'
         expect(typeof dateFormat(data)).toBe('string')
@@ -100,5 +104,137 @@ describe('checking function', () => {
     test('Given a date string, return the data formatted numerically in year-month-day format', () => {
         const data = 'Feb 22 2023'
         expect(dateFormat(data)).toBe('2023-02-22')
+    })
+})
+
+describe('Password validity checks - password must be between 8 & 40 characters long with one of each: uppercase, lowercase, number & symbol', () => {
+    test('Checks the given password is over 8 characters - false response', () => {
+        const password = "l.Ar0"
+        expect(checkValidPassword(password)).toBe(false)
+    })
+    test('Checks the given password is over 8 characters - true response', () => {
+        const password = "l.Armstr0ng"
+        expect(checkValidPassword(password)).toBe(true)
+    }) 
+    test('Checks the given password is under 40 characters - false response', () => {
+        const password = "l.Armstr0ngl.Armstr0ngl.Armstr0ngl.Armstr0ngl.Armstr0ngl.Armstr0ngl"
+        expect(checkValidPassword(password)).toBe(false)
+    }) 
+    test('Checks the given password contains at least one uppercase character - false response', () => {
+        const password = "l.armstr0ng"
+        expect(checkValidPassword(password)).toBe(false)
+    })
+    test('Checks the given password contains at least one uppercase character - true response', () => {
+        const password = "l.Armstr0ng"
+        expect(checkValidPassword(password)).toBe(true)
+    })
+    test('Checks the given password contains at least one lowercase character - false response', () => {
+        const password = "L.ARMSTR0NG"
+        expect(checkValidPassword(password)).toBe(false)
+    })
+    test('Checks the given password contains at least one lowercase character - true response', () => {
+        const password = "l.Armstr0ng"
+        expect(checkValidPassword(password)).toBe(true)
+    })
+    test('Checks the given password contains at least one Number - false response', () => {
+        const password = "l.Armstrong"
+        expect(checkValidPassword(password)).toBe(false)
+    })
+    test('Checks the given password contains at least one Number - true response', () => {
+        const password = "l.Armstr0ng"
+        expect(checkValidPassword(password)).toBe(true)
+    })
+    test('Checks the given password contains at least special character - false response', () => {
+        const password = "loArmstr0ng"
+        expect(checkValidPassword(password)).toBe(false)
+    })
+    test('Checks the given password contains at least special character - true response', () => {
+        const password = "l.Armstr0ng"
+        expect(checkValidPassword(password)).toBe(true)
+    })
+    test('Checks the presence of acceptable symbols: ! £ | - + , = * . ? # ; _ $ % ^ true response', () => {
+        const password = "!.,=-+£|Ar0m*s?#/;"
+        expect(checkValidPassword(password)).toBe(true)
+    })
+})
+
+describe('Username validity checks - username must be between 5 & 20 characters in length & must contain 3 letters at least', () => {
+    test('Checks the length of the username provided - short name - false response', () => {
+        const username = "jim"
+        expect(checkValidUsername(username)).toBe(false)
+    })
+    test('Checks the length of the username provided - long name - false response', () => {
+        const username = "I'm_Chris_Hansen_with_Dateline_NBC"
+        expect(checkValidUsername(username)).toBe(false)
+    })
+    test('Checks the length of the username provided - true response', () => {
+        const username = "chris_hansen"
+        expect(checkValidUsername(username)).toBe(true)
+    })
+    test('Checks the username contains at least 3 letters - false response', () => {
+        const username = "123456789ab"
+        expect(checkValidUsername(username)).toBe(false)
+    })
+    test('Checks the username contains at least 3 letters - true response', () => {
+        const username = "Chris_Hansen-123"
+        expect(checkValidUsername(username)).toBe(true)
+    })
+})
+
+describe('Name validity checks - name provided must be between 4 & 50 characters long with no symbols, numbers or double spaces', () => {
+    test('Checks the name is over 3 characters long - false response', () => {
+        const name = "Hi"
+        expect(checkValidName(name)).toBe(false)
+    })
+    test('Checks the name is under 50 characters long - false response', () => {
+        const name = "fiverfiverfiverfiverfiverfiverfiverfiverfiverfiverfiverfiverfiverfiver"
+        expect(checkValidName(name)).toBe(false)
+    })
+    test('Checks the name is over 3 characters long - true response', () => {
+        const name = "desserpeDyllaeRmI"
+        expect(checkValidName(name)).toBe(true)
+    })
+    test('Checks the name has no numbers - false response', () => {
+        const name = "77yppahnu77"
+        expect(checkValidName(name)).toBe(false)
+    })
+    test('Checks the name has no numbers - true response', () => {
+        const name = "ssendas"
+        expect(checkValidName(name)).toBe(true)
+    })
+    test('Checks the name has no symbols - false response', () => {
+        const name = "~@}{%*&£>.,`?"
+        expect(checkValidName(name)).toBe(false)
+    })
+    test('Checks the name has no double spaces - false response', () => {
+        const name = "em  pleh"
+        expect(checkValidName(name)).toBe(false)
+    })
+    test('Checks the name has no double spaces - true response', () => {
+        const name = "em pleh"
+        expect(checkValidName(name)).toBe(true)
+    })
+})
+
+describe('URL validity check - URL must begin with "http://" or "https://" & contains atleast one "."', () => {
+    test('Checks the URL contains at least one "." - false test', () => {
+        const URL = 'http://stuff&stuff,com'
+        expect(checkValidLink(URL)).toBe(false)
+    })
+    test('Checks the URL contains at least one "." - false test', () => {
+        const URL = 'http://stuff&stuff.com'
+        expect(checkValidLink(URL)).toBe(true)
+    })
+    test('Checks the URL begins with "http://" or "https://" - false test', () => {
+        const URL = 'htttp://stuff&stuff.com'
+        expect(checkValidLink(URL)).toBe(false)
+    })
+    test('Checks the URL begins with "http://" - true test', () => {
+        const URL = 'http://stuff&stuff.com'
+        expect(checkValidLink(URL)).toBe(true)
+    })
+    test('Checks the URL begins with "https://" - true test', () => {
+        const URL = 'https://stuff&stuff.com'
+        expect(checkValidLink(URL)).toBe(true)
     })
 })
