@@ -55,7 +55,6 @@ export default function Signup(user, setUser) {
         return
       }
     }
-    console.log('here')
     setSuccessfullSignup(true)
     
   }
@@ -64,7 +63,7 @@ export default function Signup(user, setUser) {
     if (successfullSignup) {
       return (
       <div>
-      <SignupSuccessfull username={username} name={name} passsword={password} avatar_url={avatarURL}></SignupSuccessfull>
+      <SignupSuccessfull username={username} name={name} password={password} avatar_url={avatarURL}></SignupSuccessfull>
       
       </div>
       )
