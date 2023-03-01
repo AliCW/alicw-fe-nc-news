@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
 import * as api from '../api'
+import { Link } from "react-router-dom"
 
 export default function SignupSuccessfull(userData) {
-
-  //console.log(userData)
   const [isLoading, setIsLoading] = useState(true)
-
   const checkData = {...userData}
   const defaultImage = "https://e7.pngegg.com/pngimages/369/132/png-clipart-man-in-black-suit-jacket-chris-hansen-to-catch-a-predator-television-show-nbc-news-chris-benoit-miscellaneous-television.png"
 
@@ -13,47 +11,23 @@ export default function SignupSuccessfull(userData) {
     checkData.avatar_url += defaultImage
   }
 
-  //console.log(checkData, 'right here, rigth now')
-
   useEffect(() => {
-    setIsLoading(true)//<--does it need a re-seed????? 
+    setIsLoading(true)
     api.userSignUp(checkData).then(({data}) => {
       setIsLoading(false)
-      console.log(data, '<<<data')
     })
-
-  })
+   }, []
+  )
 
   if (isLoading) {
     return <p className="loading">Loading...</p>
 }
 
-  // if (userData.avatar_url.length > 0) {
-  //   const { username, name, password } = userData
-  // } else {
-  //   const { username, name, password, avatar_url } = userData
-  // }
-
-  // console.log(username, name, password, avatar_url, '<<<<<')
-
-  // useEffect(() => {
-
-  //     api.userSignUp(username, name, password, avatarURL).then(({data}) => {
-  //       console.log(data)
-  //     })
-  
-  //   })
-
   return (
     <div>
-      <p>Sign Up Successfull</p>
+      <h3>Sign Up Successfull</h3>
+      <p>Click the link below to sign in</p>
+      <Link to="/login">Login</Link>
     </div>
   )
-
 }  
-  
-  
-  
-  
-  
-  

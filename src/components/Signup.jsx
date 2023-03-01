@@ -1,29 +1,24 @@
-import { useState, useEffect } from 'react';
-import * as api from '../api'
+import { useState } from 'react';
 import { checkValidPassword } from '../utilities/checkValidPassword'
 import { checkValidUsername } from '../utilities/checkValidUsername';
 import { checkValidName } from '../utilities/checkValidName';
 import { checkValidLink } from '../utilities/checkValidLink';
-import SignupSuccessfull from './SignupAttempt'
+import SignupAttempt from './SignupAttempt'
 
-
-export default function Signup(user, setUser) {
+export default function Signup() {
 
   const [username, setUsername] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [checkPassword, setCheckPassword] = useState('');
   const [avatarURL, setAvatarURL] = useState('');
-  // const [isLoading, setIsLoading] = useState(true)
-  const [successfullSignup, setSuccessfullSignup] = useState(false)
-
-  const [passwordSync, checkPasswordSync] = useState(false); //sets error for incorrect username - mismatch
-  const [passwordSyntax, checkPasswordSyntax] = useState(false) //sets error for incorrect password syntax
-  const [usernameSyntax, checkUsernameSyntax] = useState(false) //sets error for incorrect username
-  const [nameSyntax, checkNameSyntax] = useState(false) //sets error for incorrect name
+  
+  const [passwordSync, checkPasswordSync] = useState(false); //Sync - passwords match
+  const [passwordSyntax, checkPasswordSyntax] = useState(false) //Syntax - passwords meets requirements
+  const [usernameSyntax, checkUsernameSyntax] = useState(false) 
+  const [nameSyntax, checkNameSyntax] = useState(false) 
   const [avatarURLSyntax, checkAvatarURLSyntax] = useState(false)
-    // console.log(user, setUser)
-
+  const [successfullSignup, setSuccessfullSignup] = useState(false)
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -56,17 +51,14 @@ export default function Signup(user, setUser) {
       }
     }
     setSuccessfullSignup(true)
-    
   }
-  
 
-    if (successfullSignup) {
-      return (
+  if (successfullSignup) {
+    return (
       <div>
-      <SignupSuccessfull username={username} name={name} password={password} avatar_url={avatarURL}></SignupSuccessfull>
-      
+        <SignupAttempt username={username} name={name} password={password} avatar_url={avatarURL}></SignupAttempt>
       </div>
-      )
+    )
   }
 
   return (
@@ -106,7 +98,17 @@ export default function Signup(user, setUser) {
           {checkPassword !== password && <p className='password-prompt'>passwords do not match</p>}
           {passwordSync === true && <p className='password-prompt'>the passwords do not match, you were warned</p>}
           {usernameSyntax === true && <p className='password-prompt'>username needs to be between 5 & 20 characters in length</p>}
-          {passwordSyntax === true && <p className='password-prompt'>passwords needs to contain things to be added here later</p>}
+          {passwordSyntax === true && <p className='password-prompt'>Passwords must adhere to the following</p>}
+          {passwordSyntax === true &&
+            <ul>
+              <li>Between 8 & 40 characters long</li>  
+              <li>Contain one upper case character</li>
+              <li>Contain one lower case character</li>
+              <li>Contain one number</li>
+              <li>Contain one of the following symbols:</li>
+              <li>! £ | - + , = * . ? # ; _ $ % ^</li>
+            </ul>
+          }
           {nameSyntax === true && <p className='password-prompt'>Your name can only contain 4-50 letters</p>}
           {avatarURLSyntax === true && <p className='password-prompt'>Invalid avatarURL</p>}
         <button type="submit">Submit</button>

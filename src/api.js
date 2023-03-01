@@ -1,5 +1,4 @@
 import axios from "axios";
-import { BsThreeDots } from "react-icons/bs";
 
 const api = axios.create({
   baseURL: "https://nc-news-acw.onrender.com",
@@ -99,16 +98,10 @@ export const deleteCommentByCommentId = (commentId) => {
 }
 
 export const userSignUp = (userData) => {
-  console.log(">>>>>>user>>>",userData)
   return api.post(
     `https://nc-news-acw.onrender.com/api/users/signup`, userData
   )
   .then((response) => {
-    console.log(response, '<<<<<response') //sql issue where column does not exist - be doesnt have a catch block to tell either
     return response;
-  }).catch((error) => {
-    if(error) throw error;
   })
 }
-
-///api/users/signup

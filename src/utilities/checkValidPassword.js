@@ -11,16 +11,16 @@ function checkValidPassword(string) {
 
     for(let i = 0; i < splitPassword.length; i++) {
         if (splitPassword[i] === "!" ||
-            splitPassword[i] === "[" ||
-            splitPassword[i] === "]" ||
+            splitPassword[i] === "," ||
+            splitPassword[i] === "=" || 
             splitPassword[i] === "_" ||
-            splitPassword[i] === "(" ||
-            splitPassword[i] === ")" ||
+            splitPassword[i] === "-" || 
+            splitPassword[i] === "+" || 
             splitPassword[i] === "*" ||
             splitPassword[i] === "." ||
             splitPassword[i] === "?" ||
-            splitPassword[i] === "<" ||
-            splitPassword[i] === ">" ||
+            splitPassword[i] === "|" || 
+            splitPassword[i] === "£" || 
             splitPassword[i] === "#" ||
             splitPassword[i] === ";" ||
             splitPassword[i] === "^" ||

@@ -152,8 +152,8 @@ describe('Password validity checks - password must be between 8 & 40 characters 
         const password = "l.Armstr0ng"
         expect(checkValidPassword(password)).toBe(true)
     })
-    test('Checks the presence of acceptable symbols: ! [ ] ( ) * . < > ? # ; _ $ % ^ -true response', () => {
-        const password = "!.A(r0)[m]*<s>?#/;"
+    test('Checks the presence of acceptable symbols: ! £ | - + , = * . ? # ; _ $ % ^ true response', () => {
+        const password = "!.,=-+£|Ar0m*s?#/;"
         expect(checkValidPassword(password)).toBe(true)
     })
 })
