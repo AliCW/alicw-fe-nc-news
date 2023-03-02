@@ -22,7 +22,6 @@ export default function TopicNav() {
 
     return (
         <div className="topic-nav">
-            <p className="topic-pane">↓Search By Topic↓</p>
             {topics.map((topic) => {
                 return (
                     <div key={topic.slug} className="topic-nav-links">

@@ -83,32 +83,37 @@ export default function Signup() {
   return (
       <div>
       <form id="signup-form" className="login" onSubmit={handleSubmit}>
-        <label>Username*</label>
+        <label class="signup-labels">Username*</label>
         <input
+          className='input'
           type="text"
           placeholder="Username*"
           onChange={(event) => {setUsername(event.target.value)}}
         />
-        <label>Name*</label>
+        <label class="signup-labels">Name*</label>
         <input
+          className='input'
           type="text"
           placeholder="Name*"
           onChange={(event) => {setName(event.target.value)}}
         />
-        <label>Password*</label>
+        <label class="signup-labels">Password*</label>
         <input
+          className='input'
           type="password"
           placeholder="Password*"
           onChange={(event) => {setPassword(event.target.value)}}
         />
-        <label>Confirm Password*</label>
+        <label class="signup-labels">Confirm Password*</label>
         <input
+          className='input'
           type="password"
           placeholder="Confirm Password*"
           onChange={(event) => {setCheckPassword(event.target.value)}}
           />
-        <label>Avatar URL:</label>
+        <label class="signup-labels">Avatar URL:</label>
         <input
+        className='input'
           type="url"
           placeholder="Avatar URL (optional)"
           onChange={(event) => {setAvatarURL(event.target.value)}}
@@ -131,7 +136,7 @@ export default function Signup() {
             </ul>
           }
           {nameSyntax === true && <p className='password-prompt'>Your name can only contain 4-50 letters</p>}
-        <button type="submit">Submit</button>
+        <button className="signup-button" type="submit">Submit</button>
       </form>
     </div>
   );
