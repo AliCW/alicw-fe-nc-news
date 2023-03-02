@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { checkValidPassword } from '../utilities/checkValidPassword'
 import { checkValidUsername } from '../utilities/checkValidUsername';
 import { checkValidName } from '../utilities/checkValidName';
-import { checkValidLink } from '../utilities/checkValidLink';
 import * as api from '../api'
 
 export default function Signup() {
@@ -20,7 +19,6 @@ export default function Signup() {
   const [usernameSyntax, checkUsernameSyntax] = useState(false) 
   const [duplicateUsername, checkDuplicateUsername] = useState(false)
   const [nameSyntax, checkNameSyntax] = useState(false) 
-  const [avatarURLSyntax, checkAvatarURLSyntax] = useState(false)
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -46,12 +44,7 @@ export default function Signup() {
       checkNameSyntax(true)
       return 
     }
-    if(avatarURL === true) {
-      if(!checkValidLink(avatarURL)) {
-        checkAvatarURLSyntax(true)
-        return
-      }
-    }
+
     const defaultImage = "https://e7.pngegg.com/pngimages/369/132/png-clipart-man-in-black-suit-jacket-chris-hansen-to-catch-a-predator-television-show-nbc-news-chris-benoit-miscellaneous-television.png"
     const userData = {
       "username": username,
@@ -67,16 +60,17 @@ export default function Signup() {
       setIsLoading(true)
         api.userSignUp(userData).then((data) => {
           console.log(data)
+          if(data.message === "Network Error") {
+            setIsLoading(false)
+            setSignupError(true)
+          }
           if (data.response.status === 409) {
             setIsLoading(false)
             checkDuplicateUsername(true)
             setSignupComplete(false)
             return
           }
-          if(data.message === "Network Error") {
-            setIsLoading(false)
-            setSignupError(true)
-          } else {
+             else {
             setIsLoading(false)
             setSignupComplete(true)
           }
@@ -137,7 +131,6 @@ export default function Signup() {
             </ul>
           }
           {nameSyntax === true && <p className='password-prompt'>Your name can only contain 4-50 letters</p>}
-          {avatarURLSyntax === true && <p className='password-prompt'>Invalid avatarURL</p>}
         <button type="submit">Submit</button>
       </form>
     </div>
