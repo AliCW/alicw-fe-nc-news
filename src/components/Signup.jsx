@@ -13,12 +13,12 @@ export default function Signup() {
   const [checkPassword, setCheckPassword] = useState('');
   const [avatarURL, setAvatarURL] = useState('');
   
+  const [signupFail, setSignupFail] = useState(false);
   const [passwordSync, checkPasswordSync] = useState(false); //Sync - passwords match
   const [passwordSyntax, checkPasswordSyntax] = useState(false) //Syntax - passwords meets requirements
   const [usernameSyntax, checkUsernameSyntax] = useState(false) 
   const [nameSyntax, checkNameSyntax] = useState(false) 
   const [avatarURLSyntax, checkAvatarURLSyntax] = useState(false)
-  const [successfullSignup, setSuccessfullSignup] = useState(false)
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -50,16 +50,40 @@ export default function Signup() {
         return
       }
     }
-    setSuccessfullSignup(true)
+    handleSignup(username, name, password, avatarURL).then(() => {
+      console.log("not gonna work")
+    }).catch(() => {
+              return (
+          <p>Error signing up - please refresh & try again</p>
+        )
+    })
   }
 
-  if (successfullSignup) {
-    return (
-      <div>
-        <SignupAttempt username={username} name={name} password={password} avatar_url={avatarURL}></SignupAttempt>
-      </div>
-    )
-  }
+  const handleSignup = (username, name, password, avatarURL) => {
+    console.log('right here')
+    setSignupFail(true)
+      return (
+        
+        <div>
+          <p>Error</p>
+          <SignupAttempt to="/signup/attempt" username={username} name={name} password={password} avatar_url={avatarURL}></SignupAttempt>
+          
+        </div>
+      )
+      
+      }    
+      // .then(() => {
+
+      // })
+      
+      // .catch(() => {
+      //   return (
+      //     <p>Error signing up - please refresh & try again</p>
+      //   )
+      // })
+
+  
+
 
   return (
       <div>

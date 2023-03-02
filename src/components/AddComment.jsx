@@ -56,6 +56,7 @@ export default function AddComment({ article, selectComments }) {
 
     if (commentSubmit)  return <p>Submitted!</p>
     if (isLoading) return <p>Posting...</p>
+    if (error) return <p>Error posting comment, please refresh try again</p>
 
     return (
         <div>
