@@ -18,6 +18,7 @@ export default function Signup() {
   const [passwordSync, checkPasswordSync] = useState(false); //Sync - passwords match
   const [passwordSyntax, checkPasswordSyntax] = useState(false) //Syntax - passwords meets requirements
   const [usernameSyntax, checkUsernameSyntax] = useState(false) 
+  const [duplicateUsername, checkDuplicateUsername] = useState(false)
   const [nameSyntax, checkNameSyntax] = useState(false) 
   const [avatarURLSyntax, checkAvatarURLSyntax] = useState(false)
 
@@ -65,6 +66,13 @@ export default function Signup() {
 
       setIsLoading(true)
         api.userSignUp(userData).then((data) => {
+          console.log(data)
+          if (data.response.status === 409) {
+            setIsLoading(false)
+            checkDuplicateUsername(true)
+            setSignupComplete(false)
+            return
+          }
           if(data.message === "Network Error") {
             setIsLoading(false)
             setSignupError(true)
@@ -116,6 +124,7 @@ export default function Signup() {
           {checkPassword !== password && <p className='password-prompt'>passwords do not match</p>}
           {passwordSync === true && <p className='password-prompt'>the passwords do not match, you were warned</p>}
           {usernameSyntax === true && <p className='password-prompt'>username needs to be between 5 & 20 characters in length</p>}
+          {duplicateUsername === true && <p className='password-prompt'>username is already taken! please use another</p>}
           {passwordSyntax === true && <p className='password-prompt'>Passwords must adhere to the following</p>}
           {passwordSyntax === true &&
             <ul>
