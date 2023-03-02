@@ -40,14 +40,40 @@
   background-color: #ffffff;
 }
 
-.header{
+.header {
   background-color: #767E8E;
 }
 
 .login {
   display: grid;
-
   background-color: #ffa5d6;
+}
+
+
+.input {
+  margin: auto;
+  margin-bottom: 5%;
+  padding: 5%;
+  border: 1px solid #ffa5d6;
+  border-radius: 4px;
+  padding: 5px;
+  width: 50%;
+}
+
+.signup-label{
+  margin-top: 20%;
+}
+
+.signup-button{
+  background-color: #2fa4b9;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: auto;
+  margin-top: 5%;
+  margin-bottom: 10%;
+  cursor: pointer;
 }
 
 .home-image {
@@ -58,7 +84,10 @@
 }
 
 .article {
-  margin: auto;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  margin-left: auto;
+  margin-right: auto;
   padding: 5%;
   border: 1px solid #ffa5d6;
   border-radius: 4px;
@@ -137,7 +166,9 @@
 }
 
 .topics {
-  margin: auto;
+  margin-top: 2%;
+  margin-right: auto;
+  margin-left: auto;
   padding: 5%;
   border: 1px solid #ffa5d6;
   border-radius: 4px;
@@ -151,11 +182,20 @@
   margin-left: 2%;
   margin: auto;
 }
-
 .topic-pane {
   margin: auto;
   width: 20%;
   border: 1px solid #67c6ee;
+}
+
+.topic-nav {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  margin-left: 15%;
+  margin-right: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .topic-nav-links {
@@ -169,7 +209,7 @@
 }
 
 .article-search {
-  width: 20%;
+  width: 75%;
   height: 75%;
   margin: auto;
   font-size: x-small;
@@ -182,12 +222,14 @@
   margin: auto;
 }
 
-.query-submit-button {
-  width: auto;
-  height: 75%;
+.query-submit-button{
+  background-color: #2fa4b9;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
   margin: auto;
-  font-size: x-small;
-  border: 1px solid #cc00ff;
-  border-radius: 4px;
-  padding: 5px;
+  margin-top: 5%;
+  margin-bottom: 10%;
+  cursor: pointer;
 }
