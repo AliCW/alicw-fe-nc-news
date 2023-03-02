@@ -3,17 +3,18 @@ import { checkValidPassword } from '../utilities/checkValidPassword'
 import { checkValidUsername } from '../utilities/checkValidUsername';
 import { checkValidName } from '../utilities/checkValidName';
 import { checkValidLink } from '../utilities/checkValidLink';
-import SignupAttempt from './SignupAttempt'
+import * as api from '../api'
 
 export default function Signup() {
-
   const [username, setUsername] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [checkPassword, setCheckPassword] = useState('');
   const [avatarURL, setAvatarURL] = useState('');
-  
-  const [signupFail, setSignupFail] = useState(false);
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [signupComplete, setSignupComplete] = useState(false);
+  const [signupError, setSignupError] = useState(false)
   const [passwordSync, checkPasswordSync] = useState(false); //Sync - passwords match
   const [passwordSyntax, checkPasswordSyntax] = useState(false) //Syntax - passwords meets requirements
   const [usernameSyntax, checkUsernameSyntax] = useState(false) 
@@ -50,40 +51,32 @@ export default function Signup() {
         return
       }
     }
-    handleSignup(username, name, password, avatarURL).then(() => {
-      console.log("not gonna work")
-    }).catch(() => {
-              return (
-          <p>Error signing up - please refresh & try again</p>
-        )
-    })
+    const defaultImage = "https://e7.pngegg.com/pngimages/369/132/png-clipart-man-in-black-suit-jacket-chris-hansen-to-catch-a-predator-television-show-nbc-news-chris-benoit-miscellaneous-television.png"
+    const userData = {
+      "username": username,
+      "name": name,
+      "password": password,
+      "avatar_url": avatarURL,
+    }
+
+    if(avatarURL === '') {
+      userData.avatar_url = defaultImage
+    }
+
+      setIsLoading(true)
+        api.userSignUp(userData).then((data) => {
+          if(data.message === "Network Error") {
+            setIsLoading(false)
+            setSignupError(true)
+          } else {
+            setIsLoading(false)
+            setSignupComplete(true)
+          }
+        })
   }
 
-  const handleSignup = (username, name, password, avatarURL) => {
-    console.log('right here')
-    setSignupFail(true)
-      return (
-        
-        <div>
-          <p>Error</p>
-          <SignupAttempt to="/signup/attempt" username={username} name={name} password={password} avatar_url={avatarURL}></SignupAttempt>
-          
-        </div>
-      )
-      
-      }    
-      // .then(() => {
-
-      // })
-      
-      // .catch(() => {
-      //   return (
-      //     <p>Error signing up - please refresh & try again</p>
-      //   )
-      // })
-
-  
-
+  if (isLoading) return <p className="loading">Loading...</p>
+  if (signupError) return <p className="error">Error signing up, please refresh & try again</p>
 
   return (
       <div>
@@ -117,8 +110,9 @@ export default function Signup() {
           type="url"
           placeholder="Avatar URL (optional)"
           onChange={(event) => {setAvatarURL(event.target.value)}}
-          defaultValue=""
+          defaultValue=" "
           />
+          {signupComplete === true && <h3>Sign Up Completed</h3>}
           {checkPassword !== password && <p className='password-prompt'>passwords do not match</p>}
           {passwordSync === true && <p className='password-prompt'>the passwords do not match, you were warned</p>}
           {usernameSyntax === true && <p className='password-prompt'>username needs to be between 5 & 20 characters in length</p>}
@@ -140,5 +134,3 @@ export default function Signup() {
     </div>
   );
 };
-
-

@@ -103,5 +103,7 @@ export const userSignUp = (userData) => {
   )
   .then((response) => {
     return response;
+  }).catch((error) => {
+    if (error) return error;
   })
 }
