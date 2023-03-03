@@ -48,6 +48,7 @@ export default function AddComment({ article, selectComments }) {
     
     const handleComment = () => {
         setCommentSubmit(true);
+        document.getElementById("newComment").reset()
         const timer = setTimeout(() => {
             setCommentSubmit(false);
         }, 3000);

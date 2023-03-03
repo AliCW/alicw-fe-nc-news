@@ -3,12 +3,12 @@ import { UserContext } from '../contexts/UserContext'
 import * as api from '../api'
 
 export default function Login() {
+    const { username } = useContext(UserContext)
     const [usernameInput, setUsernameInput] = useState('')
     const [password, setPassword] = useState('')
     const [signinSuccess, setSigninSuccess] = useState(false)
     const [isLoading, setIsLoading] = useState(false);
     const { setUsername } = useContext(UserContext)
-
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -19,16 +19,13 @@ export default function Login() {
         }
         document.getElementById("login-form").reset()
         
-        api.userLogin(userData).then((data) => {
-            console.log(data, '<<<< data here ')
+        api.userLogin(userData).then(() => {
             setIsLoading(false)
             setSigninSuccess(true)
             setUsername(usernameInput)
             
         })
     }
-
-
 
     if (isLoading) return <p className="loading">Loading...</p>
 
@@ -49,7 +46,7 @@ export default function Login() {
                     placeholder="Password"
                     onChange={(event) => {setPassword(event.target.value)}}
                 />
-                {signinSuccess === true && <p>Login Successfull, welcome</p>}
+                {signinSuccess === true && <p>Login Successfull, welcome {username}!</p>}
                 <button className="signup-button" type="submit">Submit</button>
             </form>
         </div>

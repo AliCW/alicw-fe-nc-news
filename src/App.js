@@ -10,11 +10,9 @@ import SingleArticleComments from './components/SingleArticleComments';
 import SingleArticle from './components/SingleArticle';
 import Error from './components/Error'
 import { Route, Routes } from 'react-router-dom';
-import { useState } from 'react';
 import './App.css';
 
 function App() {
-
   return (
     <div className="App">
       <Header />
