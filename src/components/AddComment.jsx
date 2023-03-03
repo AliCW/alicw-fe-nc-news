@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import * as api from '../api'
 import { dateFormat } from '../utilities/dateFormat';
+import { UserContext } from '../contexts/UserContext';
 
 export default function AddComment({ article, selectComments }) {
+    const { username } = useContext(UserContext)
     const [newComment, setNewComment] = useState('');
     const [commentSubmit, setCommentSubmit] = useState(false)
     const [error, setError] = useState(false)
@@ -21,12 +23,12 @@ export default function AddComment({ article, selectComments }) {
         setIsLoading(true)
         setError(false)
 
-        api.postArticleComment({username: "jessjelly", body: newComment}, id).then((response) => {
+        api.postArticleComment({"username": username, body: newComment}, id).then((response) => {
             const date = new Date();
             const today = date.toString().slice(4, 15);
                         
             const newComment = {
-                author: 'jessjelly',
+                author: username,
                 body: response.data.postedComment[0].body,
                 votes: 0,
                 created_at: dateFormat(today),

@@ -14,7 +14,6 @@ import { useState } from 'react';
 import './App.css';
 
 function App() {
-  const [currentUser] = useState('')
 
   return (
     <div className="App">
@@ -23,12 +22,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login user={currentUser}/>} />
+        <Route path="/login" element={<Login />} />
         <Route path="/articles" element={<Articles />} />
         <Route path="/topics" element={<Topics />} />
         <Route path="/topics/:slug" element={<ArticlesByTopic />} />
-        <Route path="/article/:article_id" element={<SingleArticle user={currentUser} />} />
-        <Route path="/article/:article_id/comments" element={<SingleArticleComments user={currentUser} />} />
+        <Route path="/article/:article_id" element={<SingleArticle />} />
+        <Route path="/article/:article_id/comments" element={<SingleArticleComments />} />
         <Route path="/*" element={<Error />} />
       </Routes>
     </div>

@@ -1,13 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import * as api from '../api'
 import AddComment from './AddComment'
 import CommentCard from './CommentCard'
+import { UserContext } from '../contexts/UserContext'
 
 export default function SingleArticleComments (props) {
+    const { username } = useContext(UserContext)
     const [comments, selectComments] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const id = props.article
-
+    
     useEffect(() => {
         setIsLoading(true)
         api.fetchSingleArticleComments(id).then(({data}) => {
@@ -28,7 +30,7 @@ export default function SingleArticleComments (props) {
             return (
                 <div key={comment.comment_id}>
                 <CommentCard 
-                comment={comment} user={props.user} stateComments={comments} setComments={selectComments} />   
+                comment={comment} user={username} stateComments={comments} setComments={selectComments} />   
                 </div>
                 )
             })
