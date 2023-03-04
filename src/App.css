@@ -194,9 +194,19 @@ html {
   color: #ffa5d6;
   cursor: pointer;
   margin: auto;
-  font-size: small;
-  padding-left: 1.5%;
-  padding-right: 1.5%;
+  font-size: large;
+  padding-left: 3.5%;
+  padding-right: 3.5%;
+}
+
+.vote-button-disabled {
+  color: #ffa5d6;
+  cursor: pointer;
+  margin: auto;
+  opacity: 40%;
+  font-size: large;
+  padding-left: 3.5%;
+  padding-right: 3.5%;
 }
 
 .add-comment-form{

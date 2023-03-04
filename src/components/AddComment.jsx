@@ -79,9 +79,10 @@ export default function AddComment({ article, selectComments }) {
 
             {username === '' ? <button className="post-button-disabled" disabled>Post</button>
             : 
-            <button className="post-button" disabled>Post</button>}      
+            <button className="post-button">Post</button>}      
 
         </form>
+        {invalid === true && <p>Comment is not long enough</p>}
         </div>
     )
 }
