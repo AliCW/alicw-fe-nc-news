@@ -1,7 +1,5 @@
 .App {
   text-align: center;
-
-
 }
 
 html {    
@@ -21,7 +19,6 @@ html {
 }
 
 .App-header {
-  background-color: #413a42;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -45,7 +42,7 @@ html {
 }
 
 .header {
-  background-color: #767E8E;
+
 }
 
 .nav {
@@ -132,7 +129,7 @@ html {
   border: 1px solid #0b090a;
   border-radius: 4px;
   padding: 5px;
-  width: 50%;
+
 }
 
 .comment-header {
