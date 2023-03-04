@@ -64,14 +64,23 @@ export default function AddComment({ article, selectComments }) {
     return (
         <div>
         <form className="add-comment-form" onSubmit={handleSubmit}>
-            <textarea className="add-comment-box"  placeholder="Post a comment..." rows="10"
+
+            {username === '' ? <textarea className="add-comment-box"  placeholder="You must be signed in to commment..." rows="5"
                 id="newComment"
                 value={newComment}
                 onChange={(event) => setNewComment(event.target.value)}
             ></textarea>
-            <button className="post-button">
-                Post
-            </button>           
+            :
+            <textarea className="add-comment-box"  placeholder="Post a comment..." rows="10"
+                id="newComment"
+                value={newComment}
+                onChange={(event) => setNewComment(event.target.value)}
+            ></textarea>}
+
+            {username === '' ? <button className="post-button-disabled" disabled>Post</button>
+            : 
+            <button className="post-button" disabled>Post</button>}      
+
         </form>
         </div>
     )
