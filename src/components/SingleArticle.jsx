@@ -60,16 +60,16 @@ export default function SingleArticle (props) {
             <p className="article-body">{article[0].body}</p>
             <p className="article-details">Author: {article[0].author}</p>
             <p className="article-details">Topic: {article[0].topic}</p>
-            <p className="article-details">
-                Votes:
-                <button className="vote-button" onClick={() => downVote(article[0].article_id)}><BsFillHandThumbsDownFill/>
-                </button>
-                {article[0].votes}
-                <button className="vote-button" onClick={() => upVote(article[0].article_id)}><BsFillHandThumbsUpFill/>
-                </button>
-            </p>
             <p className="article-details">Created: {String(article[0].created_at).slice(0, 10)}</p>
                <p className="article-details">Comments: {article[0].comment_count}</p>
+            <p className="article-details">
+                Votes: 
+                <BsFillHandThumbsDownFill className="vote-button" onClick={() => downVote(article[0].article_id)} />
+
+                {article[0].votes}
+                <BsFillHandThumbsUpFill className="vote-button" onClick={() => upVote(article[0].article_id)} />
+
+            </p>
             {article[0].error}
             <SingleArticleComments article={article[0].article_id} user={props.user}></SingleArticleComments>
         </div>

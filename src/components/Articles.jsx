@@ -61,7 +61,7 @@ export default function Articles() {
                 <form className="article-search" onSubmit={handleSubmit}>
                     <h2>Filter:</h2>
                     <nav className="query-nav">
-                        <div className="query-dropdown">
+                        <div>
                         <label>Sort By: </label>
                         <br></br>
 

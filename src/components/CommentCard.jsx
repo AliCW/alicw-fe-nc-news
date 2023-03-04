@@ -43,15 +43,14 @@ export default function CommentCard (comment) {
 
     return (
     <div className="comment">
-        {comment.comment.author === username &&   
-            <button className="delete-button" onClick={() => handleClick(comment)} >Delete
-            </button>
-                   }
         <div className ="comment" key={comment.comment.comment_id} >
             <h3 className="comment-header">{comment.comment.author}:</h3>
             <p className="comment-body">{comment.comment.body}</p>
             <p className="comment-details">Votes: {comment.comment.votes}</p>
             <p className="comment-details">Posted At: {String(comment.comment.created_at).slice(0, 10)}</p>
+            {comment.comment.author === username &&   
+            <button className="delete-button" onClick={() => handleClick(comment)} >Delete
+            </button>}
         </div >
     </div>
     )
