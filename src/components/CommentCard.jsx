@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { UserContext } from '../contexts/UserContext';
 import * as api from '../api'
 
 export default function CommentCard (comment) {
+    const { username } = useContext(UserContext)
     const [deleteError, setDeleteError] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
     const [isDeleted, setIsDeleted] = useState(false);
+    console.log(username)
     
     const handleClick = (comment) => {
         setIsDeleting(true);
@@ -40,15 +43,14 @@ export default function CommentCard (comment) {
 
     return (
     <div className="comment">
-        {comment.comment.author === comment.user.username &&   
-            <button className="delete-button" onClick={() => handleClick(comment)} >Delete
-            </button>
-                   }
         <div className ="comment" key={comment.comment.comment_id} >
             <h3 className="comment-header">{comment.comment.author}:</h3>
             <p className="comment-body">{comment.comment.body}</p>
             <p className="comment-details">Votes: {comment.comment.votes}</p>
             <p className="comment-details">Posted At: {String(comment.comment.created_at).slice(0, 10)}</p>
+            {comment.comment.author === username &&   
+            <button className="delete-button" onClick={() => handleClick(comment)} >Delete
+            </button>}
         </div >
     </div>
     )

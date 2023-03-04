@@ -107,3 +107,12 @@ export const userSignUp = (userData) => {
     if (error) return error;
   })
 }
+
+export const userLogin = (userData) => {
+  return api.post(
+    `https://nc-news-acw.onrender.com/api/users/login`, userData
+  )
+  .then((response) => {
+    return response
+  })
+}

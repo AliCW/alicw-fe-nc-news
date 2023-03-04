@@ -22,6 +22,7 @@ export default function Signup() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setIsLoading(true)
     checkPasswordSync(false)
     checkPasswordSyntax(false)
     checkUsernameSyntax(false)
@@ -56,10 +57,8 @@ export default function Signup() {
     if(avatarURL === '') {
       userData.avatar_url = defaultImage
     }
-
-      setIsLoading(true)
+      
         api.userSignUp(userData).then((data) => {
-          console.log(data)
           if(data.message === "Network Error") {
             setIsLoading(false)
             setSignupError(true)
@@ -83,35 +82,35 @@ export default function Signup() {
   return (
       <div>
       <form id="signup-form" className="login" onSubmit={handleSubmit}>
-        <label class="signup-labels">Username*</label>
+        <label className="signup-labels">Username*</label>
         <input
-          className='input'
+          className="input"
           type="text"
           placeholder="Username*"
           onChange={(event) => {setUsername(event.target.value)}}
         />
-        <label class="signup-labels">Name*</label>
+        <label className="signup-labels">Name*</label>
         <input
-          className='input'
+          className="input"
           type="text"
           placeholder="Name*"
           onChange={(event) => {setName(event.target.value)}}
         />
-        <label class="signup-labels">Password*</label>
+        <label className="signup-labels">Password*</label>
         <input
-          className='input'
+          className="input"
           type="password"
           placeholder="Password*"
           onChange={(event) => {setPassword(event.target.value)}}
         />
-        <label class="signup-labels">Confirm Password*</label>
+        <label className="signup-labels">Confirm Password*</label>
         <input
           className='input'
           type="password"
           placeholder="Confirm Password*"
           onChange={(event) => {setCheckPassword(event.target.value)}}
           />
-        <label class="signup-labels">Avatar URL:</label>
+        <label className="signup-labels">Avatar URL:</label>
         <input
         className='input'
           type="url"
