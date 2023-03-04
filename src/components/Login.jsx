@@ -7,6 +7,7 @@ export default function Login() {
     const [usernameInput, setUsernameInput] = useState('')
     const [password, setPassword] = useState('')
     const [signinSuccess, setSigninSuccess] = useState(false)
+    const [signinError, setSigninError] = useState(false)
     const [isLoading, setIsLoading] = useState(false);
     const { setUsername } = useContext(UserContext)
 
@@ -19,11 +20,15 @@ export default function Login() {
         }
         document.getElementById("login-form").reset()
         
-        api.userLogin(userData).then(() => {
-            setIsLoading(false)
-            setSigninSuccess(true)
-            setUsername(usernameInput)
-            
+        api.userLogin(userData).then((data) => {
+            if(data.response.status === 401) {
+                setIsLoading(false)
+                setSigninError(true)
+            } else {
+                setIsLoading(false)
+                setSigninSuccess(true)
+                setUsername(usernameInput)
+            }
         })
     }
 
@@ -46,6 +51,7 @@ export default function Login() {
                     placeholder="Password"
                     onChange={(event) => {setPassword(event.target.value)}}
                 />
+                {signinError === true && <p>Incorrect username or password</p>}
                 {signinSuccess === true && <p>Login Successfull, welcome {username}!</p>}
                 <button className="signup-button" type="submit">Submit</button>
             </form>

@@ -114,5 +114,7 @@ export const userLogin = (userData) => {
   )
   .then((response) => {
     return response
+  }).catch((error) => {
+    if (error) return error;
   })
 }
