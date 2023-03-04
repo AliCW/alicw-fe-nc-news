@@ -81,7 +81,7 @@ html {
 }
 
 .signup-button{
-  background-color: #2fa4b9;
+  background-color: #ff29c6;
   border: none;
   color: white;
   padding: auto;
@@ -153,7 +153,7 @@ html {
 }
 
 .post-button {
-  background-color: #2fa4b9;
+  background-color: #ff29c6;
   border: none;
   color: white;
   padding: auto;
@@ -179,7 +179,7 @@ html {
 }
 
 .delete-button{
-  background-color: #2fa4b9;
+  background-color: #ff29c6;
   border: none;
   color: white;
   padding: auto;
@@ -190,8 +190,12 @@ html {
   cursor: pointer;
 }
 
+.vote-text {
+  font-size: xxx-small;
+}
+
 .vote-button {
-  color: #ffa5d6;
+  color: #ff29c6;
   cursor: pointer;
   margin: auto;
   font-size: large;
@@ -200,7 +204,7 @@ html {
 }
 
 .vote-button-disabled {
-  color: #ffa5d6;
+  color: #ff29c6;
   cursor: pointer;
   margin: auto;
   opacity: 40%;
@@ -292,7 +296,7 @@ html {
 }
 
 .query-submit-button{
-  background-color: #2fa4b9;
+  background-color: #ff29c6;
   border: none;
   color: white;
   padding: auto;
