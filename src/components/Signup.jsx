@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { checkValidPassword } from '../utilities/checkValidPassword'
-import { checkValidUsername } from '../utilities/checkValidUsername';
-import { checkValidName } from '../utilities/checkValidName';
+import checkValidPassword from '../utilities/checkValidPassword'
+import checkValidUsername from '../utilities/checkValidUsername';
+import checkValidName from '../utilities/checkValidName';
 import * as api from '../api'
 
 export default function Signup() {

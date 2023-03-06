@@ -1,4 +1,4 @@
-export default function checkValidLink(string){
+function checkValidLink(string){
     const splitURL = string.split('')
     let countDot = 0
     for (let i = 0; i < splitURL.length; i++) {
@@ -22,3 +22,5 @@ export default function checkValidLink(string){
     return false
 }
 
+
+module.exports = { checkValidLink }

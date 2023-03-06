@@ -25,12 +25,11 @@ export default function SingleArticleComments (props) {
 
     return (
         <section>
-        <AddComment article={id} selectComments={selectComments}/>
+        <AddComment user={username} article={id} selectComments={selectComments}/>
         {comments.map((comment) => {
             return (
                 <div key={comment.comment_id}>
-                <CommentCard 
-                comment={comment} user={username} stateComments={comments} setComments={selectComments} />   
+                <CommentCard comment={comment} user={username} stateComments={comments} setComments={selectComments} />   
                 </div>
                 )
             })

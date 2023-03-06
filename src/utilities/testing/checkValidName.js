@@ -1,4 +1,4 @@
-export default function checkValidName(string){
+function checkValidName(string){
     const splitName = string.split('')
     let countSpaces = 0
     if(splitName.length <= 4 || splitName.length >= 50) {
@@ -21,3 +21,4 @@ export default function checkValidName(string){
     return true
 }
 
+module.exports = { checkValidName }

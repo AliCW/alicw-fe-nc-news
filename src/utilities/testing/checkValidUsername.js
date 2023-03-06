@@ -1,4 +1,4 @@
-export default function checkValidUsername(string){
+function checkValidUsername(string){
     const splitString = string.split('')
     let countLetters = 0
     if(splitString.length < 5 || splitString.length > 20) {
@@ -17,4 +17,4 @@ export default function checkValidUsername(string){
     return true;
 }
 
-
+module.exports = { checkValidUsername }

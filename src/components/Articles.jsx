@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import * as api from '../api'
 import TopicNav from './TopicNav'
 import ArticleCard from './ArticleCard'
-import { orderByCommentCountAsc, orderByCommentCountDesc} from "../utilities/orderByCommentCount";
+import orderByCommentCountAsc from "../utilities/orderByCommentCountAsc";
+import orderByCommentCountDesc from "../utilities/orderByCommentCountDesc";
 
 export default function Articles() {
     const [query, selectQuery] = useState('created_at')
