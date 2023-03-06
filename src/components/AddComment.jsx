@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import * as api from '../api'
-import { dateFormat } from '../utilities/dateFormat';
+import dateFormat from '../utilities/dateFormat';
 import { UserContext } from '../contexts/UserContext';
 
 export default function AddComment({ article, selectComments }) {
@@ -86,5 +86,3 @@ export default function AddComment({ article, selectComments }) {
         </div>
     )
 }
-
-

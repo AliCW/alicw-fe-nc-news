@@ -1,4 +1,4 @@
-export default function dateFormat(today){
+function dateFormat(today){
     let dateArray = today.split(' ');
                 if (dateArray[0] === 'Jan') {
                     dateArray.shift()
@@ -52,3 +52,5 @@ export default function dateFormat(today){
                 shiftArray.push(dateArray[2])
                 return shiftArray.reverse().join('-')
             }
+
+module.exports = { dateFormat }

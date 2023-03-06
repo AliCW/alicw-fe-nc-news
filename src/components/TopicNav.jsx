@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom"
 import * as api from "../api"
-import { capitaliseFirstLetter } from "../utilities/capitaliseFirstLetter";
+import capitaliseFirstLetter from "../utilities/capitaliseFirstLetter";
 
 export default function TopicNav() {
     const [topics, findTopics] = useState([]);

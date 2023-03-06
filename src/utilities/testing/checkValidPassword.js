@@ -1,4 +1,4 @@
-export default function checkValidPassword(string){
+function checkValidPassword(string){
     const splitPassword = string.split('')
     let countSymbols = 0
     if (splitPassword.length < 8 || splitPassword.length > 40) {
@@ -37,3 +37,5 @@ export default function checkValidPassword(string){
     }
     return true
 }
+
+module.exports = { checkValidPassword }

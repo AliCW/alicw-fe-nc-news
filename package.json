@@ -47,6 +47,10 @@
     "supertest": "^6.3.3"
   },
   "jest": {
+    "transformIgnorePatterns": [
+      "export"
+    ],
+    
     "setupFilesAfterEnv": [
       "jest-extended/all",
       "jest-sorted",

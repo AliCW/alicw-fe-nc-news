@@ -8,7 +8,7 @@ This is a work in progress, CSS & layout features require much refining. User lo
 
 The default application is hosted at the below link
 
-    https;//linkhere.com/ <----------------------
+    https://alicwncnews.netlify.app/
 
 ## API server
 

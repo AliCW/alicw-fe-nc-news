@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { capitaliseFirstLetter } from '../utilities/capitaliseFirstLetter';
+import capitaliseFirstLetter from '../utilities/capitaliseFirstLetter';
 
 export default function ArticleCard({ articles }) {
     return (

@@ -86,7 +86,7 @@ export default function SingleArticle (props) {
             }
             {article[0].error}
             {voteError === true && <p>You need to be signed in to vote</p>}
-            <SingleArticleComments article={article[0].article_id} user={props.user}></SingleArticleComments>
+            <SingleArticleComments article={article[0].article_id} user={username}></SingleArticleComments>
             
         </div>
         </IconContext.Provider>

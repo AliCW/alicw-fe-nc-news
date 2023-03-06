@@ -1,4 +1,4 @@
-export default function capitaliseFirstLetter(string){
+function capitaliseFirstLetter(string){
     if (string.length === 0) {
         return ''
     }
@@ -9,3 +9,4 @@ export default function capitaliseFirstLetter(string){
     return splitString.join('')
 }
 
+module.exports = { capitaliseFirstLetter } ;
