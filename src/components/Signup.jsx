@@ -9,6 +9,7 @@ export default function Signup() {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [checkPassword, setCheckPassword] = useState('');
+  const [emailAddress, setEmailAddress] = useState('');
   const [avatarURL, setAvatarURL] = useState('');
 
   const [isLoading, setIsLoading] = useState(false);
@@ -17,7 +18,7 @@ export default function Signup() {
   const [passwordSync, checkPasswordSync] = useState(false); //Sync - passwords match
   const [passwordSyntax, checkPasswordSyntax] = useState(false) //Syntax - passwords meets requirements
   const [usernameSyntax, checkUsernameSyntax] = useState(false) 
-  const [duplicateUsername, checkDuplicateUsername] = useState(false)
+  const [duplicateDetails, checkDuplicateDetails] = useState(false)
   const [nameSyntax, checkNameSyntax] = useState(false) 
 
   const handleSubmit = (event) => {
@@ -51,37 +52,38 @@ export default function Signup() {
       "username": username,
       "name": name,
       "password": password,
+      "email": emailAddress,
       "avatar_url": avatarURL,
     }
 
     if(avatarURL === '') {
       userData.avatar_url = defaultImage
     }
-      
-        api.userSignUp(userData).then((data) => {
-          if(data.message === "Network Error") {
-            setIsLoading(false)
-            setSignupError(true)
-          }
-          if (data.response.status === 409) {
-            setIsLoading(false)
-            checkDuplicateUsername(true)
-            setSignupComplete(false)
-            return
-          }
-             else {
-            setIsLoading(false)
-            setSignupComplete(true)
-          }
-        })
+      api.userSignUp(userData).then((data) => {
+        if (data.message === "Network Error") {
+          setIsLoading(false)
+          setSignupError(true)
+        }
+        if (data.response.status === 409) {
+          setIsLoading(false)
+          setSignupComplete(false)
+          checkDuplicateDetails(true)
+          return
+        }
+        else {
+          setIsLoading(false)
+          setSignupComplete(true)
+        }
+      })
   }
+  
 
   if (isLoading) return <p className="loading">Loading...</p>
   if (signupError) return <p className="error">Error signing up, please refresh & try again</p>
 
   return (
       <div>
-      <form id="signup-form" className="login" onSubmit={handleSubmit}>
+      <form id="signup-form" className="login" onSubmit={handleSubmit} autoComplete="on">
         <label className="signup-labels">Username*</label>
         <input
           className="input"
@@ -98,6 +100,7 @@ export default function Signup() {
         />
         <label className="signup-labels">Password*</label>
         <input
+          autoComplete="off"
           className="input"
           type="password"
           placeholder="Password*"
@@ -105,11 +108,21 @@ export default function Signup() {
         />
         <label className="signup-labels">Confirm Password*</label>
         <input
-          className='input'
+          autoComplete="off"
+          className="input"
           type="password"
           placeholder="Confirm Password*"
           onChange={(event) => {setCheckPassword(event.target.value)}}
           />
+        <label className="signup-labels">Email*</label>
+        <input 
+          autoComplete="off"
+          className="input"
+          type="email"
+          placeholder="Email Address*"
+          onChange={(event) => {setEmailAddress(event.target.value)}}
+        
+        />
         <label className="signup-labels">Avatar URL:</label>
         <input
         className='input'
@@ -122,7 +135,7 @@ export default function Signup() {
           {checkPassword !== password && <p className='password-prompt'>passwords do not match</p>}
           {passwordSync === true && <p className='password-prompt'>the passwords do not match, you were warned</p>}
           {usernameSyntax === true && <p className='password-prompt'>username needs to be between 5 & 20 characters in length</p>}
-          {duplicateUsername === true && <p className='password-prompt'>username is already taken! please use another</p>}
+          {duplicateDetails === true && <p className='password-prompt'>username / email is already taken! please use another</p>}
           {passwordSyntax === true && <p className='password-prompt'>Passwords must adhere to the following</p>}
           {passwordSyntax === true &&
             <ul>
