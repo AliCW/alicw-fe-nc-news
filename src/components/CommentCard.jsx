@@ -7,7 +7,6 @@ export default function CommentCard (comment) {
     const [deleteError, setDeleteError] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
     const [isDeleted, setIsDeleted] = useState(false);
-    console.log(username)
     
     const handleClick = (comment) => {
         setIsDeleting(true);

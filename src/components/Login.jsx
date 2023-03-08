@@ -21,7 +21,6 @@ export default function Login() {
         document.getElementById("login-form").reset()
         
         api.userLogin(userData).then((data) => {
-            console.log(data)
             if(data.status === 401) {
                 setIsLoading(false)
                 setSigninError(true)
@@ -37,7 +36,7 @@ export default function Login() {
 
     return (
         <div>
-            <form id="login-form" className="login" onSubmit={handleSubmit}>
+            <form id="login-form" className="login" onSubmit={handleSubmit} autoComplete="on">
                 <label>Username</label>
                 <input
                     className="input"
@@ -47,6 +46,7 @@ export default function Login() {
                 />
                 <label>Password</label>
                 <input 
+                    autoComplete='off'
                     className="input"
                     type="password"
                     placeholder="Password"
