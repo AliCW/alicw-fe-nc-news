@@ -21,7 +21,8 @@ export default function Login() {
         document.getElementById("login-form").reset()
         
         api.userLogin(userData).then((data) => {
-            if(data.response.status === 401) {
+            console.log(data)
+            if(data.status === 401) {
                 setIsLoading(false)
                 setSigninError(true)
             } else {

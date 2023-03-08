@@ -9,6 +9,7 @@ export default function Signup() {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [checkPassword, setCheckPassword] = useState('');
+  const [emailAddress, setEmailAddress] = useState('');
   const [avatarURL, setAvatarURL] = useState('');
 
   const [isLoading, setIsLoading] = useState(false);
@@ -51,19 +52,20 @@ export default function Signup() {
       "username": username,
       "name": name,
       "password": password,
+      "email": emailAddress,
       "avatar_url": avatarURL,
     }
 
     if(avatarURL === '') {
       userData.avatar_url = defaultImage
     }
-      
         api.userSignUp(userData).then((data) => {
+          console.log(data)
           if(data.message === "Network Error") {
             setIsLoading(false)
             setSignupError(true)
           }
-          if (data.response.status === 409) {
+          if (data.status === 409) {
             setIsLoading(false)
             checkDuplicateUsername(true)
             setSignupComplete(false)
@@ -105,11 +107,19 @@ export default function Signup() {
         />
         <label className="signup-labels">Confirm Password*</label>
         <input
-          className='input'
+          className="input"
           type="password"
           placeholder="Confirm Password*"
           onChange={(event) => {setCheckPassword(event.target.value)}}
           />
+        <label className="signup-labels">Email*</label>
+        <input 
+          className="input"
+          type="email"
+          placeholder="Email Address*"
+          onChange={(event) => {setEmailAddress(event.target.value)}}
+        
+        />
         <label className="signup-labels">Avatar URL:</label>
         <input
         className='input'
@@ -122,7 +132,7 @@ export default function Signup() {
           {checkPassword !== password && <p className='password-prompt'>passwords do not match</p>}
           {passwordSync === true && <p className='password-prompt'>the passwords do not match, you were warned</p>}
           {usernameSyntax === true && <p className='password-prompt'>username needs to be between 5 & 20 characters in length</p>}
-          {duplicateUsername === true && <p className='password-prompt'>username is already taken! please use another</p>}
+          {duplicateUsername === true && <p className='password-prompt'>username / email is already taken! please use another</p>}
           {passwordSyntax === true && <p className='password-prompt'>Passwords must adhere to the following</p>}
           {passwordSyntax === true &&
             <ul>
