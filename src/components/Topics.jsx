@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom"
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from '../contexts/UserContext';
+import TopicCard from './TopicCard'
 import * as api from "../api"
-import capitaliseFirstLetter from "../utilities/capitaliseFirstLetter";
+
 
 export default function Topics() {
+    const { username } = useContext(UserContext)
     const [topics, findTopics] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -22,14 +24,9 @@ export default function Topics() {
     }
 
     return (
-        topics.map((topic) => {
-            return (
-      <div key={topic.slug} className="topics">
-        <Link to={"/topics/" + topic.slug} state={{slug: topic.slug}} className="topic-title">{capitaliseFirstLetter(topic.slug)}</Link>
-        <p className="topic-description">{topic.description}</p>
-        
-    </div>
-            )
-        })
+        <div>
+            {/* {username === '' && <p>here</p>} */}
+            <TopicCard topics={topics} />
+        </div>
     );
-  };
+};
