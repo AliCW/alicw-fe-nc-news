@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from '../contexts/UserContext';
 import TopicCard from './TopicCard'
+import AddTopic from './AddTopic'
 import * as api from "../api"
 
 
@@ -24,9 +25,9 @@ export default function Topics() {
     }
 
     return (
-        <div>
-            {/* {username === '' && <p>here</p>} */}
+        <div className="articles">
             <TopicCard topics={topics} />
+            {username === '' && <AddTopic />}
         </div>
     );
 };
