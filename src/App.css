@@ -271,6 +271,18 @@ html {
   cursor: pointer;
 }
 
+.post-topic-button-disabled{
+  background-color: #ff29c6;
+  border: none;
+  color: white;
+  padding: auto;
+  text-decoration: none;
+  margin: auto;
+  margin-top: 15%;
+  margin-bottom: 1%;
+  cursor: pointer;
+  opacity: 40%;
+}
 
 
 .topics {

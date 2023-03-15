@@ -1,12 +1,9 @@
-import { useState, useEffect, useContext } from "react";
-import { UserContext } from '../contexts/UserContext';
+import { useState, useEffect } from "react";
 import TopicCard from './TopicCard'
 import AddTopic from './AddTopic'
 import * as api from "../api"
 
-
 export default function Topics() {
-    const { username } = useContext(UserContext)
     const [topics, findTopics] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -26,8 +23,14 @@ export default function Topics() {
 
     return (
         <div className="articles">
-            <TopicCard topics={topics} />
-            {username === '' && <AddTopic />}
+            <AddTopic findTopics={findTopics}/>
+            {topics.map((topic) => {
+                return (
+                    <div key={topic.slug}>
+                        <TopicCard topic={topic}/>
+                    </div>
+                )
+            })}
         </div>
     );
 };

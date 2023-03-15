@@ -64,7 +64,8 @@ export default function Signup() {
           setIsLoading(false)
           setSignupError(true)
         }
-        if (data.response.status === 409) {
+
+        if (data.status === 409) {
           setIsLoading(false)
           setSignupComplete(false)
           checkDuplicateDetails(true)
