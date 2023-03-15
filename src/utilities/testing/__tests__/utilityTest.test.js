@@ -6,6 +6,7 @@ const { checkValidPassword } = require('../checkValidPassword')
 const { checkValidUsername } = require('../checkValidUsername')
 const { checkValidName } = require('../checkValidName')
 const { checkValidLink } = require('../checkValidLink');
+const { checkValidTopic } = require('../checkValidTopic')
 
 const dummyCommentObject = {
     "articles": [
@@ -239,3 +240,27 @@ describe('URL validity check - URL must begin with "http://" or "https://" & con
         expect(checkValidLink(URL)).toBe(true)
     })
 })
+
+describe('Add Topic validity check', () => {
+    test('Checks the Topic is under 50 characters in length - false test', () => {
+        const topic = 'this topic that i am writing is over 50 characters and is therefore too long to post'
+        expect(checkValidTopic(topic)).toBe(false)
+    })
+    test('Checks the Topic is under 50 characters in length - true test', () => {
+        const topic = 'a valid topic here'
+        expect(checkValidTopic(topic)).toBe(true)
+    })
+    test('Checks the Topic is over 1 character in length - false test', () => {
+        const topic = 'a'
+        expect(checkValidTopic(topic)).toBe(false)
+    })
+    test('Checks the Topic is over 1 character in length - true test', () => {
+        const topic = 'a valid topic here'
+        expect(checkValidTopic(topic)).toBe(true)
+    })
+})
+
+
+
+//under 50 chars
+//over 1 chars
