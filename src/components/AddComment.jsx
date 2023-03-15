@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
+import { UserContext } from '../contexts/UserContext';
 import * as api from '../api'
 import dateFormat from '../utilities/dateFormat';
-import { UserContext } from '../contexts/UserContext';
 
 export default function AddComment({ article, selectComments }) {
     const { username } = useContext(UserContext)
@@ -34,11 +34,9 @@ export default function AddComment({ article, selectComments }) {
                 created_at: dateFormat(today),
                 comment_id: response.data.postedComment[0].comment_id,
             }
-            selectComments((currComments) => {
-                return [newComment, ...currComments]
-            })
+
         setIsLoading(false)
-        handleComment()
+        handleComment(newComment)
         })
         .catch(() => {
             setError(true)
@@ -46,18 +44,20 @@ export default function AddComment({ article, selectComments }) {
         })
         }
     
-    const handleComment = () => {
+    const handleComment = (newComment) => {
         setCommentSubmit(true);
-        document.getElementById("newComment").reset()
         const timer = setTimeout(() => {
             setCommentSubmit(false);
-        }, 3000);
+            selectComments((currComments) => {
+                return [newComment, ...currComments]
+            })
+        }, 2000);
         return () => {
           clearTimeout(timer);
         };
     }
 
-    if (commentSubmit)  return <p>Submitted!</p>
+    if (commentSubmit) return <p>Submitting...</p>                                  
     if (isLoading) return <p>Posting...</p>
     if (error) return <p>Error posting comment, please refresh try again</p>
 
