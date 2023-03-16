@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom"
+import { UserContext } from '../contexts/UserContext';
 import * as api from '../api'
 import TopicNav from './TopicNav'
 import ArticleCard from './ArticleCard'
@@ -6,6 +8,7 @@ import orderByCommentCountAsc from "../utilities/orderByCommentCountAsc";
 import orderByCommentCountDesc from "../utilities/orderByCommentCountDesc";
 
 export default function Articles() {
+    const { username } = useContext(UserContext)
     const [query, selectQuery] = useState('created_at')
     const [order, selectOrder] = useState('ASC')
     const [articles, selectArticles] = useState([])
@@ -88,6 +91,13 @@ export default function Articles() {
                         <input className="query-submit-button" type="submit" value="Search" /> 
                     </nav>
                 </form>
+
+                { username === '' ? 
+                <Link to="/articles/create" >Create Article</Link> //<<-----remove when editing is done
+                // <span></span>
+                :
+                <Link to="/articles/create" >Create Article</Link>
+                }
                 {<ArticleCard articles={articles} />}
             </div>
         </div>

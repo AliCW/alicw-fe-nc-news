@@ -8,6 +8,7 @@ import Login from './components/Login';
 import ArticlesByTopic from './components/ArticlesByTopic';
 import SingleArticleComments from './components/SingleArticleComments';
 import SingleArticle from './components/SingleArticle';
+import AddArticle from './components/AddArticle'
 import Error from './components/Error'
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
@@ -24,6 +25,7 @@ function App() {
         <Route path="/articles" element={<Articles />} />
         <Route path="/topics" element={<Topics />} />
         <Route path="/topics/:slug" element={<ArticlesByTopic />} />
+        <Route path="/articles/create" element={<AddArticle />}/>
         <Route path="/article/:article_id" element={<SingleArticle />} />
         <Route path="/article/:article_id/comments" element={<SingleArticleComments />} />
         <Route path="/*" element={<Error />} />

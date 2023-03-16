@@ -61,6 +61,7 @@ export default function AddTopic({findTopics}){
     return (
         <div>
             <form id="add-topic-form" className="add-topic-form" onSubmit={handleSubmit} autoComplete="on">
+                <h3>Add A Topic:</h3>
 
                 <label className="signup-labels">Topic Name:</label>
 

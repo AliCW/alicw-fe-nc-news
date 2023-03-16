@@ -23,7 +23,6 @@ export default function Topics() {
 
     return (
         <div className="articles">
-            <AddTopic findTopics={findTopics}/>
             {topics.map((topic) => {
                 return (
                     <div key={topic.slug}>
@@ -31,6 +30,7 @@ export default function Topics() {
                     </div>
                 )
             })}
+            <AddTopic findTopics={findTopics}/>
         </div>
     );
 };
