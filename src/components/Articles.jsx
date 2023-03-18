@@ -6,6 +6,7 @@ import TopicNav from './TopicNav'
 import ArticleCard from './ArticleCard'
 import orderByCommentCountAsc from "../utilities/orderByCommentCountAsc";
 import orderByCommentCountDesc from "../utilities/orderByCommentCountDesc";
+import AddArticle from "./AddArticle";
 
 export default function Articles() {
     const { username } = useContext(UserContext)
@@ -93,10 +94,9 @@ export default function Articles() {
                 </form>
 
                 { username === '' ? 
-                <Link to="/articles/create" >Create Article</Link> //<<-----remove when editing is done
-                // <span></span>
+                <span></span>
                 :
-                <Link to="/articles/create" >Create Article</Link>
+                <AddArticle selectArticles={selectArticles} />
                 }
                 {<ArticleCard articles={articles} />}
             </div>

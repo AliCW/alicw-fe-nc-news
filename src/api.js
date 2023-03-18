@@ -129,3 +129,14 @@ export const addTopic = (topicData) => {
     if (error) return error;
   })
 }
+
+export const addArticle = (articleData) => {
+  return api.post(
+    `https://nc-news-acw.onrender.com/api/articles/`, articleData
+  )
+  .then((response) => {
+    return response
+  }).catch((error) => {
+    if (error) return error;
+  })
+}
