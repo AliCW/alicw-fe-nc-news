@@ -13,6 +13,7 @@ export default function SingleArticleComments (props) {
     useEffect(() => {
         setIsLoading(true)
         api.fetchSingleArticleComments(id).then(({data}) => {
+            console.log(data)
             selectComments(data.comments)
             setIsLoading(false)
         })

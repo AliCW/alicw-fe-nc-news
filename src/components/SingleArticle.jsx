@@ -6,7 +6,7 @@ import { UserContext } from '../contexts/UserContext';
 import SingleArticleComments from './SingleArticleComments'
 import * as api from '../api'
 
-export default function SingleArticle (props) {
+export default function SingleArticle () {
     const { username } = useContext(UserContext)
     const [article, selectArticle] = useState([])
     const [isLoading, setIsLoading] = useState(true)

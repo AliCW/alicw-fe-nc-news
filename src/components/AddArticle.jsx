@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { UserContext } from '../contexts/UserContext';
+import dateFormat from '../utilities/dateFormat';
 import * as api from "../api";
 
 export default function AddArticle({selectArticles}) {
@@ -18,17 +19,30 @@ export default function AddArticle({selectArticles}) {
         const articleData = {
             title: articleTitle,
             topic: articleTopic,
-            author: username,
+            "username": username,
             body: articleBody,
         }
 
         api.addArticle(articleData).then((response) => {
-
-            
-
             console.log(response, "here")
+            console.log(response.data.article[0].article_id)
+
+            const date = new Date();
+            const today = date.toString().slice(4, 15);
+
+            const newArticle = {
+                article_id: response.data.article[0].article_id,
+                author: username,
+                body: articleBody,
+                comment_count: response.data.article[0].comment_count,
+                created_at: dateFormat(today),
+                title: articleTitle,
+                topic: articleTopic,
+                votes: response.data.article[0].votes,
+            }
+
             setIsLoading(false)
-            handleArticle(articleData)
+            handleArticle(newArticle)
         })
             .catch(() => {
                 setIsError(true)
