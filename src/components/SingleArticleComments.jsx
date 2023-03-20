@@ -8,14 +8,21 @@ export default function SingleArticleComments (props) {
     const { username } = useContext(UserContext)
     const [comments, selectComments] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+    const [noComments, setNoComments] = useState(false)
     const id = props.article
     
     useEffect(() => {
         setIsLoading(true)
         api.fetchSingleArticleComments(id).then(({data}) => {
-            console.log(data)
-            selectComments(data.comments)
-            setIsLoading(false)
+            if (typeof data === 'undefined'){
+                console.log(data, "<<<<<< did this work??")
+                setIsLoading(false)
+                setNoComments(true)
+            } else {
+
+                selectComments(data.comments)
+                setIsLoading(false)
+            }          
         })
     }, [id]
     )
@@ -24,10 +31,17 @@ export default function SingleArticleComments (props) {
         return <p className="loading">Loading...</p>
     }
 
+    if (noComments) {
+        return <p>no comments exist</p>
+    }
+
     return (
         <section>
         <AddComment user={username} article={id} selectComments={selectComments}/>
-        {comments.map((comment) => {
+        {
+        
+        
+        comments.map((comment) => {
             return (
                 <div key={comment.comment_id}>
                 <CommentCard comment={comment} user={username} stateComments={comments} setComments={selectComments} />   

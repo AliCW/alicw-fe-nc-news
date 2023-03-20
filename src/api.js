@@ -25,7 +25,9 @@ export const fetchSingleArticleComments = (article_id) => {
     .get(`https://nc-news-acw.onrender.com/api/articles/${article_id}/comments`)
     .then((response) => {
       return response;
-    });
+    }).catch((error) => {
+      return error
+    })
 };
 
 export const fetchArticlesByQuery = (query, order) => {
@@ -33,7 +35,9 @@ export const fetchArticlesByQuery = (query, order) => {
     .get(`https://nc-news-acw.onrender.com/api/articles?sort_by=${query}&order_by=${order}`)
     .then((response) => {
       return response;
-    });
+    }).catch((error) => {
+      return error
+    })
 };
 
 export const incVote = (article_id) => {
