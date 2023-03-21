@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom"
 import { UserContext } from '../contexts/UserContext';
 import * as api from '../api'
 import TopicNav from './TopicNav'
@@ -62,6 +61,11 @@ export default function Articles() {
     return (
         <div>
             {<TopicNav />}
+            { username === '' ? 
+                <span></span>
+                :
+                <AddArticle selectArticles={selectArticles} />
+                }
             <div key="query-nav">
                 <form className="article-search" onSubmit={handleSubmit}>
                     <h2>Filter:</h2>
@@ -93,11 +97,7 @@ export default function Articles() {
                     </nav>
                 </form>
 
-                { username === '' ? 
-                <span></span>
-                :
-                <AddArticle selectArticles={selectArticles} />
-                }
+
                 {<ArticleCard articles={articles} />}
             </div>
         </div>
