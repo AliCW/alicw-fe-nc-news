@@ -15,8 +15,8 @@ export default function Signup() {
   const [isLoading, setIsLoading] = useState(false);
   const [signupComplete, setSignupComplete] = useState(false);
   const [signupError, setSignupError] = useState(false)
-  const [passwordSync, checkPasswordSync] = useState(false); //Sync - passwords match
-  const [passwordSyntax, checkPasswordSyntax] = useState(false) //Syntax - passwords meets requirements
+  const [passwordSync, checkPasswordSync] = useState(false);
+  const [passwordSyntax, checkPasswordSyntax] = useState(false) 
   const [usernameSyntax, checkUsernameSyntax] = useState(false) 
   const [duplicateDetails, checkDuplicateDetails] = useState(false)
   const [nameSyntax, checkNameSyntax] = useState(false) 

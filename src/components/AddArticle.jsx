@@ -5,7 +5,6 @@ import * as api from "../api";
 
 export default function AddArticle({selectArticles}) {
     const { username } = useContext(UserContext)
-    const [postedArticle, setPostedArticle] = useState('')
     const [articleTitle, setArticleTitle] = useState('')
     const [articleTopic, setArticleTopic] = useState('')
     const [articleBody, setArticleBody] = useState('')
@@ -24,9 +23,6 @@ export default function AddArticle({selectArticles}) {
         }
 
         api.addArticle(articleData).then((response) => {
-            console.log(response, "here")
-            console.log(response.data.article[0].article_id)
-
             const date = new Date();
             const today = date.toString().slice(4, 15);
 
@@ -51,7 +47,7 @@ export default function AddArticle({selectArticles}) {
     }
 
     const handleArticle = (articleData) => {
-        setPostedArticle(true)
+        setArticleSubmit(true)
         const timer = setTimeout(() => {
             setArticleSubmit(false)
             selectArticles((currArticles) => {
