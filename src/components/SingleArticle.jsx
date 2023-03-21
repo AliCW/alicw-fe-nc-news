@@ -6,7 +6,7 @@ import { UserContext } from '../contexts/UserContext';
 import SingleArticleComments from './SingleArticleComments'
 import * as api from '../api'
 
-export default function SingleArticle (props) {
+export default function SingleArticle () {
     const { username } = useContext(UserContext)
     const [article, selectArticle] = useState([])
     const [isLoading, setIsLoading] = useState(true)
@@ -86,6 +86,7 @@ export default function SingleArticle (props) {
             }
             {article[0].error}
             {voteError === true && <p>You need to be signed in to vote</p>}
+
             <SingleArticleComments article={article[0].article_id} user={username}></SingleArticleComments>
             
         </div>

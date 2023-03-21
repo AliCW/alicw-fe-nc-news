@@ -8,13 +8,19 @@ export default function SingleArticleComments (props) {
     const { username } = useContext(UserContext)
     const [comments, selectComments] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+
     const id = props.article
     
     useEffect(() => {
         setIsLoading(true)
         api.fetchSingleArticleComments(id).then(({data}) => {
-            selectComments(data.comments)
-            setIsLoading(false)
+            if (typeof data === 'undefined'){
+                setIsLoading(false)
+            } else {
+
+                selectComments(data.comments)
+                setIsLoading(false)
+            }          
         })
     }, [id]
     )
@@ -24,9 +30,12 @@ export default function SingleArticleComments (props) {
     }
 
     return (
-        <section>
+        <div>
         <AddComment user={username} article={id} selectComments={selectComments}/>
-        {comments.map((comment) => {
+        <section>
+        {comments.length === 0 ? <p>no comments exist</p> 
+        :
+        comments.map((comment) => {
             return (
                 <div key={comment.comment_id}>
                 <CommentCard comment={comment} user={username} stateComments={comments} setComments={selectComments} />   
@@ -35,5 +44,6 @@ export default function SingleArticleComments (props) {
             })
         }
         </section>
+        </div>
     )
 }

@@ -25,7 +25,9 @@ export const fetchSingleArticleComments = (article_id) => {
     .get(`https://nc-news-acw.onrender.com/api/articles/${article_id}/comments`)
     .then((response) => {
       return response;
-    });
+    }).catch((error) => {
+      return error
+    })
 };
 
 export const fetchArticlesByQuery = (query, order) => {
@@ -33,7 +35,9 @@ export const fetchArticlesByQuery = (query, order) => {
     .get(`https://nc-news-acw.onrender.com/api/articles?sort_by=${query}&order_by=${order}`)
     .then((response) => {
       return response;
-    });
+    }).catch((error) => {
+      return error
+    })
 };
 
 export const incVote = (article_id) => {
@@ -122,6 +126,17 @@ export const userLogin = (userData) => {
 export const addTopic = (topicData) => {
   return api.post(
     `https://nc-news-acw.onrender.com/api/topics`, topicData
+  )
+  .then((response) => {
+    return response
+  }).catch((error) => {
+    if (error) return error;
+  })
+}
+
+export const addArticle = (articleData) => {
+  return api.post(
+    `https://nc-news-acw.onrender.com/api/articles/`, articleData
   )
   .then((response) => {
     return response

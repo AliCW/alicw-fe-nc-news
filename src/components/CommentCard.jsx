@@ -7,6 +7,7 @@ export default function CommentCard (comment) {
     const [deleteError, setDeleteError] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
     const [isDeleted, setIsDeleted] = useState(false);
+
     
     const handleClick = (comment) => {
         setIsDeleting(true);
@@ -36,6 +37,7 @@ export default function CommentCard (comment) {
             
     }
 
+    // if(comment === undefined) return <p>no comments to see here</p>
     if(isDeleted) return <p>Deleted Successfully</p>
     if(isDeleting) return <p>Deleting...</p>
     if(deleteError) return <p>Comment not deleted, refresh & try again</p>
