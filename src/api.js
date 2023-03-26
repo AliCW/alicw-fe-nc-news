@@ -144,3 +144,14 @@ export const addArticle = (articleData) => {
     if (error) return error;
   })
 }
+
+export const fetchArticlesPagination = (pageNumber) => {
+  return api.get(
+    `https://nc-news-acw.onrender.com/api/articles?p=${pageNumber}`
+  )
+  .then((response) => {
+    return response
+  }).catch((error) => {
+    if (error) return error;
+  })
+}

@@ -3,6 +3,7 @@ import Nav from './components/Nav';
 import Home from './components/Home';
 import Signup from './components/Signup';
 import Articles from './components/Articles';
+import ArticlesByPage from './components/ArticlesByPage';
 import Topics from './components/Topics';
 import Login from './components/Login';
 import ArticlesByTopic from './components/ArticlesByTopic';
@@ -22,7 +23,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/articles" element={<Articles />} />
+        <Route path="/articles" element={<ArticlesByPage />} />
         <Route path="/topics" element={<Topics />} />
         <Route path="/topics/:slug" element={<ArticlesByTopic />} />
         <Route path="/articles/create" element={<AddArticle />}/>
