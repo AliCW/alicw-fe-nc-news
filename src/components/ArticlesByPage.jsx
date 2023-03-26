@@ -30,6 +30,7 @@ export default function ArticlesByPage() {
         event.preventDefault();
         selectArticles([])
         setIsLoading(true)
+
         if (query === 'comments') {
             api.fetchArticlesByQuery('created_at', order).then(({data}) => {
                 if(order === 'ASC') {
@@ -55,6 +56,14 @@ export default function ArticlesByPage() {
                 })
             }
         }
+    }
+
+    const handleNextPage = (event) => {
+        event.preventDefault();
+        setIsLoading(true)
+        setPageNumber(pageNumber + 1)
+        handleSubmit(event)
+
     }
     
         if (isLoading) {
@@ -97,11 +106,14 @@ export default function ArticlesByPage() {
                         <br></br>
                         </div>                      
                         <input className="query-submit-button" type="submit" value="Search" /> 
+                        
                     </nav>
                 </form>
-
-
                 {<ArticleCard articles={articles} />}
+                <form>
+                    <button onClick={handleNextPage}>Next</button>    
+ 
+                </form>
             </div>
         </div>
     )
