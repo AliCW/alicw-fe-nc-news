@@ -17,8 +17,10 @@ export default function ArticlesByPage() {
 
     useEffect(() => {
         setIsLoading(true)
+        console.log(pageNumber)
         //console.log(typeof pageNumber.toString())
         api.fetchArticlesPagination(pageNumber).then(({data}) => { //<< change this
+            selectArticles([])
             console.log(data)
             selectArticles((data.articles))
             setIsLoading(false)
@@ -62,7 +64,8 @@ export default function ArticlesByPage() {
         event.preventDefault();
         setIsLoading(true)
         setPageNumber(pageNumber + 1)
-        handleSubmit(event)
+        
+        //handleSubmit(event)
 
     }
     
