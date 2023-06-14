@@ -86,7 +86,9 @@ export default function ArticlesByPage() {
                         <div>
                         <label>Sort By: </label>
                         <br></br>
-                        <select onChange={(event) => { selectQuery(event.target.value) }} defaultValue={query}>
+                        <select onChange={(event) => { selectQuery(event.target.value) }}
+                            defaultValue={query}
+                        >
                             <option value="votes">Votes</option>
                             <option value="author">Author</option>
                             <option value="created_at">Date</option>
@@ -96,13 +98,15 @@ export default function ArticlesByPage() {
                         <label>Order By: </label>
                         <br></br>
                         <select onChange={(event) => { selectOrder(event.target.value) }}
-                            defaultValue={order}>
+                            defaultValue={order}
+                        >
                             <option value="ASC">Ascending</option>
                             <option value="DESC">Descending</option>
                         </select> 
                         <br></br>
                         </div>                      
                         <input className="query-submit-button" type="submit" value="Search" /> 
+                        
                     </nav>
                 </form>
                 {<ArticleCard articles={articles} />}

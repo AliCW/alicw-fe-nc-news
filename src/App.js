@@ -2,7 +2,6 @@ import Header from './components/Header';
 import Nav from './components/Nav';
 import Home from './components/Home';
 import Signup from './components/Signup';
-//import Articles from './components/Articles';
 import ArticlesByPage from './components/ArticlesByPage';
 import Topics from './components/Topics';
 import Login from './components/Login';
@@ -18,7 +17,6 @@ function App() {
   return (
     <div className="App">
       <Header />
-
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
