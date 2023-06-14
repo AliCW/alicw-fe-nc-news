@@ -17,11 +17,8 @@ export default function ArticlesByPage() {
 
     useEffect(() => {
         setIsLoading(true)
-        console.log(pageNumber)
-        //console.log(typeof pageNumber.toString())
-        api.fetchArticlesPagination(pageNumber).then(({data}) => { //<< change this
+        api.fetchArticlesPagination(pageNumber).then(({data}) => {
             selectArticles([])
-            console.log(data)
             selectArticles((data.articles))
             setIsLoading(false)
         })
@@ -32,7 +29,6 @@ export default function ArticlesByPage() {
         event.preventDefault();
         selectArticles([])
         setIsLoading(true)
-
         if (query === 'comments') {
             api.fetchArticlesByQuery('created_at', order).then(({data}) => {
                 if(order === 'ASC') {
@@ -64,14 +60,16 @@ export default function ArticlesByPage() {
         event.preventDefault();
         setIsLoading(true)
         setPageNumber(pageNumber + 1)
-        
-        //handleSubmit(event)
-
+    }
+    const handlePrevPage = (event) => {
+        event.preventDefault();
+        setIsLoading(true);
+        setPageNumber(pageNumber - 1);
     }
     
-        if (isLoading) {
-            return <p className="loading">Loading...</p>
-        }
+    if (isLoading) {
+        return <p className="loading">Loading...</p>
+    }
 
     return (
         <div>
@@ -88,10 +86,7 @@ export default function ArticlesByPage() {
                         <div>
                         <label>Sort By: </label>
                         <br></br>
-
-                        <select onChange={(event) => { selectQuery(event.target.value) }}
-                            defaultValue={query}
-                        >
+                        <select onChange={(event) => { selectQuery(event.target.value) }} defaultValue={query}>
                             <option value="votes">Votes</option>
                             <option value="author">Author</option>
                             <option value="created_at">Date</option>
@@ -101,21 +96,23 @@ export default function ArticlesByPage() {
                         <label>Order By: </label>
                         <br></br>
                         <select onChange={(event) => { selectOrder(event.target.value) }}
-                            defaultValue={order}
-                        >
+                            defaultValue={order}>
                             <option value="ASC">Ascending</option>
                             <option value="DESC">Descending</option>
                         </select> 
                         <br></br>
                         </div>                      
                         <input className="query-submit-button" type="submit" value="Search" /> 
-                        
                     </nav>
                 </form>
                 {<ArticleCard articles={articles} />}
                 <form>
+                    { pageNumber <= 1 ? 
+                        <span></span>
+                        :
+                        <button onClick={handlePrevPage}>Prev</button>
+                    }
                     <button onClick={handleNextPage}>Next</button>    
- 
                 </form>
             </div>
         </div>
