@@ -93,6 +93,22 @@ html {
   width: 150px;
 }
 
+.menu-link {
+  background-color: lightgray;
+  font-size: small;
+  padding: 5%;
+  width: 150px;
+  text-decoration: none;
+}
+
+.menu-link:hover {
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  
+}
+
 .menu > li {
   margin: 0;
   background-color: white;
@@ -112,6 +128,7 @@ html {
   padding: 5px;
   margin: 0;
   cursor: pointer;
+  
   
 }
 
