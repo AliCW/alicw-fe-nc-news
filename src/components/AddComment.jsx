@@ -63,23 +63,23 @@ export default function AddComment({ article, selectComments }) {
 
     return (
         <div>
-        <form className="add-comment-form" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
 
-            {username === '' ? <textarea className="add-comment-box"  placeholder="You must be signed in to commment..." rows="5"
+            {username === '' ? <textarea placeholder="You must be signed in to commment..." rows="5"
                 id="newComment"
                 value={newComment}
                 onChange={(event) => setNewComment(event.target.value)}
             ></textarea>
             :
-            <textarea className="add-comment-box"  placeholder="Post a comment..." rows="10"
+            <textarea placeholder="Post a comment..." rows="10"
                 id="newComment"
                 value={newComment}
                 onChange={(event) => setNewComment(event.target.value)}
             ></textarea>}
 
-            {username === '' ? <button className="post-button-disabled" disabled>Post</button>
+            {username === '' ? <button disabled>Post</button>
             : 
-            <button className="post-button">Post</button>}      
+            <button >Post</button>}      
 
         </form>
         {invalid === true && <p>Comment is not long enough</p>}

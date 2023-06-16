@@ -17,14 +17,14 @@ export default function TopicNav() {
     )
 
     if (isLoading) {
-        return <p className="loading">Loading...</p>
+        return <p >Loading...</p>
     }
 
     return (
-        <div className="topic-nav">
+        <div >
             {topics.map((topic) => {
                 return (
-                    <div key={topic.slug} className="topic-nav-links">
+                    <div key={topic.slug} >
                         <Link to={"/topics/" + topic.slug}>{capitaliseFirstLetter(topic.slug)}</Link>
                     </div>
                 )

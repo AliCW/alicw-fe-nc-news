@@ -1,4 +1,4 @@
-import Header from './components/Header';
+//import Header from './components/Header';
 import Nav from './components/Nav';
 import Home from './components/Home';
 import Signup from './components/Signup';
@@ -16,8 +16,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Nav />
+      <Nav /> 
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />

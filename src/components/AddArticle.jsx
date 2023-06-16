@@ -65,29 +65,29 @@ export default function AddArticle({selectArticles}) {
 
     return (
         <div>
-            <form id="signup-form" className="login" onSubmit={handleSubmit} autoComplete="on">
+            <form id="signup-form" onSubmit={handleSubmit} autoComplete="on">
                 <h3>Add article:</h3>
-                <label className="signup-labels">Title</label>
+                <label>Title</label>
                 <input
-                    className="input"
+                    
                     type="text"
                     placeholder="Title"
                     onChange={(event) => { setArticleTitle(event.target.value) }}
                 />
-                <label className="signup-labels">Topic</label>
+                <label >Topic</label>
                 <input
-                    className="input"
+                    
                     type="text"
                     placeholder="Topic"
                     onChange={(event) => { setArticleTopic(event.target.value) }}
                 />
-                <label className="signup-labels">Body</label>
-                <textarea className="add-article-box" placeholder="Go for it..."
+                <label >Body</label>
+                <textarea  placeholder="Go for it..."
                     id="articleBody"
                     value={articleBody}
                     onChange={(event) => setArticleBody(event.target.value)}
                 ></textarea>
-                <button className="signup-button" type="submit">Submit</button>
+                <button type="submit">Submit</button>
             </form>
 
         </div>

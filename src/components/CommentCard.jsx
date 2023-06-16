@@ -37,20 +37,19 @@ export default function CommentCard (comment) {
             
     }
 
-    // if(comment === undefined) return <p>no comments to see here</p>
     if(isDeleted) return <p>Deleted Successfully</p>
     if(isDeleting) return <p>Deleting...</p>
     if(deleteError) return <p>Comment not deleted, refresh & try again</p>
 
     return (
-    <div className="comment">
-        <div className ="comment" key={comment.comment.comment_id} >
-            <h3 className="comment-header">{comment.comment.author}:</h3>
-            <p className="comment-body">{comment.comment.body}</p>
-            <p className="comment-details">Votes: {comment.comment.votes}</p>
-            <p className="comment-details">Posted At: {String(comment.comment.created_at).slice(0, 10)}</p>
+    <div >
+        <div  key={comment.comment.comment_id} >
+            <h3 >{comment.comment.author}:</h3>
+            <p >{comment.comment.body}</p>
+            <p >Votes: {comment.comment.votes}</p>
+            <p >Posted At: {String(comment.comment.created_at).slice(0, 10)}</p>
             {comment.comment.author === username &&   
-            <button className="delete-button" onClick={() => handleClick(comment)} >Delete
+            <button onClick={() => handleClick(comment)} >Delete
             </button>}
         </div >
     </div>

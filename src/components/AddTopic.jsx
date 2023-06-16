@@ -60,31 +60,31 @@ export default function AddTopic({findTopics}){
 
     return (
         <div>
-            <form id="add-topic-form" className="add-topic-form" onSubmit={handleSubmit} autoComplete="on">
+            <form id="add-topic-form" onSubmit={handleSubmit} autoComplete="on">
                 <h3>Add A Topic:</h3>
 
-                <label className="signup-labels">Topic Name:</label>
+                <label >Topic Name:</label>
 
                 {username === '' ?
-                    <input className="input" placeholder="you must be signed in"
+                    <input  placeholder="you must be signed in"
 
                     ></input>
                     :
-                    <input className="input" placeholder="topic*"
+                    <input  placeholder="topic*"
                         id="newTopic"
                         value={newTopicSlug}
                         onChange={(event) => setNewTopicSlug(event.target.value)}
                     ></input>
                 }
 
-                <label className="signup-labels">Description:</label>
+                <label >Description:</label>
 
                 {username === '' ?
-                    <textarea className="add-topic-discription-box" placeholder="you must be signed in"
+                    <textarea placeholder="you must be signed in"
 
                     ></textarea>
                     :
-                    <textarea className="add-topic-discription-box" placeholder="description*"
+                    <textarea placeholder="description*"
                         id="newTopic"
                         value={newTopicDescription}
                         onChange={(event) => setNewTopicDiscription(event.target.value)}
@@ -92,9 +92,9 @@ export default function AddTopic({findTopics}){
                 }
 
                 { username === '' ?
-                    <button className="post-topic-button-disabled" disabled>Submit</button>
+                    <button disabled>Submit</button>
                     :
-                    <button className="post-topic-button">Submit</button>
+                    <button >Submit</button>
                 }
             </form>
 

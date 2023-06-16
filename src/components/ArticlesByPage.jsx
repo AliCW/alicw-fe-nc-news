@@ -68,7 +68,7 @@ export default function ArticlesByPage() {
     }
     
     if (isLoading) {
-        return <p className="loading">Loading...</p>
+        return <p>Loading...</p>
     }
 
     return (
@@ -80,9 +80,9 @@ export default function ArticlesByPage() {
                 <AddArticle selectArticles={selectArticles} />
                 }
             <div key="query-nav">
-                <form className="article-search" onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}>
                     <h2>Filter:</h2>
-                    <nav className="query-nav">
+                    <nav>
                         <div>
                         <label>Sort By: </label>
                         <br></br>
@@ -105,7 +105,7 @@ export default function ArticlesByPage() {
                         </select> 
                         <br></br>
                         </div>                      
-                        <input className="query-submit-button" type="submit" value="Search" /> 
+                        <input type="submit" value="Search" /> 
                         
                     </nav>
                 </form>

@@ -3,7 +3,7 @@
 }
 
 html {    
-  background: url('default-background.png') no-repeat center fixed;     
+  background: url('') no-repeat center fixed;     
   background-size: cover;
 }
 
@@ -18,7 +18,7 @@ html {
   }
 }
 
-.App-header {
+/* .App-header {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -26,7 +26,7 @@ html {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+} */
 
 .App-link {
   color: #61dafb;
@@ -41,6 +41,99 @@ html {
   }
 }
 
+.nav {
+  display: grid;
+  padding: 3.5%;
+  background-color: #E5E4E2;
+
+  border-bottom: 3px solid;
+  border-color: #9BB9C3;
+}
+
+.navLink {
+  display: inline-grid;
+  grid-row-start: 1;
+  text-decoration: none;
+}
+
+.navUser {
+  display: inline-grid;
+  grid-row-start: 1;
+  background-color: #E5E4E2;
+  font-size: x-large;
+  border: none;
+  padding: auto;
+  text-decoration: none;
+  margin: auto;
+  cursor: pointer;
+}
+
+.navDropdown {
+  display: inline-grid;
+  grid-row-start: 1;
+  cursor: pointer;
+  position: relative;
+}
+
+.navButton {
+  background-color: #E5E4E2;
+  border: none;
+  padding: auto;
+  text-decoration: none;
+  margin: auto;
+  cursor: pointer;
+}
+
+
+.menu {
+  position: absolute;
+  list-style-type: none;
+  margin: 5px 0;
+  padding: 0;
+  width: 150px;
+}
+
+.menu > li {
+  margin: 0;
+  background-color: white;
+}
+
+.menu > li:hover {
+  background-color: lightgray;
+}
+
+.menu > li > button {
+  width: 100%;
+  height: 100%;
+  text-align: middle;
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 5px;
+  margin: 0;
+  cursor: pointer;
+  
+}
+
+/* #FFCCBB, #F78D7D, #CB9897, #9BB9C3, #947481 
+https://htmlcolorcodes.com/colors/shades-of-gray/
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* -----------------------------------------------------------------> old 
 .header {
   border: 1px solid #0b090a;
   border-radius: 4px;
@@ -385,4 +478,4 @@ html {
     border-radius: 4px;
     width: 100%;
     height: 100%;
-}
+} */

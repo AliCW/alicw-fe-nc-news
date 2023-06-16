@@ -26,7 +26,7 @@ export default function SingleArticleComments (props) {
     )
 
     if (isLoading) {
-        return <p className="loading">Loading...</p>
+        return <p >Loading...</p>
     }
 
     return (

@@ -79,65 +79,65 @@ export default function Signup() {
   }
   
 
-  if (isLoading) return <p className="loading">Loading...</p>
-  if (signupError) return <p className="error">Error signing up, please refresh & try again</p>
+  if (isLoading) return <p >Loading...</p>
+  if (signupError) return <p >Error signing up, please refresh & try again</p>
 
   return (
       <div>
-      <form id="signup-form" className="login" onSubmit={handleSubmit} autoComplete="on">
-        <label className="signup-labels">Username*</label>
+      <form id="signup-form" onSubmit={handleSubmit} autoComplete="on">
+        <label >Username*</label>
         <input
-          className="input"
+          
           type="text"
           placeholder="Username*"
           onChange={(event) => {setUsername(event.target.value)}}
         />
-        <label className="signup-labels">Name*</label>
+        <label>Name*</label>
         <input
-          className="input"
+          
           type="text"
           placeholder="Name*"
           onChange={(event) => {setName(event.target.value)}}
         />
-        <label className="signup-labels">Password*</label>
+        <label >Password*</label>
         <input
           autoComplete="off"
-          className="input"
+          
           type="password"
           placeholder="Password*"
           onChange={(event) => {setPassword(event.target.value)}}
         />
-        <label className="signup-labels">Confirm Password*</label>
+        <label >Confirm Password*</label>
         <input
           autoComplete="off"
-          className="input"
+          
           type="password"
           placeholder="Confirm Password*"
           onChange={(event) => {setCheckPassword(event.target.value)}}
           />
-        <label className="signup-labels">Email*</label>
+        <label >Email*</label>
         <input 
           autoComplete="off"
-          className="input"
+          
           type="email"
           placeholder="Email Address*"
           onChange={(event) => {setEmailAddress(event.target.value)}}
         
         />
-        <label className="signup-labels">Avatar URL:</label>
+        <label >Avatar URL:</label>
         <input
-        className='input'
+        
           type="url"
           placeholder="Avatar URL (optional)"
           onChange={(event) => {setAvatarURL(event.target.value)}}
           defaultValue=" "
           />
           {signupComplete === true && <h3>Sign Up Completed</h3>}
-          {checkPassword !== password && <p className='password-prompt'>passwords do not match</p>}
-          {passwordSync === true && <p className='password-prompt'>the passwords do not match, you were warned</p>}
-          {usernameSyntax === true && <p className='password-prompt'>username needs to be between 5 & 20 characters in length</p>}
-          {duplicateDetails === true && <p className='password-prompt'>username / email is already taken! please use another</p>}
-          {passwordSyntax === true && <p className='password-prompt'>Passwords must adhere to the following</p>}
+          {checkPassword !== password && <p >passwords do not match</p>}
+          {passwordSync === true && <p >the passwords do not match, you were warned</p>}
+          {usernameSyntax === true && <p >username needs to be between 5 & 20 characters in length</p>}
+          {duplicateDetails === true && <p >username / email is already taken! please use another</p>}
+          {passwordSyntax === true && <p >Passwords must adhere to the following</p>}
           {passwordSyntax === true &&
             <ul>
               <li>Between 8 & 40 characters long</li>  
@@ -148,8 +148,8 @@ export default function Signup() {
               <li>! £ | - + , = * . ? # ; _ $ % ^</li>
             </ul>
           }
-          {nameSyntax === true && <p className='password-prompt'>Your name can only contain 4-50 letters</p>}
-        <button className="signup-button" type="submit">Submit</button>
+          {nameSyntax === true && <p >Your name can only contain 4-50 letters</p>}
+        <button type="submit">Submit</button>
       </form>
     </div>
   );

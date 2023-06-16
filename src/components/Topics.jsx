@@ -18,11 +18,11 @@ export default function Topics() {
     )
 
     if (isLoading) {
-        return <p className="loading">Loading...</p>
+        return <p>Loading...</p>
     }
 
     return (
-        <div className="articles">
+        <div >
             {topics.map((topic) => {
                 return (
                     <div key={topic.slug}>

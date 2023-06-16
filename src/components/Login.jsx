@@ -32,14 +32,14 @@ export default function Login() {
         })
     }
 
-    if (isLoading) return <p className="loading">Loading...</p>
+    if (isLoading) return <p>Loading...</p>
 
     return (
         <div>
-            <form id="login-form" className="login" onSubmit={handleSubmit} autoComplete="on">
+            <form id="login-form" onSubmit={handleSubmit} autoComplete="on">
                 <label>Username</label>
                 <input
-                    className="input"
+                    
                     type="text"
                     placeholder="Username"
                     onChange={(event) => {setUsernameInput(event.target.value)}}
@@ -47,14 +47,14 @@ export default function Login() {
                 <label>Password</label>
                 <input 
                     autoComplete='off'
-                    className="input"
+                    
                     type="password"
                     placeholder="Password"
                     onChange={(event) => {setPassword(event.target.value)}}
                 />
                 {signinError === true && <p>Incorrect username or password</p>}
                 {signinSuccess === true && <p>Login Successfull, welcome {username}!</p>}
-                <button className="signup-button" type="submit">Submit</button>
+                <button type="submit">Submit</button>
             </form>
         </div>
     )

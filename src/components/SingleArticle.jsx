@@ -54,33 +54,33 @@ export default function SingleArticle () {
 
 
     if (isLoading) {
-        return <p className="loading">Loading...</p>
+        return <p >Loading...</p>
     }
 
     return (
         <IconContext.Provider value={{ color: "#cc00ff" }}>
-        <div className="article" key={article[0].article_id}>
-            <h3 className="article-header">{article[0].title}</h3>
-            <p className="article-body">{article[0].body}</p>
-            <p className="article-details">Author: {article[0].author}</p>
-            <p className="article-details">Topic: {article[0].topic}</p>
-            <p className="article-details">Created: {String(article[0].created_at).slice(0, 10)}</p>
-               <p className="article-details">Comments: {article[0].comment_count}</p>
-               <p className="article-details">Votes:</p>
+        <div key={article[0].article_id}>
+            <h3 >{article[0].title}</h3>
+            <p >{article[0].body}</p>
+            <p >Author: {article[0].author}</p>
+            <p >Topic: {article[0].topic}</p>
+            <p >Created: {String(article[0].created_at).slice(0, 10)}</p>
+               <p >Comments: {article[0].comment_count}</p>
+               <p >Votes:</p>
             {username === '' ? 
             <p>
-                <BsFillHandThumbsDownFill className="vote-button-disabled" disabled onClick={() => setVoteError(true)} />
+                <BsFillHandThumbsDownFill disabled onClick={() => setVoteError(true)} />
                 
                 {article[0].votes}
-                <BsFillHandThumbsUpFill className="vote-button-disabled" disabled onClick={() => setVoteError(true)} />
+                <BsFillHandThumbsUpFill disabled onClick={() => setVoteError(true)} />
 
             </p>
             :
             <p>
-                <BsFillHandThumbsDownFill className="vote-button" onClick={() => downVote(article[0].article_id)} />
+                <BsFillHandThumbsDownFill onClick={() => downVote(article[0].article_id)} />
 
                 {article[0].votes}
-                <BsFillHandThumbsUpFill className="vote-button"  onClick={() => upVote(article[0].article_id)} />
+                <BsFillHandThumbsUpFill onClick={() => upVote(article[0].article_id)} />
 
             </p>
             }
