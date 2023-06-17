@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { BeatLoader } from "react-spinners";
+import { FiXCircle, FiCheckCircle } from "react-icons/fi"
 import checkValidPassword from '../utilities/checkValidPassword'
 import checkValidUsername from '../utilities/checkValidUsername';
 import checkValidName from '../utilities/checkValidName';
@@ -30,24 +31,28 @@ export default function Signup() {
     checkUsernameSyntax(false)
     checkNameSyntax(false)
     
-    document.getElementById("signup-form").reset();
+    document.getElementById("user-form").reset();
     if(password !== checkPassword) {
       checkPasswordSync(true)
+      setIsLoading(false)
       return
     }
     if(!checkValidPassword(password)) {
       checkPasswordSyntax(true)
+      setIsLoading(false)
       return
     } 
     if(!checkValidUsername(username)) {
       checkUsernameSyntax(true)
+      setIsLoading(false)
       return 
     }
     if(!checkValidName(name)) {
       checkNameSyntax(true)
+      setIsLoading(false)
       return 
     }
-
+    
     const defaultImage = "https://e7.pngegg.com/pngimages/369/132/png-clipart-man-in-black-suit-jacket-chris-hansen-to-catch-a-predator-television-show-nbc-news-chris-benoit-miscellaneous-television.png"
     const userData = {
       "username": username,
@@ -81,76 +86,86 @@ export default function Signup() {
   
 
   if (isLoading) return <BeatLoader className="page-loader" />
-  if (signupError) return <p >Error signing up, please refresh & try again</p>
+  if (signupError) return <p className="page-loader">Error signing up, please refresh & try again <FiXCircle/></p>
 
   return (
       <div>
-      <form id="signup-form" onSubmit={handleSubmit} autoComplete="on">
-        <label >Username*</label>
+      <form id="user-form" onSubmit={handleSubmit} autoComplete="off" className="user-form">
+        <label className="user-label">Username*</label>
         <input
-          
+          autoComplete="off"
+          className="user-input"
           type="text"
           placeholder="Username*"
           onChange={(event) => {setUsername(event.target.value)}}
         />
-        <label>Name*</label>
+        <br></br>
+        <label className="user-label">Name*</label>
         <input
-          
+          autoComplete="off"
+          className="user-input"
           type="text"
           placeholder="Name*"
           onChange={(event) => {setName(event.target.value)}}
         />
-        <label >Password*</label>
+        <br></br>
+        <label className="user-label">Password*</label>
         <input
           autoComplete="off"
-          
+          className="user-input"
           type="password"
           placeholder="Password*"
           onChange={(event) => {setPassword(event.target.value)}}
         />
-        <label >Confirm Password*</label>
+        <br></br>
+        <label className="user-label">Confirm Password*</label>
         <input
           autoComplete="off"
-          
+          className="user-input"
           type="password"
           placeholder="Confirm Password*"
           onChange={(event) => {setCheckPassword(event.target.value)}}
           />
-        <label >Email*</label>
+          <br></br>
+        <label className="user-label">Email*</label>
         <input 
           autoComplete="off"
-          
+          className="user-input"
           type="email"
           placeholder="Email Address*"
           onChange={(event) => {setEmailAddress(event.target.value)}}
-        
         />
-        <label >Avatar URL:</label>
+        <br></br>
+        <label className="user-label">Avatar URL:</label>
         <input
-        
+          className="user-input-long"
           type="url"
           placeholder="Avatar URL (optional)"
           onChange={(event) => {setAvatarURL(event.target.value)}}
           defaultValue=" "
           />
-          {signupComplete === true && <h3>Sign Up Completed</h3>}
-          {checkPassword !== password && <p >passwords do not match</p>}
-          {passwordSync === true && <p >the passwords do not match, you were warned</p>}
-          {usernameSyntax === true && <p >username needs to be between 5 & 20 characters in length</p>}
-          {duplicateDetails === true && <p >username / email is already taken! please use another</p>}
-          {passwordSyntax === true && <p >Passwords must adhere to the following</p>}
+          {signupComplete === true && <h3 className="signup-success">Sign Up Completed <FiCheckCircle/></h3>}
+          {checkPassword !== password && <p className="signup-failure"> passwords do not match <FiXCircle/> </p> }
+          {passwordSync === true && <p className="signup-failure">the passwords do not match, you were warned <FiXCircle/></p>}
+          {usernameSyntax === true && <p className="signup-failure">username needs to be between 5 & 20 characters in length <FiXCircle/></p>}
+          {duplicateDetails === true && <p className="signup-failure">username / email is already taken! please use another <FiXCircle/></p>}
+          {passwordSyntax === true && <p className="signup-failure"><FiXCircle/> Passwords must adhere to the following:</p>}
           {passwordSyntax === true &&
-            <ul>
-              <li>Between 8 & 40 characters long</li>  
+            <ul className="pass-fail-list">
+              <li>Between 8 & 40 characters long</li>
+              <br></br>  
               <li>Contain one upper case character</li>
+              <br></br>  
               <li>Contain one lower case character</li>
+              <br></br>  
               <li>Contain one number</li>
+              <br></br>  
               <li>Contain one of the following symbols:</li>
               <li>! £ | - + , = * . ? # ; _ $ % ^</li>
             </ul>
           }
-          {nameSyntax === true && <p >Your name can only contain 4-50 letters</p>}
-        <button type="submit">Submit</button>
+          {nameSyntax === true && <p className="signup-failure">Your name can only contain 4-50 letters <FiXCircle/></p>}
+        <button type="submit" className="submit-button">Submit</button>
       </form>
     </div>
   );

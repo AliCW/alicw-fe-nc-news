@@ -4,7 +4,7 @@ import HomeAnimation from "./HomeAnimation"
 
 export default function Home() {
     return (
-      <div>    
+      <div className="home">    
         <Header/>
         <HomeAnimation />
         
