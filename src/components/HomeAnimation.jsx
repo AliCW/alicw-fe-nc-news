@@ -21,5 +21,4 @@ export default function HomeAnimation() {
           repeat={Infinity}
         />
     )
-
 }

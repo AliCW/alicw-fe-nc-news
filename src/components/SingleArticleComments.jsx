@@ -1,8 +1,9 @@
 import { useState, useEffect, useContext } from "react";
+import { UserContext } from '../contexts/UserContext'
+import { BeatLoader } from "react-spinners";
 import * as api from '../api'
 import AddComment from './AddComment'
 import CommentCard from './CommentCard'
-import { UserContext } from '../contexts/UserContext'
 
 export default function SingleArticleComments (props) {
     const { username } = useContext(UserContext)
@@ -26,7 +27,7 @@ export default function SingleArticleComments (props) {
     )
 
     if (isLoading) {
-        return <p >Loading...</p>
+        return <BeatLoader className="page-loader" />
     }
 
     return (

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { BeatLoader } from "react-spinners";
 import checkValidPassword from '../utilities/checkValidPassword'
 import checkValidUsername from '../utilities/checkValidUsername';
 import checkValidName from '../utilities/checkValidName';
@@ -79,7 +80,7 @@ export default function Signup() {
   }
   
 
-  if (isLoading) return <p >Loading...</p>
+  if (isLoading) return <BeatLoader className="page-loader" />
   if (signupError) return <p >Error signing up, please refresh & try again</p>
 
   return (

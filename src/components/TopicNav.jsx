@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom"
+import { BeatLoader } from "react-spinners";
 import * as api from "../api"
 import capitaliseFirstLetter from "../utilities/capitaliseFirstLetter";
 
@@ -17,7 +18,7 @@ export default function TopicNav() {
     )
 
     if (isLoading) {
-        return <p >Loading...</p>
+        return <BeatLoader className="page-loader" />
     }
 
     return (

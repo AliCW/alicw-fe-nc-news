@@ -58,6 +58,10 @@ html {
   padding-bottom: 5%;
 }
 
+.page-loader {
+  margin: 45%
+}
+
 .nav {
   display: grid;
   padding: 3.5%;

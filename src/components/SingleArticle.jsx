@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { BsFillHandThumbsUpFill, BsFillHandThumbsDownFill } from 'react-icons/bs'
 import { IconContext } from "react-icons";
 import { UserContext } from '../contexts/UserContext';
+import { BeatLoader } from "react-spinners";
 import SingleArticleComments from './SingleArticleComments'
 import * as api from '../api'
 
@@ -54,7 +55,7 @@ export default function SingleArticle () {
 
 
     if (isLoading) {
-        return <p >Loading...</p>
+        return <BeatLoader className="page-loader" />
     }
 
     return (

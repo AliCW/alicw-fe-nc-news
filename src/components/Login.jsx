@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react';
 import { UserContext } from '../contexts/UserContext'
+import { BeatLoader } from "react-spinners";
 import * as api from '../api'
 
 export default function Login() {
@@ -32,7 +33,9 @@ export default function Login() {
         })
     }
 
-    if (isLoading) return <p>Loading...</p>
+    if (isLoading) {
+        return <BeatLoader className="page-loader" />
+    }
 
     return (
         <div>

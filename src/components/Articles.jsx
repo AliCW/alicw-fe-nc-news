@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from '../contexts/UserContext';
+import { BeatLoader } from "react-spinners";
 import * as api from '../api'
 import TopicNav from './TopicNav'
 import ArticleCard from './ArticleCard'
@@ -55,7 +56,7 @@ export default function Articles() {
     }
     
         if (isLoading) {
-            return <p >Loading...</p>
+            return <BeatLoader className="page-loader" />
         }
 
     return (

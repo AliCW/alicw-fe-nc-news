@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useParams} from "react-router-dom"
+import { BeatLoader } from "react-spinners";
 import * as api from '../api'
 import TopicNav from './TopicNav'
 
@@ -18,7 +19,7 @@ export default function ArticlesByTopic() {
   )
 
   if (isLoading) {
-    return <p >Loading...</p>
+    return <BeatLoader className="page-loader" />
 }
 
   return (

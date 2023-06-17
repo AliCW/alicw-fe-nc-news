@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { BeatLoader } from "react-spinners";
 import TopicCard from './TopicCard'
 import AddTopic from './AddTopic'
 import * as api from "../api"
@@ -18,7 +19,7 @@ export default function Topics() {
     )
 
     if (isLoading) {
-        return <p>Loading...</p>
+        return <BeatLoader className="page-loader" />
     }
 
     return (
