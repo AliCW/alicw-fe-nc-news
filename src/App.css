@@ -91,6 +91,8 @@ html {
   padding: auto;
   text-decoration: none;
   margin: auto;
+  font-size: 1em;
+  font-family: consolas, "Courier New", monospace;
   cursor: pointer;
 }
 
