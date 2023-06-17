@@ -23,7 +23,8 @@ export default function Topics() {
     }
 
     return (
-        <div >
+        <div>
+            <h2 className="sub-header">Topics</h2>
             {topics.map((topic) => {
                 return (
                     <div key={topic.slug}>

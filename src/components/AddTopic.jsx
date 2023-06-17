@@ -60,31 +60,26 @@ export default function AddTopic({findTopics}){
 
     return (
         <div>
-            <form id="add-topic-form" onSubmit={handleSubmit} autoComplete="on">
-                <h3>Add A Topic:</h3>
+            <form id="add-topic-form" onSubmit={handleSubmit} autoComplete="on" className="user-form">
+                <h3 className="user-form-header">Add A Topic:</h3>
 
-                <label >Topic Name:</label>
-
+                <label className="user-label">Topic Name:</label>
                 {username === '' ?
-                    <input  placeholder="you must be signed in"
-
-                    ></input>
+                    <input  placeholder="You Must Be Signed In" className="user-input-long"></input>
                     :
-                    <input  placeholder="topic*"
-                        id="newTopic"
-                        value={newTopicSlug}
-                        onChange={(event) => setNewTopicSlug(event.target.value)}
+                    <input  placeholder="topic*" className="user-input-long"
+                    id="newTopic"
+                    value={newTopicSlug}
+                    onChange={(event) => setNewTopicSlug(event.target.value)}
                     ></input>
                 }
-
-                <label >Description:</label>
+                
+                <label className="user-label-text-area">Description:</label>
 
                 {username === '' ?
-                    <textarea placeholder="you must be signed in"
-
-                    ></textarea>
+                    <textarea placeholder="You Must Be Signed In" className="user-text-area"></textarea>
                     :
-                    <textarea placeholder="description*"
+                    <textarea placeholder="description*" className="user-text-area"
                         id="newTopic"
                         value={newTopicDescription}
                         onChange={(event) => setNewTopicDiscription(event.target.value)}
@@ -92,9 +87,9 @@ export default function AddTopic({findTopics}){
                 }
 
                 { username === '' ?
-                    <button disabled>Submit</button>
+                    <button disabled className="submit-button">Submit</button>
                     :
-                    <button >Submit</button>
+                    <button className="submit-button">Submit</button>
                 }
             </form>
 

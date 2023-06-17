@@ -50,17 +50,24 @@ html {
   font-size: 2em;
   font-family: Consolas, Monaco, "Courier New", monospace;
   display: inline-block;
-  background-color: #E5E4E2;
 }
 
 .header {
   text-align: center;
   font-family: consolas, "Courier New", monospace;
   font-size: 4em;
-  background-color: #E5E4E2;
   margin: 0;
   padding-top: 12%;
   padding-bottom: 5%;
+}
+
+.sub-header {
+  grid-column: 1 / 3;
+  text-align: left;
+  font-family: Consolas, Monaco, "Courier New", monospace;
+  font-size: 2em;
+  margin-top: 50px;
+  margin-left: 60px;
 }
 
 .page-loader {
@@ -117,21 +124,23 @@ html {
 
 .menu {
   position: absolute;
+  float: right;
   list-style-type: none;
-  margin: 5px 0;
+
   padding: 0;
   width: 150px;
   
 }
 
 .menu-link {
+  float: right;
   background-color: lightgray;
   text-decoration: none;
   font-size: small;
   font-family: consolas, "Courier New", monospace;
   padding: 5%;
   width: 150px;
-
+  margin-right: 20px;
 }
 
 .menu-link:hover {
@@ -139,7 +148,6 @@ html {
   border: none;
   cursor: pointer;
   text-decoration: none;
-  
 }
 
 .menu > li {
@@ -163,12 +171,26 @@ html {
   cursor: pointer; 
 }
 
+.user-form-header {
+  grid-column: 1 / 3;
+  text-align: left;
+  font-family: Consolas, Monaco, "Courier New", monospace;
+  font-size: 2em;
+  margin-top: 50px;
+}
+
 .user-form {
   display: grid;
   grid-template-columns: 200px;
-  padding-top: 10%;
+  
+  padding-top: 5%;
   padding-left: 10%;
-  margin-left: 10%;
+}
+
+@media screen and ( max-width: 900px ){
+  .user-form{
+      margin: 0 0 0 0;
+  }
 }
 
 .user-label {
@@ -179,6 +201,7 @@ html {
   font-size: 1em;
 }
 
+
 .user-label-error {
   grid-column: 1 / 2;
   font-family: consolas, "Courier New", monospace;
@@ -186,6 +209,7 @@ html {
   padding-right: 0.8%;
   font-size: 1em;
 }
+
 
 .user-input {
   grid-column: 2 / 3;
@@ -195,11 +219,71 @@ html {
   margin-right: 60%;
 }
 
+
 .user-input-long {
   grid-column: 2 / 3;
   font-family: consolas, "Courier New", monospace;
   padding: 0.6%;
   margin-right: 25%;
+}
+
+@media screen and ( max-width: 500px ){
+  
+  .user-input {
+    grid-column: 1 / 3;
+    font-family: consolas, "Courier New", monospace;
+    padding: 0.6%;
+    margin-bottom: 20px;
+    margin-right: 60%;
+  }
+  .user-input-long {
+    grid-column: 1 / 3;
+    font-family: consolas, "Courier New", monospace;
+    padding: 0.6%;
+    margin-right: 25%;
+  }
+  .user-input::placeholder {
+    font-size: x-small;
+  }
+  .user-input-long::placeholder {
+    font-size: x-small;
+  }
+}
+
+.user-label-text-area {
+  grid-column: 1 / 2;
+  font-family: consolas, "Courier New", monospace;
+  padding-top: 2.5%;
+  padding-right: 0.8%;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  
+}
+
+.user-text-area {
+  grid-column: 1 / 3;
+  font-family: consolas, "Courier New", monospace;
+  margin-right: 10%;
+  margin-bottom: 25px;
+
+}
+
+.user-text-area::placeholder {
+  grid-column: 1 / 3;
+  font-family: consolas, "Courier New", monospace;
+  font-size: small;
+}
+
+@media screen and ( max-width: 900px ){
+  .user-text-area{
+    width: 85%;
+    height: 100%;
+  }
+  .user-text-area::placeholder {
+    grid-column: 1 / 3;
+    font-family: consolas, "Courier New", monospace;
+    font-size: x-small;
+  }
 }
 
 .signup-failure {
@@ -237,6 +321,36 @@ html {
   margin-bottom: 35px;
   border: none;
 }
+
+.map-div {
+  text-align: left;
+  margin-left: 80px;
+  margin-right: 50%;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  padding-top: 5px;
+  border: #848884 solid;
+  border-radius: 5px;
+}
+
+@media screen and ( max-width: 500px ){
+  .map-div {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+.map-title {
+  font-family: consolas, "Courier New", monospace;
+  padding-top: 50px;
+  margin-left: 10px;
+}
+
+.map-disc {
+  font-family: consolas, "Courier New", monospace;
+  margin-left: 10px;
+}
+
 
 
 /* #FFCCBB, #F78D7D, #CB9897, #9BB9C3, #947481 
