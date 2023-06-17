@@ -1,11 +1,12 @@
-//import homeImage from '../bk.webp'
+import Header from "./Header"
+import HomeAnimation from "./HomeAnimation"
+
 
 export default function Home() {
     return (
-      <div>
-
-        {/* <h2>Zeitung! & other news stuff</h2>
-        <img src={homeImage} alt="words"/> */}
+      <div>    
+        <Header/>
+        <HomeAnimation />
         
       </div>
     );

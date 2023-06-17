@@ -32,6 +32,7 @@ export default function Nav() {
                 { open === true && <NavUserPanel /> }
             </button>
         </nav>
+
         </div>
     )
 }
