@@ -1,12 +1,12 @@
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from '../contexts/UserContext';
 import { BeatLoader } from "react-spinners";
+
 import * as api from '../api'
-import TopicNav from './TopicNav'
+// import TopicNav from './TopicNav'
 import ArticleCard from './ArticleCard'
 import orderByCommentCountAsc from "../utilities/orderByCommentCountAsc";
 import orderByCommentCountDesc from "../utilities/orderByCommentCountDesc";
-import AddArticle from "./AddArticle";
 
 export default function ArticlesByPage() {
     const { username } = useContext(UserContext)

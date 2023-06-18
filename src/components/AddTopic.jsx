@@ -67,7 +67,7 @@ export default function AddTopic({findTopics}){
 
                 <label className="user-label">Topic Name:</label>
                 {username === '' ?
-                    <input  placeholder="You Must Be Signed In" className="user-input-long"></input>
+                    <input  placeholder="You Must Be Signed In..." className="user-input-long"></input>
                     :
                     <input  placeholder="topic*" className="user-input-long"
                     id="newTopic"
@@ -79,7 +79,7 @@ export default function AddTopic({findTopics}){
                 <label className="user-label-text-area">Description:</label>
 
                 {username === '' ?
-                    <textarea placeholder="You Must Be Signed In" className="user-text-area"></textarea>
+                    <textarea placeholder="You Must Be Signed In..." className="user-text-area"></textarea>
                     :
                     <textarea placeholder="description*" className="user-text-area"
                         id="newTopic"
