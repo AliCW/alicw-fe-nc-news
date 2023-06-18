@@ -9,7 +9,6 @@ import orderByCommentCountAsc from "../utilities/orderByCommentCountAsc";
 import orderByCommentCountDesc from "../utilities/orderByCommentCountDesc";
 
 export default function ArticlesByPage() {
-    const { username } = useContext(UserContext)
     const [query, selectQuery] = useState('created_at')
     const [order, selectOrder] = useState('ASC')
     const [articles, selectArticles] = useState([])
