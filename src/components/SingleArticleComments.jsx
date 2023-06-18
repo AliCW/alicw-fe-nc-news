@@ -38,7 +38,7 @@ export default function SingleArticleComments (props) {
         :
         comments.map((comment) => {
             return (
-                <div key={comment.comment_id}>
+                <div key={comment.comment_id} className="map-div">
                 <CommentCard comment={comment} user={username} stateComments={comments} setComments={selectComments} />   
                 </div>
                 )

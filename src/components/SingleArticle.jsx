@@ -1,7 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { BsFillHandThumbsUpFill, BsFillHandThumbsDownFill } from 'react-icons/bs'
-import { IconContext } from "react-icons";
 import { UserContext } from '../contexts/UserContext';
 import { BeatLoader } from "react-spinners";
 import { FiXCircle, FiThumbsUp, FiThumbsDown } from "react-icons/fi"

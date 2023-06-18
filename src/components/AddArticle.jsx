@@ -1,5 +1,7 @@
 import { useState, useContext } from "react";
 import { UserContext } from '../contexts/UserContext';
+import { BeatLoader } from "react-spinners";
+import { FiXCircle, FiCheckCircle } from "react-icons/fi"
 import dateFormat from '../utilities/dateFormat';
 import * as api from "../api";
 
@@ -11,6 +13,7 @@ export default function AddArticle({selectArticles}) {
     const [articleSubmit, setArticleSubmit] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [isError, setIsError] = useState(false)
+    const [isSuccess, setIsSuccess] = useState(false)
     
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -46,22 +49,22 @@ export default function AddArticle({selectArticles}) {
             })
     }
 
-    const handleArticle = (articleData) => {
+    const handleArticle = () => {
         setArticleSubmit(true)
+        setIsSuccess(true)
         const timer = setTimeout(() => {
             setArticleSubmit(false)
-            selectArticles((currArticles) => {
-                return [articleData, ...currArticles]
-            })
+
         }, 2000);
         return () => {
           clearTimeout(timer);
         };
     }
 
-    if (articleSubmit) return <p>Submitting...</p>   
-    if (isLoading) return <p>Posting...</p>
-    if (isError) return <p>Error posting article, please refresh try again</p>
+    if (articleSubmit) return <BeatLoader className="page-loader" />  
+    if (isLoading) return <BeatLoader className="page-loader" />
+    if (isError) return <p className="signup-failure">Error posting article, please refresh try again <FiXCircle/></p>
+    if (isSuccess) return <p className="signup-success">Article posted successfully <FiCheckCircle/></p>
 
     return (
         <div>
@@ -83,6 +86,7 @@ export default function AddArticle({selectArticles}) {
                 />
                 <label className="user-label">Body:</label>
                 <textarea  placeholder="Go for it..."
+                    rows="25"
                     className="user-text-area"
                     id="articleBody"
                     value={articleBody}

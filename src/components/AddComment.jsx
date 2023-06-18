@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import { UserContext } from '../contexts/UserContext';
 import { BeatLoader } from "react-spinners";
-import { FiXCircle, FiCheckCircle } from "react-icons/fi"
+import { FiXCircle } from "react-icons/fi"
 import * as api from '../api'
 import dateFormat from '../utilities/dateFormat';
 
@@ -65,26 +65,28 @@ export default function AddComment({ article, selectComments }) {
 
     return (
         <div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="user-form">
 
-            {username === '' ? <textarea placeholder="You must be signed in to commment..." rows="5"
+            {username === '' ? <textarea  placeholder="You must be signed in to commment..." rows="5"
+                className="user-text-area"
                 id="newComment"
                 value={newComment}
                 onChange={(event) => setNewComment(event.target.value)}
             ></textarea>
             :
             <textarea placeholder="Post a comment..." rows="10"
+                className="user-text-area"
                 id="newComment"
                 value={newComment}
                 onChange={(event) => setNewComment(event.target.value)}
             ></textarea>}
 
-            {username === '' ? <button disabled>Post</button>
+            {username === '' ? <button className="submit-button-disabled" disabled>Post</button>
             : 
-            <button >Post</button>}      
+            <button className="submit-button">Post</button>}      
 
         </form>
-        {invalid === true && <p>Comment is not long enough</p>}
+        {invalid === true && <p className="signup-failure">Comment is not long enough <FiXCircle/></p>}
         </div>
     )
 }

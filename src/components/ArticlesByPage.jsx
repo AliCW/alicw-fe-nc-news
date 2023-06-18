@@ -73,18 +73,12 @@ export default function ArticlesByPage() {
     }
 
     return (
-        <div>
-            {/* {<TopicNav />} */}
-            {/* { username === '' ? 
-                <span></span>
-                :
-                <AddArticle selectArticles={selectArticles} />
-                } */}
-            <div key="query-nav">
-                <form onSubmit={handleSubmit}>
-                    <h2 className="sub-header">Filter:</h2>
-                    <nav className="filter-nav">
-                        <div>
+
+        <div key="query-nav">
+            <form onSubmit={handleSubmit}>
+                <h2 className="sub-header">Filter:</h2>
+                <nav className="filter-nav">
+                    <div>
                         <label className="filter-label">Sort By: </label>
 
                         <select onChange={(event) => { selectQuery(event.target.value) }}
@@ -103,23 +97,23 @@ export default function ArticlesByPage() {
                             className="filter-select">
                             <option value="ASC">Ascending</option>
                             <option value="DESC">Descending</option>
-                        </select> 
+                        </select>
 
-                        </div>                      
-                        <input type="submit" value="Search" className="filter-submit"/> 
-                        
-                    </nav>
-                </form>
-                {<ArticleCard articles={articles} />}
-                <form className="filter-nav">
-                    { pageNumber <= 1 ? 
-                        <span></span>
-                        :
-                        <button className="filter-submit" onClick={handlePrevPage}>Prev</button>
-                    }
-                    <button className="filter-submit" onClick={handleNextPage}>Next</button>    
-                </form>
-            </div>
+                    </div>
+                    <input type="submit" value="Search" className="filter-submit" />
+
+                </nav>
+            </form>
+            {<ArticleCard articles={articles} />}
+            <form className="filter-nav">
+                {pageNumber <= 1 ?
+                    <span></span>
+                    :
+                    <button className="filter-submit" onClick={handlePrevPage}>Prev</button>
+                }
+                <button className="filter-submit" onClick={handleNextPage}>Next</button>
+            </form>
         </div>
+
     )
 }
