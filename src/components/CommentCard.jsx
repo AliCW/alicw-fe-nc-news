@@ -1,5 +1,7 @@
 import { useState, useContext } from 'react';
 import { UserContext } from '../contexts/UserContext';
+import { BeatLoader } from "react-spinners";
+import { FiXCircle, FiCheckCircle } from "react-icons/fi"
 import * as api from '../api'
 
 export default function CommentCard (comment) {
@@ -37,21 +39,20 @@ export default function CommentCard (comment) {
             
     }
 
-    // if(comment === undefined) return <p>no comments to see here</p>
-    if(isDeleted) return <p>Deleted Successfully</p>
-    if(isDeleting) return <p>Deleting...</p>
-    if(deleteError) return <p>Comment not deleted, refresh & try again</p>
+    if(isDeleting) return <BeatLoader className="page-loader" />
+    if(deleteError) return <p className="signup-failure">Comment not deleted, refresh & try again <FiXCircle/></p>
+    if(isDeleted) return <p className="signup-success">Deleted Successfully <FiCheckCircle/></p>
 
     return (
-    <div className="comment">
-        <div className ="comment" key={comment.comment.comment_id} >
-            <h3 className="comment-header">{comment.comment.author}:</h3>
-            <p className="comment-body">{comment.comment.body}</p>
-            <p className="comment-details">Votes: {comment.comment.votes}</p>
-            <p className="comment-details">Posted At: {String(comment.comment.created_at).slice(0, 10)}</p>
+    <div >
+        <div  key={comment.comment.comment_id} >
+            <h3 className="map-title">{comment.comment.author}:</h3>
+            <p className="map-disc">{comment.comment.body}</p>
+            <br></br>
+            <p className="map-details">Votes: {comment.comment.votes}</p>
+            <p className="map-details">Posted At: {String(comment.comment.created_at).slice(0, 10)}</p>
             {comment.comment.author === username &&   
-            <button className="delete-button" onClick={() => handleClick(comment)} >Delete
-            </button>}
+            <button className="delete-button" onClick={() => handleClick(comment)} >Delete</button>}
         </div >
     </div>
     )

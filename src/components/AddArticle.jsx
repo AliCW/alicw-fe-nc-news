@@ -1,5 +1,7 @@
 import { useState, useContext } from "react";
 import { UserContext } from '../contexts/UserContext';
+import { BeatLoader } from "react-spinners";
+import { FiXCircle, FiCheckCircle } from "react-icons/fi"
 import dateFormat from '../utilities/dateFormat';
 import * as api from "../api";
 
@@ -11,6 +13,7 @@ export default function AddArticle({selectArticles}) {
     const [articleSubmit, setArticleSubmit] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [isError, setIsError] = useState(false)
+    const [isSuccess, setIsSuccess] = useState(false)
     
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -46,48 +49,50 @@ export default function AddArticle({selectArticles}) {
             })
     }
 
-    const handleArticle = (articleData) => {
+    const handleArticle = () => {
         setArticleSubmit(true)
+        setIsSuccess(true)
         const timer = setTimeout(() => {
             setArticleSubmit(false)
-            selectArticles((currArticles) => {
-                return [articleData, ...currArticles]
-            })
+
         }, 2000);
         return () => {
           clearTimeout(timer);
         };
     }
 
-    if (articleSubmit) return <p>Submitting...</p>   
-    if (isLoading) return <p>Posting...</p>
-    if (isError) return <p>Error posting article, please refresh try again</p>
+    if (articleSubmit) return <BeatLoader className="page-loader" />  
+    if (isLoading) return <BeatLoader className="page-loader" />
+    if (isError) return <p className="signup-failure">Error posting article, please refresh try again <FiXCircle/></p>
+    if (isSuccess) return <p className="signup-success">Article posted successfully <FiCheckCircle/></p>
 
     return (
         <div>
-            <form id="signup-form" className="login" onSubmit={handleSubmit} autoComplete="on">
-                <h3>Add article:</h3>
-                <label className="signup-labels">Title</label>
+            <form id="signup-form" onSubmit={handleSubmit} autoComplete="off" className="user-form">
+                <h3 className="user-form-header">Add article:</h3>
+                <label className="user-label">Title:</label>
                 <input
-                    className="input"
+                    className="user-input-long"
                     type="text"
                     placeholder="Title"
                     onChange={(event) => { setArticleTitle(event.target.value) }}
                 />
-                <label className="signup-labels">Topic</label>
+                <label className="user-label">Topic:</label>
                 <input
-                    className="input"
+                    className="user-input-long"
                     type="text"
                     placeholder="Topic"
                     onChange={(event) => { setArticleTopic(event.target.value) }}
                 />
-                <label className="signup-labels">Body</label>
-                <textarea className="add-article-box" placeholder="Go for it..."
+                <label className="user-label">Body:</label>
+                <textarea  placeholder="Go for it..."
+                    rows="25"
+                    className="user-text-area"
                     id="articleBody"
                     value={articleBody}
                     onChange={(event) => setArticleBody(event.target.value)}
                 ></textarea>
-                <button className="signup-button" type="submit">Submit</button>
+                <button className="submit-button" type="submit">Submit</button>
             </form>
 
         </div>

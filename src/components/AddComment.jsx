@@ -1,5 +1,7 @@
 import { useState, useContext } from 'react';
 import { UserContext } from '../contexts/UserContext';
+import { BeatLoader } from "react-spinners";
+import { FiXCircle } from "react-icons/fi"
 import * as api from '../api'
 import dateFormat from '../utilities/dateFormat';
 
@@ -57,32 +59,34 @@ export default function AddComment({ article, selectComments }) {
         };
     }
 
-    if (commentSubmit) return <p>Submitting...</p>                                  
-    if (isLoading) return <p>Posting...</p>
-    if (error) return <p>Error posting comment, please refresh try again</p>
+    if (commentSubmit) return <BeatLoader className="page-loader" />                              
+    if (isLoading) return <BeatLoader className="page-loader" />
+    if (error) return <p className="signup-failure">Error posting comment, please refresh try again <FiXCircle/></p>
 
     return (
         <div>
-        <form className="add-comment-form" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="user-form">
 
-            {username === '' ? <textarea className="add-comment-box"  placeholder="You must be signed in to commment..." rows="5"
+            {username === '' ? <textarea  placeholder="You must be signed in to commment..." rows="5"
+                className="user-text-area"
                 id="newComment"
                 value={newComment}
                 onChange={(event) => setNewComment(event.target.value)}
             ></textarea>
             :
-            <textarea className="add-comment-box"  placeholder="Post a comment..." rows="10"
+            <textarea placeholder="Post a comment..." rows="10"
+                className="user-text-area"
                 id="newComment"
                 value={newComment}
                 onChange={(event) => setNewComment(event.target.value)}
             ></textarea>}
 
-            {username === '' ? <button className="post-button-disabled" disabled>Post</button>
+            {username === '' ? <button className="submit-button-disabled" disabled>Post</button>
             : 
-            <button className="post-button">Post</button>}      
+            <button className="submit-button">Post</button>}      
 
         </form>
-        {invalid === true && <p>Comment is not long enough</p>}
+        {invalid === true && <p className="signup-failure">Comment is not long enough <FiXCircle/></p>}
         </div>
     )
 }

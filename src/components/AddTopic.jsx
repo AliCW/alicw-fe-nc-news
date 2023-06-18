@@ -1,5 +1,7 @@
 import { useState, useContext } from "react";
 import { UserContext } from '../contexts/UserContext';
+import { BeatLoader } from "react-spinners";
+import { FiXCircle } from "react-icons/fi"
 import checkValidTopic from '../utilities/checkValidTopic'
 import * as api from "../api"
 
@@ -53,38 +55,33 @@ export default function AddTopic({findTopics}){
         };
     }
 
-    if (topicSubmit)  return <p>Submitted!</p>
-    if (isLoading) return <p>Posting...</p>
-    if (isError) return <p>Error posting topic, please refresh try again</p>
-    if (checkTopic) return <p>Error post topic name</p>
+    if (topicSubmit)  return <BeatLoader className="page-loader" /> 
+    if (isLoading) return <BeatLoader className="page-loader" /> 
+    if (isError) return <p className="signup-failure">Error posting topic, please refresh try again <FiXCircle/></p>
+    if (checkTopic) return <p className="signup-failure">Error post topic name <FiXCircle/></p>
 
     return (
         <div>
-            <form id="add-topic-form" className="add-topic-form" onSubmit={handleSubmit} autoComplete="on">
-                <h3>Add A Topic:</h3>
+            <form id="add-topic-form" onSubmit={handleSubmit} autoComplete="on" className="user-form">
+                <h3 className="user-form-header">Add A Topic:</h3>
 
-                <label className="signup-labels">Topic Name:</label>
-
+                <label className="user-label">Topic Name:</label>
                 {username === '' ?
-                    <input className="input" placeholder="you must be signed in"
-
-                    ></input>
+                    <input  placeholder="You Must Be Signed In..." className="user-input-long"></input>
                     :
-                    <input className="input" placeholder="topic*"
-                        id="newTopic"
-                        value={newTopicSlug}
-                        onChange={(event) => setNewTopicSlug(event.target.value)}
+                    <input  placeholder="topic*" className="user-input-long"
+                    id="newTopic"
+                    value={newTopicSlug}
+                    onChange={(event) => setNewTopicSlug(event.target.value)}
                     ></input>
                 }
-
-                <label className="signup-labels">Description:</label>
+                
+                <label className="user-label-text-area">Description:</label>
 
                 {username === '' ?
-                    <textarea className="add-topic-discription-box" placeholder="you must be signed in"
-
-                    ></textarea>
+                    <textarea placeholder="You Must Be Signed In..." className="user-text-area"></textarea>
                     :
-                    <textarea className="add-topic-discription-box" placeholder="description*"
+                    <textarea placeholder="description*" className="user-text-area"
                         id="newTopic"
                         value={newTopicDescription}
                         onChange={(event) => setNewTopicDiscription(event.target.value)}
@@ -92,9 +89,9 @@ export default function AddTopic({findTopics}){
                 }
 
                 { username === '' ?
-                    <button className="post-topic-button-disabled" disabled>Submit</button>
+                    <button disabled className="submit-button-disabled">Submit</button>
                     :
-                    <button className="post-topic-button">Submit</button>
+                    <button className="submit-button">Submit</button>
                 }
             </form>
 

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom"
+import { BeatLoader } from "react-spinners";
 import * as api from "../api"
 import capitaliseFirstLetter from "../utilities/capitaliseFirstLetter";
 
@@ -17,15 +18,15 @@ export default function TopicNav() {
     )
 
     if (isLoading) {
-        return <p className="loading">Loading...</p>
+        return <BeatLoader className="page-loader" />
     }
 
     return (
-        <div className="topic-nav">
+        <div >
             {topics.map((topic) => {
                 return (
-                    <div key={topic.slug} className="topic-nav-links">
-                        <Link to={"/topics/" + topic.slug}>{capitaliseFirstLetter(topic.slug)}</Link>
+                    <div key={topic.slug} className="topic-bar">
+                        <Link to={"/topics/" + topic.slug} className="topic-button">{capitaliseFirstLetter(topic.slug)}</Link>
                     </div>
                 )
             })}

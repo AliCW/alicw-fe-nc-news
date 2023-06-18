@@ -10,7 +10,7 @@ import { IconContext } from "react-icons";
 export default function Error() {
     return (
         <IconContext.Provider value={{ color: "#cc00ff" }}>
-        <div className="error">
+        <div >
             <h3>This page is not available</h3>
             <BsArrowRightCircleFill /> 
             <Link to="/articles">   Return to reality   </Link>

@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from '../contexts/UserContext';
+import { BeatLoader } from "react-spinners";
 import * as api from '../api'
 import TopicNav from './TopicNav'
 import ArticleCard from './ArticleCard'
@@ -55,7 +56,7 @@ export default function Articles() {
     }
     
         if (isLoading) {
-            return <p className="loading">Loading...</p>
+            return <BeatLoader className="page-loader" />
         }
 
     return (
@@ -67,9 +68,9 @@ export default function Articles() {
                 <AddArticle selectArticles={selectArticles} />
                 }
             <div key="query-nav">
-                <form className="article-search" onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}>
                     <h2>Filter:</h2>
-                    <nav className="query-nav">
+                    <nav>
                         <div>
                         <label>Sort By: </label>
                         <br></br>
@@ -93,7 +94,7 @@ export default function Articles() {
                         </select> 
                         <br></br>
                         </div>                      
-                        <input className="query-submit-button" type="submit" value="Search" /> 
+                        <input type="submit" value="Search" /> 
                     </nav>
                 </form>
 

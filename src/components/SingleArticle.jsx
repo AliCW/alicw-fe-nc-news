@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { BsFillHandThumbsUpFill, BsFillHandThumbsDownFill } from 'react-icons/bs'
-import { IconContext } from "react-icons";
 import { UserContext } from '../contexts/UserContext';
+import { BeatLoader } from "react-spinners";
+import { FiXCircle, FiThumbsUp, FiThumbsDown } from "react-icons/fi"
 import SingleArticleComments from './SingleArticleComments'
 import * as api from '../api'
 
@@ -54,42 +54,43 @@ export default function SingleArticle () {
 
 
     if (isLoading) {
-        return <p className="loading">Loading...</p>
+        return <BeatLoader className="page-loader" />
     }
 
     return (
-        <IconContext.Provider value={{ color: "#cc00ff" }}>
-        <div className="article" key={article[0].article_id}>
-            <h3 className="article-header">{article[0].title}</h3>
-            <p className="article-body">{article[0].body}</p>
-            <p className="article-details">Author: {article[0].author}</p>
-            <p className="article-details">Topic: {article[0].topic}</p>
-            <p className="article-details">Created: {String(article[0].created_at).slice(0, 10)}</p>
-               <p className="article-details">Comments: {article[0].comment_count}</p>
-               <p className="article-details">Votes:</p>
-            {username === '' ? 
-            <p>
-                <BsFillHandThumbsDownFill className="vote-button-disabled" disabled onClick={() => setVoteError(true)} />
-                
-                {article[0].votes}
-                <BsFillHandThumbsUpFill className="vote-button-disabled" disabled onClick={() => setVoteError(true)} />
+        <div key={article[0].article_id}>
+            <div className="map-div">
+                <h3 className="sub-header">{article[0].title}</h3>
+                <p className="map-disc">{article[0].body}</p>
+                <br></br>
+                <p className="map-details">Author: {article[0].author}</p>
+                <p className="map-details">Topic: {article[0].topic}</p>
+                <p className="map-details">Created: {String(article[0].created_at).slice(0, 10)}</p>
+                <p className="map-details">Comments: {article[0].comment_count}</p>
+                <p className="map-vote">Votes:</p>
+                {username === '' ? 
+                <p className="map-vote">
+                    <FiThumbsDown className="map-vote-flex" disabled onClick={() => setVoteError(true)} />
 
-            </p>
-            :
-            <p>
-                <BsFillHandThumbsDownFill className="vote-button" onClick={() => downVote(article[0].article_id)} />
+                    {article[0].votes}
 
-                {article[0].votes}
-                <BsFillHandThumbsUpFill className="vote-button"  onClick={() => upVote(article[0].article_id)} />
+                    <FiThumbsUp className="map-vote-flex" disabled onClick={() => setVoteError(true)} />
 
-            </p>
-            }
-            {article[0].error}
-            {voteError === true && <p>You need to be signed in to vote</p>}
+                </p>
+                :
+                <p className="map-vote">
+                    <FiThumbsDown className="map-vote-flex" onClick={() => downVote(article[0].article_id)}/>
 
+                     {article[0].votes} 
+                    <FiThumbsUp className="map-vote-flex" onClick={() => upVote(article[0].article_id)} />
+
+                </p>
+                }
+            </div>
+                {article[0].error}
+                {voteError === true && <p className="signup-failure">You need to be signed in to vote <FiXCircle/></p>}
             <SingleArticleComments article={article[0].article_id} user={username}></SingleArticleComments>
             
         </div>
-        </IconContext.Provider>
     )
 }

@@ -6,13 +6,13 @@ export default function ArticleCard({ articles }) {
         <div>
             {articles.map((article) => {
                 return (
-                    <div key={article.article_id} className="article">
-                        <Link to={"/article/" + article.article_id} state={{ id: article.article_id }} className="article-header">{article.title}</Link>
-                        <p className="article-details">Author: {article.author}</p>
-                        <p className="article-details">Topic: {capitaliseFirstLetter(article.topic)}</p>
-                        <p className="article-details">Comments: {article.comments_count}</p>
-                        <p className="article-details">Votes: {article.votes}</p>
-                        <p className="article-details">Created: {article.created_at.slice(0, 10)}</p>
+                    <div key={article.article_id} className="map-div">
+                        <Link to={"/article/" + article.article_id} state={{ id: article.article_id }} className="map-title">{article.title}</Link>
+                        <p className="map-details">Author: {article.author}</p>
+                        <p className="map-details">Topic: {capitaliseFirstLetter(article.topic)}</p>
+                        <p className="map-details">Comments: {article.comments_count}</p>
+                        <p className="map-details">Votes: {article.votes}</p>
+                        <p className="map-details">Created: {article.created_at.slice(0, 10)}</p>
                     </div>
                 )
             })}

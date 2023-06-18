@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { BeatLoader } from "react-spinners";
 import TopicCard from './TopicCard'
 import AddTopic from './AddTopic'
 import * as api from "../api"
@@ -18,11 +19,12 @@ export default function Topics() {
     )
 
     if (isLoading) {
-        return <p className="loading">Loading...</p>
+        return <BeatLoader className="page-loader" />
     }
 
     return (
-        <div className="articles">
+        <div>
+            <h2 className="sub-header">Topics</h2>
             {topics.map((topic) => {
                 return (
                     <div key={topic.slug}>
