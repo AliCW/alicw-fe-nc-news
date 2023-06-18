@@ -22,6 +22,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/articles" element={<ArticlesByPage />} />
+        <Route path="/add-article" element={<AddArticle />} />
         <Route path="/topics" element={<Topics />} />
         <Route path="/topics/:slug" element={<ArticlesByTopic />} />
         <Route path="/articles/create" element={<AddArticle />}/>

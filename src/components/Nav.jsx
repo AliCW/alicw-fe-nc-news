@@ -15,16 +15,16 @@ export default function Nav() {
        return (
         <div >         
         <nav className="nav">
-            <Link className="navLink" to="/">
-                <button className="navButton">Home</button>
+            <Link id="navLink" className="navLink" to="/">
+                <button id="navButton" className="navButton">Home</button>
             </Link>
 
-            <Link className="navLink" to="/articles">
-                <button className="navButton">Articles</button>
+            <Link id="navLink" className="navLink" to="/articles">
+                <button id="navButton" className="navButton">Articles</button>
             </Link>
 
-            <Link className="navLink" to="/topics">
-                <button className="navButton">Topics</button>
+            <Link id="navLink" className="navLink" to="/topics">
+                <button id="navButton" className="navButton">Topics</button>
             </Link>
             
             {username === '' ? 

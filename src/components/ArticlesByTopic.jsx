@@ -24,16 +24,15 @@ export default function ArticlesByTopic() {
 
   return (
     <div>
-    {<TopicNav />}  
+    {/* {<TopicNav />}   */}
     {articles.map((article) => {
       return (
-        <div key={article.article_id} >
-           <Link to={"/article/" + article.article_id} state={{id: article.article_id}} >{article.title}</Link>
-           <p >author: {article.author}</p>
-           <p >topic: {article.topic}</p>
-           <p >comments: {article.comments_count}</p>
-           <p ></p>
-           <p >created: {article.created_at.slice(0, 10)}</p>
+        <div key={article.article_id} className="map-div">
+           <Link to={"/article/" + article.article_id} state={{id: article.article_id}} className="map-title">{article.title}</Link>
+           <p className="map-disc">author: {article.author}</p>
+           <p className="map-disc">topic: {article.topic}</p>
+           <p className="map-disc">comments: {article.comments_count}</p>
+           <p className="map-disc">created: {article.created_at.slice(0, 10)}</p>
         </div>
       )
     })}

@@ -61,13 +61,14 @@ export default function SingleArticle () {
     return (
         <IconContext.Provider value={{ color: "#cc00ff" }}>
         <div key={article[0].article_id}>
-            <h3 >{article[0].title}</h3>
-            <p >{article[0].body}</p>
-            <p >Author: {article[0].author}</p>
-            <p >Topic: {article[0].topic}</p>
-            <p >Created: {String(article[0].created_at).slice(0, 10)}</p>
-               <p >Comments: {article[0].comment_count}</p>
-               <p >Votes:</p>
+            <h3 className="sub-header">{article[0].title}</h3>
+            <p className="map-disc">{article[0].body}</p>
+            <br></br>
+            <p className="map-disc">Author: {article[0].author}</p>
+            <p className="map-disc">Topic: {article[0].topic}</p>
+            <p className="map-disc">Created: {String(article[0].created_at).slice(0, 10)}</p>
+               <p className="map-disc">Comments: {article[0].comment_count}</p>
+               <p className="map-disc">Votes:</p>
             {username === '' ? 
             <p>
                 <BsFillHandThumbsDownFill disabled onClick={() => setVoteError(true)} />

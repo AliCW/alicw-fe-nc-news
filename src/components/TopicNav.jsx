@@ -25,8 +25,8 @@ export default function TopicNav() {
         <div >
             {topics.map((topic) => {
                 return (
-                    <div key={topic.slug} >
-                        <Link to={"/topics/" + topic.slug}>{capitaliseFirstLetter(topic.slug)}</Link>
+                    <div key={topic.slug} className="topic-bar">
+                        <Link to={"/topics/" + topic.slug} className="topic-button">{capitaliseFirstLetter(topic.slug)}</Link>
                     </div>
                 )
             })}

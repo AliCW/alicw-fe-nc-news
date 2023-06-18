@@ -1,5 +1,7 @@
 import { useState, useContext } from 'react';
 import { UserContext } from '../contexts/UserContext';
+import { BeatLoader } from "react-spinners";
+import { FiXCircle, FiCheckCircle } from "react-icons/fi"
 import * as api from '../api'
 
 export default function CommentCard (comment) {
@@ -37,9 +39,9 @@ export default function CommentCard (comment) {
             
     }
 
-    if(isDeleted) return <p>Deleted Successfully</p>
-    if(isDeleting) return <p>Deleting...</p>
-    if(deleteError) return <p>Comment not deleted, refresh & try again</p>
+    if(isDeleting) return <BeatLoader className="page-loader" />
+    if(deleteError) return <p className="signup-failure">Comment not deleted, refresh & try again <FiXCircle/></p>
+    if(isDeleted) return <p className="signup-success">Deleted Successfully <FiCheckCircle/></p>
 
     return (
     <div >

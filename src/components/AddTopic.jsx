@@ -1,5 +1,7 @@
 import { useState, useContext } from "react";
 import { UserContext } from '../contexts/UserContext';
+import { BeatLoader } from "react-spinners";
+import { FiXCircle } from "react-icons/fi"
 import checkValidTopic from '../utilities/checkValidTopic'
 import * as api from "../api"
 
@@ -53,10 +55,10 @@ export default function AddTopic({findTopics}){
         };
     }
 
-    if (topicSubmit)  return <p>Submitted!</p>
-    if (isLoading) return <p>Posting...</p>
-    if (isError) return <p>Error posting topic, please refresh try again</p>
-    if (checkTopic) return <p>Error post topic name</p>
+    if (topicSubmit)  return <BeatLoader className="page-loader" /> 
+    if (isLoading) return <BeatLoader className="page-loader" /> 
+    if (isError) return <p className="signup-failure">Error posting topic, please refresh try again <FiXCircle/></p>
+    if (checkTopic) return <p className="signup-failure">Error post topic name <FiXCircle/></p>
 
     return (
         <div>
@@ -87,7 +89,7 @@ export default function AddTopic({findTopics}){
                 }
 
                 { username === '' ?
-                    <button disabled className="submit-button">Submit</button>
+                    <button disabled className="submit-button-disabled">Submit</button>
                     :
                     <button className="submit-button">Submit</button>
                 }

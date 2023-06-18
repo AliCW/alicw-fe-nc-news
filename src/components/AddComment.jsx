@@ -1,5 +1,7 @@
 import { useState, useContext } from 'react';
 import { UserContext } from '../contexts/UserContext';
+import { BeatLoader } from "react-spinners";
+import { FiXCircle, FiCheckCircle } from "react-icons/fi"
 import * as api from '../api'
 import dateFormat from '../utilities/dateFormat';
 
@@ -57,9 +59,9 @@ export default function AddComment({ article, selectComments }) {
         };
     }
 
-    if (commentSubmit) return <p>Submitting...</p>                                  
-    if (isLoading) return <p>Posting...</p>
-    if (error) return <p>Error posting comment, please refresh try again</p>
+    if (commentSubmit) return <BeatLoader className="page-loader" />                              
+    if (isLoading) return <BeatLoader className="page-loader" />
+    if (error) return <p className="signup-failure">Error posting comment, please refresh try again <FiXCircle/></p>
 
     return (
         <div>
