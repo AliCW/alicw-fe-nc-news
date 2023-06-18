@@ -62,55 +62,51 @@ html {
 
 .nav {
   display: grid;
-  padding: 3.5%;
   background-color: #C0C0C0;
   border-bottom: 3px solid;
   border-color: #9BB9C3;
-  margin-bottom: 40px;
 }
 
-.navLink {
-  display: inline-grid;
-  grid-row-start: 1;
-  text-decoration: none;
-}
-
-.navUser {
+.nav-user {
   display: inline-grid;
   grid-row-start: 1;
   background-color: #C0C0C0;
   font-size: x-large;
   border: none;
   text-decoration: none;
-  margin: auto;
+  align-items: stretch;
+  padding-top: 10px;
+  padding-bottom: 10px;
   font-size: 1em;
   font-family: consolas, "Courier New", monospace;
   cursor: pointer;
 }
 
-.navDropdown {
-  display: inline-grid;
-  grid-row-start: 1;
-  cursor: pointer;
-  position: relative;
-  text-decoration: none;
+.nav-user:hover {
+  background-color: #FF908B;
 }
 
-.navButton {
+.nav-button {
   background-color: #C0C0C0;
   border: none;
+  display: inline-grid;
+  grid-row-start: 1;
   text-decoration: none;
-  margin: auto;
+  text-align: center;
+  padding-top: 5px;
   cursor: pointer;
   font-size: 1em;
   font-family: consolas, "Courier New", monospace;
 }
+
+.nav-button:hover {
+  background-color: #FF908B;
+} 
 
 .menu {
   position: absolute;
   float: right;
   list-style-type: none;
-
   padding: 0;
   width: 150px;
   
