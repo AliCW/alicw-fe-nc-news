@@ -1,4 +1,3 @@
-//import Header from './components/Header';
 import Nav from './components/Nav';
 import Home from './components/Home';
 import Signup from './components/Signup';
