@@ -1,5 +1,4 @@
-import { useState, useEffect, useContext } from "react";
-import { UserContext } from '../contexts/UserContext';
+import { useState, useEffect } from "react";
 import { BeatLoader } from "react-spinners";
 
 import * as api from '../api'
