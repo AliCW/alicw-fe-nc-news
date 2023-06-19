@@ -23,7 +23,6 @@ export default function ArticlesByTopic() {
 
   return (
     <div>
-    {/* {<TopicNav />}   */}
     {articles.map((article) => {
       return (
         <div key={article.article_id} className="map-div">
