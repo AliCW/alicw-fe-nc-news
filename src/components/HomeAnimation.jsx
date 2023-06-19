@@ -8,13 +8,23 @@ export default function HomeAnimation() {
             'Fake news is cheap to produce. ',
             1000,
             'Journalism can never be silent: that is its greatest virtue and its greatest fault.',
-            1000,
-            'By giving us the opinions of the uneducated, journalism keeps us in touch with the ignorance of the community.',
-            1000,
+            2000,
+            'It is unwise to attempt to attain knowledge by reading lists of quotations.',
+            2000,
             'Journalism is what we need to make democracy work.',
-            1000,
+            2000,
             'The point of journalism is to hold people in positions of power accountable.',
-            1000
+            2000,
+            'pater noster, qui es in caelis, sanctificetur nomen tuum.',
+            2000,
+            'Adveniat regnum tuum.',
+            1000,
+            'Fiat voluntas tua, sicut in caelo et in terra.',
+            2000,
+            'Panem nostrum quotidianum da nobis hodie, et dimitte nobis debita nostra sicut et nos dimittimus debitoribus nostris.',
+            5000,
+            'Et ne nos inducas in tentationem, sed libera nos a malo. Amen.',
+            5000,
           ]}
           wrapper="span"
           speed={50}

@@ -79,16 +79,17 @@ export default function AddTopic({findTopics}){
                 <label className="user-label-text-area">Description:</label>
 
                 {username === '' ?
-                    <textarea placeholder="You Must Be Signed In..." className="user-text-area"></textarea>
+                    <textarea placeholder="You Must Be Signed In..." className="user-text-area" rows="10"></textarea>
                     :
                     <textarea placeholder="description*" className="user-text-area"
+                        rows="10"
                         id="newTopic"
                         value={newTopicDescription}
                         onChange={(event) => setNewTopicDiscription(event.target.value)}
                     ></textarea>
                 }
 
-                { username === '' ?
+                {username === '' ?
                     <button disabled className="submit-button-disabled">Submit</button>
                     :
                     <button className="submit-button">Submit</button>

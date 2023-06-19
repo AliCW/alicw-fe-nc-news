@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { BeatLoader } from "react-spinners";
-
 import * as api from '../api'
 import ArticleCard from './ArticleCard'
 import orderByCommentCountAsc from "../utilities/orderByCommentCountAsc";
@@ -81,6 +80,7 @@ export default function ArticlesByPage() {
                         <select onChange={(event) => { selectQuery(event.target.value) }}
                             defaultValue={query}
                             className="filter-select">
+
                             <option value="votes">Votes</option>
                             <option value="author">Author</option>
                             <option value="created_at">Date</option>

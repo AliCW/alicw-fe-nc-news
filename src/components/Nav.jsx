@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom"
-import { BiDotsVerticalRounded } from "react-icons/bi"
 import { useState, useContext } from "react"
 import { UserContext } from '../contexts/UserContext';
 import NavUserPanel from "./NavUserPanel"
@@ -15,29 +14,30 @@ export default function Nav() {
        return (
         <div >         
         <nav className="nav">
-            <Link id="navLink" className="navLink" to="/">
-                <button id="navButton" className="navButton">Home</button>
+            <Link id="navLink" className="nav-button" to="/">
+                <button id="navButton" className="nav-button">Home</button>
             </Link>
 
-            <Link id="navLink" className="navLink" to="/articles">
-                <button id="navButton" className="navButton">Articles</button>
+            <Link id="navLink" className="nav-button" to="/articles">
+                <button id="navButton" className="nav-button">Articles</button>
             </Link>
 
-            <Link id="navLink" className="navLink" to="/topics">
-                <button id="navButton" className="navButton">Topics</button>
+            <Link id="navLink" className="nav-button" to="/topics">
+                <button id="navButton" className="nav-button">Topics</button>
             </Link>
             
             {username === '' ? 
 
-                <button onClick={handleOpen} className="navUser">
+                <button onClick={handleOpen} className="nav-user">
+                    
+
                     Sign In
-                    <BiDotsVerticalRounded className="navUser" />
                     { open === true && <NavUserPanel /> }
                 </button> 
                 : 
-                <button onClick={handleOpen} className="navUser">
+                <button onClick={handleOpen} className="nav-user">
                     {username}
-                    <BiDotsVerticalRounded className="navUser" />                
+            
                     { open === true && <NavUserPanel /> }
                 </button> 
             }
