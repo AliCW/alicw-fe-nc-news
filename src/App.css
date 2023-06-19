@@ -172,7 +172,8 @@ html {
 .filter-submit {
   grid-column: 1 / 3;
   grid-row: 20;
-  background-color: #FF908B;
+  background-color: #C0C0C0;
+  color: coral;
   text-decoration: none;
   font-size: 1em;
   font-family: consolas, "Courier New", monospace;
@@ -182,6 +183,11 @@ html {
   margin-bottom: 15px;
   margin-left: 5px;
   border: none;
+}
+
+.filter-submit:hover {
+  background-color: #FF908B;
+  color: black;
 }
 
 .user-form-header {
@@ -332,7 +338,8 @@ html {
 .submit-button {
   grid-column: 1 / 3;
   grid-row: 20;
-  background-color: #FF908B;
+  background-color: #C0C0C0;
+  color: coral;;
   text-decoration: none;
   font-size: 1em;
   font-family: consolas, "Courier New", monospace;
@@ -342,12 +349,18 @@ html {
   margin-right: 25%;
   margin-bottom: 35px;
   border: none;
+}
+
+.submit-button:hover {
+  background-color: #FF908B;
+  color: black;
 }
 
 .submit-button-disabled {
   grid-column: 1 / 3;
   grid-row: 20;
   background-color: #C0C0C0;
+  color: white;
   text-decoration: none;
   font-size: 1em;
   font-family: consolas, "Courier New", monospace;
@@ -359,10 +372,16 @@ html {
   border: none;
 }
 
+.submit-button-disabled:hover {
+  background-color: white;
+  color: black;
+}
+
 .delete-button {
   grid-column: 1 / 3;
   grid-row: 20;
-  background-color: #FF908B;
+  background-color: #C0C0C0;
+  color: coral;
   text-decoration: none;
   font-size: 1em;
   font-family: consolas, "Courier New", monospace;
@@ -373,6 +392,11 @@ html {
   margin-bottom: 35px;
   margin-left: 15px;
   border: none;
+}
+
+.delete-button:hover {
+  background-color: #FF908B;
+  color: black;
 }
 
 .map-div {
