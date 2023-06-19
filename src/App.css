@@ -86,6 +86,11 @@ html {
   background-color: #FF908B;
 }
 
+.nav-user:active {
+  background-color: rgb(107, 186, 225);
+  color: black;
+}
+
 .nav-button {
   background-color: #C0C0C0;
   border: none;
@@ -98,10 +103,6 @@ html {
   font-size: 1em;
   font-family: consolas, "Courier New", monospace;
 }
-
-.nav-button:hover {
-  background-color: #FF908B;
-} 
 
 .menu {
   position: absolute;
@@ -128,6 +129,11 @@ html {
   border: none;
   cursor: pointer;
   text-decoration: none;
+}
+
+.menu-link:active {
+  background-color: rgb(107, 186, 225);
+  color: black;
 }
 
 .menu > li {
@@ -173,12 +179,10 @@ html {
   height: 2.5rem;
   padding: 0 3rem 0 1rem;
   margin-left: 15%;
-
-
   border: none;
-    border-bottom-color: currentcolor;
-    border-bottom-style: none;
-    border-bottom-width: medium;
+  border-bottom-color: currentcolor;
+  border-bottom-style: none;
+  border-bottom-width: medium;
   border-bottom: 1px solid #8d8d8d;
   background-color: #000000;
   color: #f4f4f4;
@@ -196,10 +200,9 @@ html {
 }
 
 .filter-submit {
-  grid-column: 1 / 3;
-  grid-row: 20;
+  display: inline-grid;
   background-color: #C0C0C0;
-  color: coral;
+  color: #FF908B;
   text-decoration: none;
   font-size: 1em;
   font-family: consolas, "Courier New", monospace;
@@ -211,8 +214,34 @@ html {
   border: none;
 }
 
-.filter-submit:hover {
+.filter-pagination-nav {
+  display: grid
+}
+
+.filter-pagination-submit {
+  display: inline-grid;
+  grid-row-start: 50;
+  background-color: #C0C0C0;
+  color: #FF908B;
+  text-decoration: none;
+  font-size: 1em;
+  font-family: consolas, "Courier New", monospace;
+  cursor: pointer;
+  padding: 1%;
+  margin-top: 8px;
+  margin-bottom: 15px;
+  margin-left: 25%;
+  margin-right: 25%;
+  border: none;
+}
+
+.filter-submit:hover, .filter-pagination-submit:hover {
   background-color: #FF908B;
+  color: black;
+}
+
+.filter-submit:active, .filter-pagination-submit:active {
+  background-color: rgb(107, 186, 225);
   color: black;
 }
 
@@ -257,14 +286,12 @@ html {
   margin-top: 10px;
 }
 
-
 .user-input {
   grid-column: 2 / 3;
   font-family: consolas, "Courier New", monospace;
   padding: 0.6%;
   margin-bottom: 10px;
   margin-top: 10px;
-  
   margin-right: 60%;
 }
 
@@ -275,7 +302,6 @@ html {
   margin-bottom: 10px;
   margin-top: 10px;
   margin-right: 25%;
-
 }
 
 @media screen and ( max-width: 500px ){
@@ -365,7 +391,7 @@ html {
   grid-column: 1 / 3;
   grid-row: 20;
   background-color: #C0C0C0;
-  color: coral;;
+  color: #FF908B;
   text-decoration: none;
   font-size: 1em;
   font-family: consolas, "Courier New", monospace;
@@ -377,8 +403,13 @@ html {
   border: none;
 }
 
-.submit-button:hover {
+.submit-button:hover, .delete-button:hover, .nav-button:hover {
   background-color: #FF908B;
+  color: black;
+}
+
+.submit-button:active, .delete-button:active, .nav-button:active {
+  background-color: rgb(107, 186, 225);
   color: black;
 }
 
@@ -403,11 +434,16 @@ html {
   color: black;
 }
 
+.submit-button-disabled:active {
+  background-color: black;
+  color: white;
+}
+
 .delete-button {
   grid-column: 1 / 3;
   grid-row: 20;
   background-color: #C0C0C0;
-  color: coral;
+  color: #FF908B;
   text-decoration: none;
   font-size: 1em;
   font-family: consolas, "Courier New", monospace;
@@ -418,11 +454,6 @@ html {
   margin-bottom: 35px;
   margin-left: 15px;
   border: none;
-}
-
-.delete-button:hover {
-  background-color: #FF908B;
-  color: black;
 }
 
 .map-div {
@@ -439,7 +470,6 @@ html {
 
 .map-title {
   font-family: consolas, "Courier New", monospace;
-
   margin-left: 10px;
 }
 
