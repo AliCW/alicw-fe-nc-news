@@ -81,6 +81,7 @@ export default function ArticlesByPage() {
                         <select onChange={(event) => { selectQuery(event.target.value) }}
                             defaultValue={query}
                             className="filter-select">
+
                             <option value="votes">Votes</option>
                             <option value="author">Author</option>
                             <option value="created_at">Date</option>
