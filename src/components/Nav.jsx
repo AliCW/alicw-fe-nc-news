@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom"
-import { BiDotsVerticalRounded } from "react-icons/bi"
 import { useState, useContext } from "react"
 import { UserContext } from '../contexts/UserContext';
 import NavUserPanel from "./NavUserPanel"
