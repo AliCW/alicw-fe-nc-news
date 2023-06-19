@@ -86,6 +86,11 @@ html {
   background-color: #FF908B;
 }
 
+.nav-user:active {
+  background-color: rgb(107, 186, 225);
+  color: black;
+}
+
 .nav-button {
   background-color: #C0C0C0;
   border: none;
@@ -102,6 +107,11 @@ html {
 .nav-button:hover {
   background-color: #FF908B;
 } 
+
+.nav-button:active {
+  background-color: rgb(107, 186, 225);
+  color: black;
+}
 
 .menu {
   position: absolute;
@@ -128,6 +138,11 @@ html {
   border: none;
   cursor: pointer;
   text-decoration: none;
+}
+
+.menu-link:active {
+  background-color: rgb(107, 186, 225);
+  color: black;
 }
 
 .menu > li {
@@ -196,8 +211,8 @@ html {
 }
 
 .filter-submit {
-  grid-column: 1 / 3;
-  grid-row: 20;
+
+  display: inline-grid;
   background-color: #C0C0C0;
   color: coral;
   text-decoration: none;
@@ -211,8 +226,35 @@ html {
   border: none;
 }
 
-.filter-submit:hover {
+.filter-pagination-nav {
+  display: grid
+}
+
+.filter-pagination-submit {
+  display: inline-grid;
+  grid-row-start: 50;
+  background-color: #C0C0C0;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  font-size: 1em;
+  font-family: consolas, "Courier New", monospace;
+  cursor: pointer;
+  padding: 1%;
+  margin-top: 8px;
+  margin-bottom: 15px;
+  margin-left: 25%;
+  margin-right: 25%;
+  border: none;
+}
+
+
+.filter-submit:hover, .filter-pagination-submit:hover {
   background-color: #FF908B;
+  color: black;
+}
+
+.filter-submit:active, .filter-pagination-submit:active {
+  background-color: rgb(107, 186, 225);
   color: black;
 }
 
@@ -382,6 +424,11 @@ html {
   color: black;
 }
 
+.submit-button:active {
+  background-color: rgb(107, 186, 225);
+  color: black;
+}
+
 .submit-button-disabled {
   grid-column: 1 / 3;
   grid-row: 20;
@@ -403,6 +450,11 @@ html {
   color: black;
 }
 
+.submit-button-disabled:active {
+  background-color: black;
+  color: white;
+}
+
 .delete-button {
   grid-column: 1 / 3;
   grid-row: 20;
@@ -422,6 +474,11 @@ html {
 
 .delete-button:hover {
   background-color: #FF908B;
+  color: black;
+}
+
+.delete-button:active {
+  background-color: rgb(255, 163, 223);
   color: black;
 }
 

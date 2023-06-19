@@ -102,13 +102,13 @@ export default function ArticlesByPage() {
                 </nav>
             </form>
             {<ArticleCard articles={articles} />}
-            <form className="filter-nav">
+            <form className="filter-pagination-nav">
                 {pageNumber <= 1 ?
                     <span></span>
                     :
-                    <button className="filter-submit" onClick={handlePrevPage}>Prev</button>
+                    <button className="filter-pagination-submit" onClick={handlePrevPage}>Prev</button>
                 }
-                <button className="filter-submit" onClick={handleNextPage}>Next</button>
+                <button className="filter-pagination-submit" onClick={handleNextPage}>Next</button>
             </form>
         </div>
 
