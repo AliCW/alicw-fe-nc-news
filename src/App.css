@@ -119,6 +119,7 @@ html {
   text-decoration: none;
   font-size: small;
   font-family: consolas, "Courier New", monospace;
+  color: black;
   padding: 5%;
   width: 150px;
   margin-right: 20px;
@@ -133,7 +134,6 @@ html {
 
 .menu-link:active {
   background-color: rgb(107, 186, 225);
-  color: black;
 }
 
 .menu > li {
