@@ -2,16 +2,22 @@ import { useState, useContext } from 'react';
 import { UserContext } from '../contexts/UserContext'
 import { BeatLoader } from "react-spinners";
 import { FiXCircle, FiCheckCircle } from "react-icons/fi"
+import { SignInContext } from "../contexts/SignInContext"
 import * as api from '../api'
 
 export default function Login() {
-    const { username } = useContext(UserContext)
-    const [usernameInput, setUsernameInput] = useState('')
-    const [password, setPassword] = useState('')
-    const [signinSuccess, setSigninSuccess] = useState(false)
-    const [signinError, setSigninError] = useState(false)
+    const { username } = useContext(UserContext);
+    const [usernameInput, setUsernameInput] = useState('');
+    const [password, setPassword] = useState('');
+    const [signinSuccess, setSigninSuccess] = useState(false);
+    const [signinError, setSigninError] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const { setUsername } = useContext(UserContext)
+    const { setUsername } = useContext(UserContext);
+    const { setOpenSignIn } = useContext(SignInContext);
+
+    const disableDropdown = () => {
+        setOpenSignIn(false);
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -37,7 +43,7 @@ export default function Login() {
     if (isLoading) return <BeatLoader className="page-loader" />
 
     return (
-        <div>
+        <div onClick={disableDropdown} className="disable-dropdown">
             <form id="user-form" onSubmit={handleSubmit} autoComplete="on" className="user-form">
                 <label className="user-label">Username</label>
                 <input

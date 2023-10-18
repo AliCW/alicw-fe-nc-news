@@ -29,6 +29,7 @@ html {
 
 .home {
   text-align: center;
+  height: 90vh;
 }
 
 .home-animation {
@@ -156,6 +157,13 @@ html {
   margin: 0;
   cursor: pointer; 
 }
+
+.disable-dropdown {
+  height: 100%;
+  width: 100%;
+  height: 90vh
+}
+
 
 .filter-nav {
   text-align: left;
