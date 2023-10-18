@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { UserContext } from '../contexts/UserContext';
+import { SignInContext } from "../contexts/SignInContext"
 import { BeatLoader } from "react-spinners";
 import { FiXCircle, FiCheckCircle } from "react-icons/fi"
 import dateFormat from '../utilities/dateFormat';
@@ -7,6 +8,7 @@ import * as api from "../api";
 
 export default function AddArticle({selectArticles}) {
     const { username } = useContext(UserContext)
+    const { setOpenSignIn } = useContext(SignInContext);
     const [articleTitle, setArticleTitle] = useState('')
     const [articleTopic, setArticleTopic] = useState('')
     const [articleBody, setArticleBody] = useState('')
@@ -61,13 +63,17 @@ export default function AddArticle({selectArticles}) {
         };
     }
 
+    const disableDropdown = () => {
+        setOpenSignIn(false);
+    };
+
     if (articleSubmit) return <BeatLoader className="page-loader" />  
     if (isLoading) return <BeatLoader className="page-loader" />
     if (isError) return <p className="signup-failure">Error posting article, please refresh try again <FiXCircle/></p>
     if (isSuccess) return <p className="signup-success">Article posted successfully <FiCheckCircle/></p>
 
     return (
-        <div>
+        <div onClick={disableDropdown} className="disable-dropdown">
             <form id="signup-form" onSubmit={handleSubmit} autoComplete="off" className="user-form">
                 <h3 className="user-form-header">Add article:</h3>
                 <label className="user-label">Title:</label>
