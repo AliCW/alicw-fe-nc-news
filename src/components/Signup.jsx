@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { SignInContext } from "../contexts/SignInContext"
 import { BeatLoader } from "react-spinners";
 import { FiXCircle, FiCheckCircle } from "react-icons/fi"
 import checkValidPassword from '../utilities/checkValidPassword'
@@ -13,6 +14,7 @@ export default function Signup() {
   const [checkPassword, setCheckPassword] = useState('');
   const [emailAddress, setEmailAddress] = useState('');
   const [avatarURL, setAvatarURL] = useState('');
+  const { setOpenSignIn } = useContext(SignInContext);
 
   const [isLoading, setIsLoading] = useState(false);
   const [signupComplete, setSignupComplete] = useState(false);
@@ -22,6 +24,10 @@ export default function Signup() {
   const [usernameSyntax, checkUsernameSyntax] = useState(false) 
   const [duplicateDetails, checkDuplicateDetails] = useState(false)
   const [nameSyntax, checkNameSyntax] = useState(false) 
+
+  const disableDropdown = () => {
+    setOpenSignIn(false);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -89,7 +95,7 @@ export default function Signup() {
   if (signupError) return <p className="page-loader">Error signing up, please refresh & try again <FiXCircle/></p>
 
   return (
-      <div>
+      <div onClick={disableDropdown} className="disable-dropdown">
       <form id="user-form" onSubmit={handleSubmit} autoComplete="off" className="user-form">
         <label className="user-label">Username*</label>
         <input

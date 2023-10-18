@@ -1,16 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { BeatLoader } from "react-spinners";
+import { SignInContext } from "../contexts/SignInContext"
 import * as api from '../api'
 import ArticleCard from './ArticleCard'
 import orderByCommentCountAsc from "../utilities/orderByCommentCountAsc";
 import orderByCommentCountDesc from "../utilities/orderByCommentCountDesc";
 
 export default function ArticlesByPage() {
+    const { setOpenSignIn } = useContext(SignInContext)
     const [query, selectQuery] = useState('created_at')
     const [order, selectOrder] = useState('ASC')
     const [articles, selectArticles] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [pageNumber, setPageNumber] = useState(1)
+
 
     useEffect(() => {
         setIsLoading(true)
@@ -20,7 +23,12 @@ export default function ArticlesByPage() {
             setIsLoading(false)
         })
     }, [pageNumber]
-    )
+    );
+
+    const disableDropdown = () => {
+        setOpenSignIn(false);
+    };
+  
     
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -70,7 +78,7 @@ export default function ArticlesByPage() {
 
     return (
 
-        <div key="query-nav">
+        <div key="query-nav" onClick={disableDropdown}>
             <form onSubmit={handleSubmit}>
                 <h2 className="sub-header">Filter:</h2>
                 <nav className="filter-nav">

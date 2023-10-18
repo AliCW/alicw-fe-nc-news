@@ -9,11 +9,11 @@ import orderByCommentCountDesc from "../utilities/orderByCommentCountDesc";
 import AddArticle from "./AddArticle";
 
 export default function Articles() {
-    const { username } = useContext(UserContext)
-    const [query, selectQuery] = useState('created_at')
-    const [order, selectOrder] = useState('ASC')
-    const [articles, selectArticles] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
+    const { username } = useContext(UserContext);
+    const [query, selectQuery] = useState('created_at');
+    const [order, selectOrder] = useState('ASC');
+    const [articles, selectArticles] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         setIsLoading(true)
@@ -22,7 +22,8 @@ export default function Articles() {
             setIsLoading(false)
         })
     }, []
-    )
+    );
+
     
     const handleSubmit = (event) => {
         event.preventDefault();

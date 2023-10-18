@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link, useParams} from "react-router-dom"
 import { BeatLoader } from "react-spinners";
 import * as api from '../api'
+import { SignInContext } from "../contexts/SignInContext"
 
 export default function ArticlesByTopic() {
   const [articles, selectArticles] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const { setOpenSignIn } = useContext(SignInContext);
   const { slug } = useParams();
 
   useEffect(() => {
@@ -17,12 +19,16 @@ export default function ArticlesByTopic() {
   }, [slug]
   )
 
+  const disableDropdown = () => {
+    setOpenSignIn(false);
+};
+
   if (isLoading) {
     return <BeatLoader className="page-loader" />
 }
 
   return (
-    <div>
+    <div onClick={disableDropdown} className="disable-dropdown">
     {articles.map((article) => {
       return (
         <div key={article.article_id} className="map-div">

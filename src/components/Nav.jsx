@@ -1,14 +1,21 @@
 import { Link } from "react-router-dom"
-import { useState, useContext } from "react"
+import { useContext } from "react"
 import { UserContext } from '../contexts/UserContext';
+import { SignInContext } from "../contexts/SignInContext"
 import NavUserPanel from "./NavUserPanel"
 
 export default function Nav() {
-    const [open, setOpen] = useState(false)
+    // const [open, setOpen] = useState(false)
     const { username } = useContext(UserContext)
+    const { setOpenSignIn } = useContext(SignInContext)
+    const { openSignIn } = useContext(SignInContext)
 
-    const handleOpen = () => {
-        setOpen(!open)
+    // const handleOpen = () => {
+    //     setOpen(!open)
+    // }
+
+    const signInOpen = () => {
+        setOpenSignIn(!openSignIn)
     }
 
        return (
@@ -28,17 +35,17 @@ export default function Nav() {
             
             {username === '' ? 
 
-                <button onClick={handleOpen} className="nav-user">
+                <button onClick={signInOpen} className="nav-user">
                     
 
                     Sign In
-                    { open === true && <NavUserPanel /> }
+                    { openSignIn === true && <NavUserPanel /> }
                 </button> 
                 : 
-                <button onClick={handleOpen} className="nav-user">
+                <button onClick={signInOpen} className="nav-user">
                     {username}
             
-                    { open === true && <NavUserPanel /> }
+                    { openSignIn === true && <NavUserPanel /> }
                 </button> 
             }
         </nav>
