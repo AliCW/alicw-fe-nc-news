@@ -59,6 +59,8 @@ html {
 .page-loader {
   text-align: center;
   padding-top: 12%;
+  font-family: Consolas, Monaco, "Courier New", monospace;
+  font-size: 1em;
 }
 
 .nav {

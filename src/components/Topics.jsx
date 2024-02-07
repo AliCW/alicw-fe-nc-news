@@ -25,7 +25,12 @@ export default function Topics() {
   
 
     if (isLoading) {
-        return <BeatLoader className="page-loader" />
+        return (
+            <div>
+                <BeatLoader className="page-loader" />
+                <p className="page-loader">Free instance's spin down with inactivity, initial requests can be delayed by 50 seconds or more.</p>
+            </div>
+        )
     }
 
     return (
