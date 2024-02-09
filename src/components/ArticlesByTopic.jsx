@@ -23,11 +23,14 @@ export default function ArticlesByTopic() {
     setOpenSignIn(false);
 };
 
-  if (isLoading) {
-    return (
+if (isLoading) {
+  return (
       <div>
           <BeatLoader className="page-loader" />
-          <p className="page-loader">Free instance's spin down with inactivity, initial requests can be delayed by 50 seconds or more.</p>
+          <p className="page-loader">
+              Data is served from a free instance that spins down with inactivity,
+              initial requests can be delayed by 50 seconds or more.
+          </p>
       </div>
   )
 }
